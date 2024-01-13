@@ -1,0 +1,31 @@
+        // populateDisabledDates(reservedDates) {
+        //     const disableDates = {};
+
+        //     reservedDates.forEach((reservation) => {
+        //         const reservationStartDate = new Date(reservation.startTime);
+        //         const reservationEndDate = new Date(reservation.endTime);
+
+        //         while (reservationStartDate <= reservationEndDate) {
+        //             const year = reservationStartDate.getFullYear();
+        //             const month = reservationStartDate.getMonth() + 1;
+        //             const day = reservationStartDate.getDate();
+
+        //             const dateKey = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+
+        //             this.$set(disableDates, dateKey, true);
+        //             reservationStartDate.setDate(reservationStartDate.getDate() + 1);
+        //         }
+        //     });
+
+        //     // The disabled-date function for the datepicker component
+        //     const disabledDateFunction = (date, currentValue) => {
+        //         const year = date.getFullYear();
+        //         const month = date.getMonth() + 1;
+        //         const day = date.getDate();
+        //         const dateKey = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+
+        //         return disableDates[dateKey] === true;
+        //     };
+
+        //     return disabledDateFunction;
+        // },

@@ -1,0 +1,25 @@
+{
+    "image": {
+        "title": ""
+    },
+    "parent": "659d351631895c06900c1697",
+    "childrens": [],
+    "_id": "659d374031895c06900c1906",
+    "name": "2024",
+    "slug": "2024",
+    "description": "",
+    "translates": [
+        {
+            "properties": [],
+            "_id": "659d374031895c06900c1907",
+            "language": "AR"
+        },
+        {
+            "properties": [],
+            "_id": "659d374031895c06900c1908",
+            "language": "FR"
+        }
+    ],
+    "storeId": "654e4a1cac0d94578705afc8",
+    "__v": 0
+}

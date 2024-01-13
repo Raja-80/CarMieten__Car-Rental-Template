@@ -1,0 +1,158 @@
+{
+  "SectionsApplication": {
+    "description": "Auto imported from components/sections/Application.vue"
+  },
+  "SectionsBanner": {
+    "description": "Auto imported from components/sections/Banner.vue"
+  },
+  "SectionsBenefits": {
+    "description": "Auto imported from components/sections/Benefits.vue"
+  },
+  "SectionsBook": {
+    "description": "Auto imported from components/sections/Book.vue"
+  },
+  "SectionsCollections": {
+    "description": "Auto imported from components/sections/Collections.vue"
+  },
+  "SectionsFleets": {
+    "description": "Auto imported from components/sections/Fleets.vue"
+  },
+  "SectionsFooter": {
+    "description": "Auto imported from components/sections/Footer.vue"
+  },
+  "SectionsGuides": {
+    "description": "Auto imported from components/sections/Guides.vue"
+  },
+  "SectionsHeader": {
+    "description": "Auto imported from components/sections/Header.vue"
+  },
+  "SectionsNews": {
+    "description": "Auto imported from components/sections/News.vue"
+  },
+  "SectionsProducts": {
+    "description": "Auto imported from components/sections/Products.vue"
+  },
+  "SectionsReviews": {
+    "description": "Auto imported from components/sections/Reviews.vue"
+  },
+  "SectionsServices": {
+    "description": "Auto imported from components/sections/Services.vue"
+  },
+  "SectionsCopyright": {
+    "description": "Auto imported from components/sections/copyright.vue"
+  },
+  "SectionsOthers": {
+    "description": "Auto imported from components/sections/others.vue"
+  },
+  "SiAppLoader": {
+    "description": "Auto imported from components/si/AppLoader.vue"
+  },
+  "SiAvatar": {
+    "description": "Auto imported from components/si/Avatar.vue"
+  },
+  "SiBlog": {
+    "description": "Auto imported from components/si/Blog.vue"
+  },
+  "SiCar": {
+    "description": "Auto imported from components/si/Car.vue"
+  },
+  "SiCarImage": {
+    "description": "Auto imported from components/si/CarImage.vue"
+  },
+  "SiCarousel": {
+    "description": "Auto imported from components/si/Carousel.vue"
+  },
+  "SiCartItem": {
+    "description": "Auto imported from components/si/CartItem.vue"
+  },
+  "SiCollection": {
+    "description": "Auto imported from components/si/Collection.vue"
+  },
+  "SiFullImage": {
+    "description": "Auto imported from components/si/FullImage.vue"
+  },
+  "SiImage": {
+    "description": "Auto imported from components/si/Image.vue"
+  },
+  "SiLoader": {
+    "description": "Auto imported from components/si/Loader.vue"
+  },
+  "SiLoaderGlobal": {
+    "description": "Auto imported from components/si/LoaderGlobal.vue"
+  },
+  "SiPost": {
+    "description": "Auto imported from components/si/Post.vue"
+  },
+  "SiPriceRange": {
+    "description": "Auto imported from components/si/PriceRange.vue"
+  },
+  "SiProduct": {
+    "description": "Auto imported from components/si/Product.vue"
+  },
+  "SiProductPrice": {
+    "description": "Auto imported from components/si/ProductPrice.vue"
+  },
+  "SiProductQuantity": {
+    "description": "Auto imported from components/si/ProductQuantity.vue"
+  },
+  "SiProductVariants": {
+    "description": "Auto imported from components/si/ProductVariants.vue"
+  },
+  "SiReview": {
+    "description": "Auto imported from components/si/Review.vue"
+  },
+  "SiSlidingone": {
+    "description": "Auto imported from components/si/Slidingone.vue"
+  },
+  "SiSvg": {
+    "description": "Auto imported from components/si/Svg.vue"
+  },
+  "SiBlogDetails": {
+    "description": "Auto imported from components/si/blogDetails.vue"
+  },
+  "SectionsPalestSectionsCollections": {
+    "description": "Auto imported from components/sections/palest_sections/Collections.vue"
+  },
+  "SectionsPalestSectionsCopyright": {
+    "description": "Auto imported from components/sections/palest_sections/Copyright.vue"
+  },
+  "SectionsPalestSectionsFooter": {
+    "description": "Auto imported from components/sections/palest_sections/Footer.vue"
+  },
+  "SectionsPalestSectionsFooterMenu": {
+    "description": "Auto imported from components/sections/palest_sections/FooterMenu.vue"
+  },
+  "SectionsPalestSectionsHeaderMenu": {
+    "description": "Auto imported from components/sections/palest_sections/HeaderMenu.vue"
+  },
+  "SectionsPalestSectionsHeaderTop": {
+    "description": "Auto imported from components/sections/palest_sections/HeaderTop.vue"
+  },
+  "SectionsPalestSectionsPosts": {
+    "description": "Auto imported from components/sections/palest_sections/Posts.vue"
+  },
+  "SectionsPalestSectionsProducts": {
+    "description": "Auto imported from components/sections/palest_sections/Products.vue"
+  },
+  "SectionsPalestSectionsRelatedPosts": {
+    "description": "Auto imported from components/sections/palest_sections/RelatedPosts.vue"
+  },
+  "SectionsPalestSectionsRelatedProducts": {
+    "description": "Auto imported from components/sections/palest_sections/RelatedProducts.vue"
+  },
+  "SectionsPalestSectionsReviews": {
+    "description": "Auto imported from components/sections/palest_sections/Reviews.vue"
+  },
+  "SectionsPalestSectionsServices": {
+    "description": "Auto imported from components/sections/palest_sections/Services.vue"
+  },
+  "SectionsPalestSectionsUpsell": {
+    "description": "Auto imported from components/sections/palest_sections/Upsell.vue"
+  },
+  "SectionsPalestSectionsDefaultHeader": {
+    "description": "Auto imported from components/sections/palest_sections/defaultHeader.vue"
+  },
+  "SectionsPalestSectionsMenus": {
+    "description": "Auto imported from components/sections/palest_sections/menus.vue"
+  }
+}

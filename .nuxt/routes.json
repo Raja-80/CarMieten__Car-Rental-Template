@@ -1,0 +1,110 @@
+[
+  {
+    "name": "cars",
+    "path": "/cars",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/cars/index.vue",
+    "chunkName": "pages/cars/index"
+  },
+  {
+    "name": "cart",
+    "path": "/cart",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/cart/index.vue",
+    "chunkName": "pages/cart/index"
+  },
+  {
+    "name": "cart-page",
+    "path": "/cart-page",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/cart-page/index.vue",
+    "chunkName": "pages/cart-page/index"
+  },
+  {
+    "name": "checkout",
+    "path": "/checkout",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/checkout/index.vue",
+    "chunkName": "pages/checkout/index"
+  },
+  {
+    "name": "contact",
+    "path": "/contact",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/contact/index.vue",
+    "chunkName": "pages/contact/index"
+  },
+  {
+    "name": "error",
+    "path": "/error",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/error.vue",
+    "chunkName": "pages/error"
+  },
+  {
+    "name": "news",
+    "path": "/news",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/news/index.vue",
+    "chunkName": "pages/news/index"
+  },
+  {
+    "name": "thanks",
+    "path": "/thanks",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/thanks/index.vue",
+    "chunkName": "pages/thanks/index"
+  },
+  {
+    "name": "wishlist",
+    "path": "/wishlist",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/wishlist/index.vue",
+    "chunkName": "pages/wishlist/index"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/index.vue",
+    "chunkName": "pages/index"
+  },
+  {
+    "name": "account-route",
+    "path": "/account/:route?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/account/_route.vue",
+    "chunkName": "pages/account/_route"
+  },
+  {
+    "name": "auto-info-slug",
+    "path": "/auto-info/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/auto-info/_slug.vue",
+    "chunkName": "pages/auto-info/_slug"
+  },
+  {
+    "name": "blog-slug",
+    "path": "/blog/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/blog/_slug.vue",
+    "chunkName": "pages/blog/_slug"
+  },
+  {
+    "name": "collections-slug",
+    "path": "/collections/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/collections/_slug.vue",
+    "chunkName": "pages/collections/_slug"
+  },
+  {
+    "name": "pages-slug",
+    "path": "/pages/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/pages/_slug.vue",
+    "chunkName": "pages/pages/_slug"
+  },
+  {
+    "name": "posts-slug",
+    "path": "/posts/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/posts/_slug.vue",
+    "chunkName": "pages/posts/_slug"
+  },
+  {
+    "name": "products-slug",
+    "path": "/products/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/products/_slug.vue",
+    "chunkName": "pages/products/_slug"
+  },
+  {
+    "name": "shop-slug",
+    "path": "/shop/:slug?",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/pages/shop/_slug.vue",
+    "chunkName": "pages/shop/_slug"
+  }
+]

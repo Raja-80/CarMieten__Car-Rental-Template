@@ -1,0 +1,42 @@
+{
+    "_id": "654f48146cdac169bf62a9b0",
+    "name": "test1",
+    "position": "",
+    "items": [
+        {
+            "target": "_self",
+            "childrens": [],
+            "_id": "654f48146cdac169bf62a9b1",
+            "text": "Home",
+            "url": "/"
+        },
+        {
+            "target": "_self",
+            "childrens": [],
+            "_id": "654f48146cdac169bf62a9b2",
+            "text": "Shop",
+            "url": "/shop"
+        },
+        {
+            "target": "_self",
+            "childrens": [],
+            "_id": "654f48146cdac169bf62a9b3",
+            "text": "Cart",
+            "url": "/cart"
+        }
+    ],
+    "translates": [
+        {
+            "properties": [],
+            "_id": "654f48146cdac169bf62a9b4",
+            "language": "AR"
+        },
+        {
+            "properties": [],
+            "_id": "654f48146cdac169bf62a9b5",
+            "language": "FR"
+        }
+    ],
+    "storeId": "654e4a1cac0d94578705afc8",
+    "__v": 0
+}
