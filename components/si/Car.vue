@@ -9,16 +9,16 @@
         <div class="bg px-2 py-6">
             <div class="text-center pb-8 font-semibold ">
                 {{ item.seo.title }}
-                <div class="border-b-2 pt-5"></div>
+                <div class="border-b pt-5"></div>
             </div>
             <div class="px-3 pb-4">
                 <div class="flex flex-wrap justify-start items-center ">
-                    <!-- <div v-if="item.bookingProps.extraInfo.length > 0" v-for="info in item.bookingProps.extraInfo.slice(3)"
+                    <div v-if="item.bookingProps.extraInfo.length > 0" v-for="info in item.bookingProps.extraInfo.slice(3)"
                         :key="info" class=" font-light py-1 w-2/4 text-xs">
 
                         <span class=" text-xs ">+</span> {{ info.name }}
 
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="flex flex-row justify-around items-center text-red-600">

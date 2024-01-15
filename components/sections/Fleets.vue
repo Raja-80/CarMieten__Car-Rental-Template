@@ -34,8 +34,8 @@ export default {
         };
     }, async fetch() {
 
-        const { data } = await this.$storeino.products.search({ });
-        // const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
+        // const { data } = await this.$storeino.products.search({ });
+        const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
         this.carsproducts = data.results;
 
     },

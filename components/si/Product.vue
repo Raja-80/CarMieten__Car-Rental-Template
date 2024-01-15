@@ -163,6 +163,7 @@ export default {
                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
             })
         },
+        
         variantSelected(variant){
             this.variant = variant;
             if(!this.item.outStock.disabled && this.variant.quantity.instock <= 0){

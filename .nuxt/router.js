@@ -4,7 +4,6 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _2561ebec = () => interopDefault(import('../pages/cars/index.vue' /* webpackChunkName: "pages/cars/index" */))
 const _fb98866a = () => interopDefault(import('../pages/cart/index.vue' /* webpackChunkName: "pages/cart/index" */))
 const _4a2388a7 = () => interopDefault(import('../pages/cart-page/index.vue' /* webpackChunkName: "pages/cart-page/index" */))
 const _5770cf71 = () => interopDefault(import('../pages/checkout/index.vue' /* webpackChunkName: "pages/checkout/index" */))
@@ -17,6 +16,7 @@ const _d583f44c = () => interopDefault(import('../pages/index.vue' /* webpackChu
 const _70d72694 = () => interopDefault(import('../pages/account/_route.vue' /* webpackChunkName: "pages/account/_route" */))
 const _0a674762 = () => interopDefault(import('../pages/auto-info/_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
 const _378e9585 = () => interopDefault(import('../pages/blog/_slug.vue' /* webpackChunkName: "pages/blog/_slug" */))
+const _28cf2e7c = () => interopDefault(import('../pages/cars/_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
 const _528b7098 = () => interopDefault(import('../pages/collections/_slug.vue' /* webpackChunkName: "pages/collections/_slug" */))
 const _a84e3ff2 = () => interopDefault(import('../pages/pages/_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
 const _b0f23554 = () => interopDefault(import('../pages/posts/_slug.vue' /* webpackChunkName: "pages/posts/_slug" */))
@@ -35,10 +35,6 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
-    path: "/cars",
-    component: _2561ebec,
-    name: "cars"
-  }, {
     path: "/cart",
     component: _fb98866a,
     name: "cart"
@@ -86,6 +82,10 @@ export const routerOptions = {
     path: "/blog/:slug?",
     component: _378e9585,
     name: "blog-slug"
+  }, {
+    path: "/cars/:slug?",
+    component: _28cf2e7c,
+    name: "cars-slug"
   }, {
     path: "/collections/:slug?",
     component: _528b7098,

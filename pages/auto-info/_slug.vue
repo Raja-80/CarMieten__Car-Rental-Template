@@ -1,7 +1,9 @@
 <template>
     <div class="container flex lg:flex-row flex-col justify-between lg:items-start items-center pb-32 pt-14"
         v-if="selectedCar">
+
         <!-- {{ selectedCar }} -->
+        <!-- {{ this.$storeino }} -->
 
         <div class="flex flex-col  w-full px-6 ">
             <!-- {{ disableDates }} -->
@@ -11,11 +13,12 @@
             <!-- {{ this.selectedCar.images[1].src }} -->
             <!-- {{ selectedCar.slug }} -->
             <!-- {{ this.reviews.data }} -->
+
             <div class="flex flex-col w-full ">
                 <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
                     <div>
                         <!-- <si-carousel component="si-carimage" :list="selectedCar.images"></si-carousel> -->
-                        <nuxt-img class="h-full w-full"
+                        <nuxt-img class="h-full w-full" @click="$store.state.fullImage = image ? image.src : null"
                             :src="selectedCar.images[0] ? selectedCar.images[0].src : $store.state.defaults.logo"
                             alt="car" />
                     </div>
@@ -45,7 +48,6 @@
                 <!-- Dynamic Content Area -->
                 <div class="w-full">
                     <div v-if="selectedTitle === 'VEHICLE DESCRIPTION'" class=" font-light leading-loose pt-12">
-                        <!-- {{ selectedCar.html }} -->
                         <div v-html="selectedCar.html" class=" text-black" style="color: black !important;"></div>
                     </div>
                     <div v-if="selectedTitle === 'EQUIPMENT'" class="pt-12">
@@ -138,10 +140,10 @@
                                     :src="review.images[0] ? review.images[0] : $store.state.defaults.logo" alt="profile" />
                             </div>
                             <div class="w-5/6 flex flex-col justify-center items-start py-2">
-                                <div class="text-black font-bold text-sm pb-1">{{ review.customer.firstname }} {{
-                                    review.customer.lastname }}</div>
-                                <div class=" text-red-600 font-light text-sm pb-1">{{ formatReviewDate(review.createdAt)
-                                }}
+                                <div class="text-black font-bold text-sm pb-1">
+                                    {{ review.customer.firstname }} {{ review.customer.lastname }}</div>
+                                <div class=" text-red-600 font-light text-sm pb-1">
+                                    {{ formatReviewDate(review.createdAt) }}
                                 </div>
                                 <div class="flex  pb-1">
                                     <span v-for="(star, i) in 5"
@@ -164,18 +166,35 @@
                     </div>
                 </div>
             </div>
+            <si-app-loader v-show="!outofstock" placement="REPLACE_BUYNOW" />
+            <si-app-loader placement="AFTER_ADD_TO_CART" />
         </div>
 
         <!-- Filtering side -->
         <div class="flex flex-col justify-center lg:items-start items-center lg:w-2/6  ">
             <p class="w-full text-white bg-black text-center text-xl font-medium py-4">
-                ${{ selectedCar.price.salePrice }}/ per day
+                {{ $store.state.currency.symbol }} {{ selectedCar.price.salePrice }}/ per day
             </p>
 
             <div class="bg w-full py-12 px-10">
 
+                <div class="w-full">
+                    <p class="block mb-1 text-black text-sm font-normal " for="pickupDate">
+                        PICK-UP LOCATION
+                    </p>
+                    <div class="w-full pb-12">
+                        <select v-model="locations.pickup"
+                            class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
+
+                            <option>Select Location</option>
+                            <option v-for="(location, i) in pickuplocations" :key="i">{{ location.name }}</option>
+
+                        </select>
+                    </div>
+                </div>
+
                 <div class="w-full pb-12">
-                    <label class="block mb-1 text-black text-sm font-normal " for="pickupDate">DROP-OFF LOCATION</label>
+                    <label class="block mb-1 text-black text-sm font-normal " for="dropoffDate">DROP-OFF LOCATION</label>
                     <select v-model="locations.dropOff" placeholder="Select Location"
                         class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
 
@@ -208,8 +227,9 @@
                 </div>
 
                 <div class="w-full pb-12">
-                    <label class="block mb-1 text-black text-sm font-normal pb-4" for="pickupDate">EXTRA
-                        RESOURCE</label>
+                    <label class="block mb-1 text-black text-sm font-normal pb-4">
+                        EXTRA RESOURCE
+                    </label>
                     <div>
                         <ul>
                             <li v-for="(item, index) in items" :key="index">
@@ -233,7 +253,9 @@
 
                                     <div class="w-2/6">
                                         <div class="mb-3 text-gray-700 font-light text-xs  ml-3 ">
-                                            <span class=" text-red-600"> ${{ item.price }} </span> /{{ item.duration }}
+                                            <span class=" text-red-600">
+                                                {{ $store.state.currency.symbol }} {{ item.price }}
+                                            </span> /{{ item.duration }}
                                         </div>
                                     </div>
                                 </label>
@@ -242,12 +264,18 @@
 
                     </div>
                 </div>
-                <div class="w-full">
-                    <button v-if="$settings.sections.product.booking_this_car.active" @click="addToCart" type="button"
+                <si-app-loader placement="BEFORE_ADD_TO_CART" />
+                <div v-if="outofstock" class="flex justify-center p-2 text-white bg-red-700 ai-c">
+                    <b>{{ 'Out of stock' }}</b>
+                </div>
+                <div v-else class="w-full">
+                    <button v-if="$settings.sections.product.booking_this_car.active" @click="buyNow" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700">
                         {{ $settings.sections.product.booking_this_car.text }}
                     </button>
                 </div>
+                <si-app-loader v-show="!outofstock" placement="REPLACE_BUYNOW" />
+                <si-app-loader placement="AFTER_ADD_TO_CART" />
             </div>
         </div>
     </div>
@@ -271,6 +299,8 @@ export default {
             selectedTitle: 'VEHICLE DESCRIPTION',
             disableDates: {},
             reservedHistory: null,
+            upsells: {},
+            outofstock: false,
             reviews: { paginate: { page: 0 }, results: [] },
             locations: {
                 pickup: 'Select Location',
@@ -287,13 +317,32 @@ export default {
                 { name: 'Location 02' },
                 { name: 'Location 03' },
                 { name: 'Location 04' },
-            ]
-
+            ],
+            pickuplocations: [
+                { name: 'Location 01' },
+                { name: 'Location 02' },
+                { name: 'Location 03' },
+                { name: 'Location 04' },
+            ],
         };
     },
 
     methods: {
 
+        // t(key) {
+        //     const langs = {
+        //         price_title_products: {
+        //             EN: "Price:	",
+        //             FR: "Prix:	",
+        //             AR: "السعر: ",
+        //             ES: "Prezo: ",
+        //             PT: "Preço: "
+        //         },
+                
+        //     }
+        //     return langs[key] && langs[key][this.$store.state.language.code] || '';
+        // },
+        
         async fetchData() {
             const { slug } = this.$route.params;
             try {
@@ -317,13 +366,24 @@ export default {
                 // });
                 this.loading = false;
 
-                if (this.selectedCar.images.length > 0) this.setImage(0);
+                // if (this.selectedCar.images.length > 0) this.setImage(0);
 
-                if (this.selectedCar.type == 'simple') {
-                    // Check outof stock
-                    if (!this.selectedCar.outStock.disabled && this.selectedCar.quantity.instock <= 0) {
-                        this.outofstock = true;
-                    }
+
+                // Check outof stock
+                if (!this.selectedCar.outStock.disabled && this.selectedCar.quantity.instock <= 0) {
+                    this.outofstock = true;
+                }
+
+                if (!process.server) {
+                    this.$storeino.fbpx('PageView')
+                    this.$storeino.fbpx('ViewContent', {
+                        content_name: this.selectedCar.name ? this.selectedCar.name : '',
+                        content_ids: [this.selectedCar._id],
+                        content_type: "product",
+                        value: this.selectedCar.price.salePrice,
+                        currency: this.$store.state.currency.code
+                    });
+                    this.$tools.call('PAGE_VIEW', this.selectedCar);
                 }
 
             } catch (err) {
@@ -352,10 +412,6 @@ export default {
             };
         },
 
-        setImage(index) {
-            this.image = this.$tools.copy(this.selectedCar.images[index]);
-        },
-
         changeTitle(title) {
             this.selectedTitle = title;
         },
@@ -374,30 +430,95 @@ export default {
             // Call add to cart event
             this.$tools.call('ADD_TO_CART', {
                 _id: this.selectedCar._id,
-                // quantity: this.selectedCar.quantity.value,
+                quantity: this.selectedCar.quantity.value,
                 price: this.selectedCar.price.salePrice,
                 // pickupDate: this.pickupDate,
                 // dropOffDate: this.dropOffDate,
 
             });
-            if (this.$settings.sections.alerts.added_to_cart) {
-                setTimeout(() => {
-                    window.location.href = '/cart-page';
-                }, 500);
-            }
+            this.$storeino.fbpx('AddToCart', {
+                content_name: this.item.name,
+                content_ids: [this.item._id],
+                content_type: "product",
+                value: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
+                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+            })
+            // if (this.$settings.sections.alerts.added_to_cart) {
+            //     setTimeout(() => {
+            //         // window.location.href = '/cart-page';
+            //     }, 500);
+            // }
             this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
         },
 
-    }, computed: {
+        buyNow() {
+            // Add to cart and redirect to checkout
+            if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type == 'variable' && !this.showVarianteModal) {
+                this.showVarianteModal = true
+                return;
+            }
+            this.addToCart();
+            setTimeout(() => {
+                // window.location.href = '/checkout2';
+            }, 500);
+        },
+        
+
+    },
+    computed: {
 
         filteredReviews() {
             // Reviews based on the selected car
             const selectedProductId = this.selectedCar._id;
             return this.reviews.data.results.filter(review => review.product._id === selectedProductId);
         },
-    }, created() {
+    },
+    created() {
         this.fetchData();
     },
+    mounted() {
+        if (this.selectedCar) this.$tools.call('PAGE_VIEW', this.selectedCar);
+        window.addEventListener("APP_LOADER", () => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.selectedCar._id,
+                    product_quantity: this.quantity.value,
+                    product_variant: this.variant ? this.variant._id : undefined,
+                    product_currency: this.$store.state.currency.code,
+                    product_price: this.price
+                }
+            }));
+        });
+        if (this.selectedCar) {
+            this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('ViewContent', {
+                content_name: this.selectedCar.name ? this.selectedCar.name : '',
+                content_ids: [this.selectedCar._id],
+                content_type: "product",
+                value: this.selectedCar.price.salePrice,
+                currency: this.$store.state.currency.code
+            })
+        }
+
+
+        if (this.selectedCar) {
+            const iframes = document.querySelectorAll('iframe')
+            for (const ifram of iframes) {
+                const parent = ifram.parentNode
+                if (!parent.classList.contains('video-wrapper')) {
+                    const div = document.createElement("div");
+                    ifram.after(div)
+                    div.classList.add('video-wrapper');
+                    ifram.style.width = null;
+                    ifram.style.height = null;
+                    ifram.setAttribute('width', '');
+                    ifram.setAttribute('height', '');
+                    div.appendChild(ifram)
+                }
+            }
+        }
+    },
+
 };
 </script>
 

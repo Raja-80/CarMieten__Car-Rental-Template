@@ -130,9 +130,9 @@
                                     'Disponible' : 'OutOfstock' }}</small></p>
                     </div>
                     <div class="d-f ai-c jc-c">
-                        <!-- <div class="flex justify-start" v-show="!outofstock">
+                        <div class="flex justify-start" v-show="!outofstock">
                             <si-product-quantity @selected="quantitySelected" :quantity="quantity"></si-product-quantity>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@
                     <si-product-variants class="flex" v-if="item.type == 'variable'" :options="item.options"
                         :images="item.images" :variants="item.variants" @selected="variantSelected"></si-product-variants>
                 </div>
-                <!-- <div class="w-f">
+                <div class="w-f">
                     <div class="lg-col-12">
                         <button @click="buyNow"
                             class="flex justify-center w-full p-2 text-white ai-c bg-primary click-effect">
@@ -171,7 +171,7 @@
                             <span class="w-full">{{ $settings.sections.product.proceed_to_checkout.text }}</span>
                         </button>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <div v-if="item" class="flex flex-col">
@@ -379,10 +379,10 @@ export default {
         },
         buyNow() {
             // Add to cart and redirect to checkout
-            // if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
-            //  this.showVarianteModal = true
-            //  return;
-            // }
+            if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
+             this.showVarianteModal = true
+             return;
+            }
             this.addToCart();
             setTimeout(() => {
                 window.location.href = '/checkout2';

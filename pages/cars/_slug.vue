@@ -3,7 +3,7 @@
 
         <!-- {{ this.fuels }} -->
         <!-- {{ this.engines }} -->
-        
+
 
         <!-- Loader -->
         <div v-if="loading.products" class="flex items-center justify-center my-5">
@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-row justify-around items-center text-red-600">
-                                {{$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
+                                {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
                                 <div>
                                     <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name" :aria-label="item.name">
                                         <button type="submit"
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class=" text-center text-base text-red-600 w-1/4 pt-5">
-                                    {{$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
+                                    {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
                                 </div>
 
                             </div>
@@ -285,10 +285,11 @@
                 <p class="text-black text-base font-medium pb-4">
                     FUEL TYPE
                 </p>
-                <select v-model="selectedFuelType" @change="setParams($event, 'fuelType', selectedFuelType)"
+                <select v-model="selectedFuelType" @change="setParams($event, '', )"
                     class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
                     <option>All Fuel Types</option>
-                    <option v-for="(fuel, i) in fuels.results" :key="i" @change="setParams">{{ fuel.name }}</option>
+                    <option v-for="(fuel, i) in fuels.results" :key="i" @change="setParams" value="fuel._id">{{ fuel.name }}
+                    </option>
                 </select>
             </div>
 
@@ -311,11 +312,7 @@
                 <select v-model="selectedEngineVolume" @change="setParams($event, 'engineVolume', selectedEngineVolume)"
                     class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
                     <option>All Engine Volumes</option>
-                    <option v-for="(engine, i) in engines.results" :key="i"
-                        :selected="params['brand.slug-in'] && params['brand.slug-in'].indexOf(brand.slug) >= 0"
-                        @change="setParams($event, 'brand.slug-in', brand.slug)">
-                        {{ engine.name }}
-                    </option>
+                    <option v-for="(engine, i) in engines.results" :key="i">{{ engine.name }}</option>
                 </select>
             </div>
 
@@ -323,13 +320,13 @@
                 <p class="text-black text-base font-medium pb-4">
                     CAR BRAND
                 </p>
-                <select v-model="params.selectedCarBrand"
+                <select v-model="selectedCarBrand"
+                    :selected="params['brand.slug-in'] && params['brand.slug-in'].indexOf(brand.slug) >= 0"
+                    @change="setParams($event, 'brand.slug-in', brand.slug)"
                     class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
 
                     <option>All Brands</option>
-                    <option v-for="(brand, i) in brands" :key="i"
-                        :selected="params['brand.slug-in'] && params['brand.slug-in'].indexOf(brand.slug) >= 0"
-                        @change="setParams($event, 'brand.slug-in', brand.slug)">
+                    <option v-for="(brand, i) in brands" :key="i">
                         {{ brand.name }}
                     </option>
 
@@ -374,9 +371,10 @@ export default {
             fuels: [],
             items: [],
             brands: [],
+            avialableCars: [],
             paginate: { page: 1, limit: 9, total: 12 },
-            params: { page: 1, search: this.$route.query.search, limit: 9, sort: { createdAt: -1 } },
-            lastParams: { page: 1, search: this.$route.query.search, limit: 9, sort: { createdAt: -1 } },
+            params: { page: 1, search: this.$route.query.search, limit: 9,'collections.slug-in': [], sort: { createdAt: -1 } },
+            lastParams: { page: 1, search: this.$route.query.search, limit: 9,'collections.slug-in': [], sort: { createdAt: -1 } },
             sorts: [
                 { field: { 'price.salePrice': 1 }, name: this.$settings.sections.cars.sorts.price_desc },
                 { field: { 'price.salePrice': -1 }, name: this.$settings.sections.cars.sorts.price_asc },
@@ -413,16 +411,25 @@ export default {
         };
     },
 
-    async fetch() {
+    async mounted() {
 
         console.log(this.params, '<- param', this.items, '<- items')
+
+        console.log(this.$route.params.slug)
+        if (this.$route.params.slug) {
+            this.param = this.$route.params.slug.split(',');
+            this.$route.params.slug.split(',').forEach(item => {
+                this.params['collections.slug-in'].push(item);
+            });
+
+        }
+        console.log('params-collections',this.params['collections.slug-in'])
 
         for (const key in this.$route.query) {
             if (!this.$route.query[key]) continue;
             switch (key) {
                 case 'price-from': this.$set(this.params, 'price.salePrice-from', this.$route.query[key]); break;
                 case 'price-to': this.$set(this.params, 'price.salePrice-to', this.$route.query[key]); break;
-
                 case 'brands': this.$set(this.params, 'brand.slug-in', this.$route.query[key].split(',')); break;
                 case 'page': this.$set(this.params, 'page', this.$route.query[key]); break;
             }
@@ -491,13 +498,12 @@ export default {
             }
             for (const key in this.params) {
                 switch (key) {
+                    case 'collections.slug-in': this.param = this.params[key]; break;
                     case 'price.salePrice-from': this.query['price-from'] = this.params[key]; break;
                     case 'price.salePrice-to': this.query['price-to'] = this.params[key]; break;
                     case 'brand.slug-in': this.query['brands'] = this.params[key]; break;
                     case 'page': this.query['page'] = [this.params[key]]; break;
-                    case 'productionYear': this.query['param1'] = this.params[key]; break;
-                    case 'fuelType': this.query['param2'] = this.params[key]; break;
-                    case 'engineVolume': this.query['param3'] = this.params[key]; break;
+
                 }
             }
             let url = `/cars/`;
@@ -514,10 +520,8 @@ export default {
             this.filters = null;
             this.loading.filters = true;
             try {
-                const { data } = await this.$storeino.products.filters({});
+                const { data } = await this.$storeino.products.filters({ productType: 'BOOKING' });
                 this.filters = data;
-
-                // this.$storeino.products.search({ productType: 'BOOKING' }),
 
             } catch (e) {
                 console.log({ e });
@@ -561,16 +565,16 @@ export default {
             this.loading.engines = false;
         },
 
-        async getReservedHistory() {
-            this.engines = [];
-            this.loading.engines = true;
+        async getAvialableCars() {
+            this.avialableCars = [];
+            this.loading.avialableCars = true;
             try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d331631895c06900c153e' });
-                this.engines = data;
+                // const { data } = await this.$storeino.prod.search({ parent: '659d331631895c06900c153e' });
+                // this.avialableCars = data;
             } catch (e) {
                 console.log({ e });
             }
-            this.loading.engines = false;
+            this.loading.avialableCars = false;
         },
 
         async getBrands() {
@@ -593,6 +597,10 @@ export default {
                 this.params.search = this.$route.query.search;
                 this.params.page = page || this.paginate.current_page;
                 this.params.limit = 9;
+                // if (this.selectedFuelType != 'All Fuel Types' || this.selectedEngineVolume != 'All Engines Volumes' || this.selectedProductionYear != 'All Production Years') {
+                //     // this.params.collections.\_id-in = this.selectedFuelType;
+                // }
+                // this.params.productType = 'BOOKING';
                 this.lastParams = this.$tools.copy(this.params);
                 const { data } = await this.$storeino.products.search(this.params);
                 this.items = data.results;
@@ -620,9 +628,6 @@ export default {
     },
     computed: {
 
-
-    },
-    mounted() {
 
     },
 

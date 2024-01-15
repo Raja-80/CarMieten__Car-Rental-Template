@@ -11,13 +11,14 @@
 
                 <h1 class="m-10 font-semibold">{{ item.title }}</h1>
                 <hr class="m-0">
-                <div v-if="item.excerpt" class="m-3"><small>{{ item.excerpt }}</small></div>
-                <hr>
-                <div v-if="item" class="p-2 mx-2 my-3 bg-white rounded-md description" id="description"
-                    v-html="item.content">
+                <div class=" flex flex-col justify-center items-start">
+                    <div v-if="item.excerpt" class="m-3"><small>{{ item.excerpt }}</small></div>
+                    <hr>
+                    <div v-if="item" class="p-2 mx-2 my-3 description" id="description" v-html="item.content">
+                    </div>
                 </div>
 
-                <div>
+                <div class="mt-14 mb-12">
                     <si-app-loader :placement="'AFTER_CONTACT_PAGE'" class=" text-black mx-10  pl-32" />
                 </div>
 

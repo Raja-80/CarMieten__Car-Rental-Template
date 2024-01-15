@@ -10,12 +10,14 @@
             </span>
             <meta itemprop="price" :content="price.salePrice" />
         </div>
+        
         <div class="price flex justify-center my-2" v-else-if="minPrice != maxPrice">
             <meta itemprop="price" :content="minPrice" />
             <b class=" text-primary">{{ minPrice }}{{ $store.state.currency.symbol }}</b>
             <span class="flex">~</span>
             <b class=" text-primary">{{ maxPrice }}{{ $store.state.currency.symbol }}</b>
         </div>
+        
         <div class="price flex justify-center my-2" v-else-if="variants.length > 0">
             <meta itemprop="price" :content="variants[0].price.salePrice" />
             <b class=" text-primary">{{ variants[0].price.salePrice }}{{ $store.state.currency.symbol }}</b>
