@@ -107,9 +107,6 @@
   "SiSvg": {
     "description": "Auto imported from components/si/Svg.vue"
   },
-  "SiBlogDetails": {
-    "description": "Auto imported from components/si/blogDetails.vue"
-  },
   "SectionsPalestSectionsCollections": {
     "description": "Auto imported from components/sections/palest_sections/Collections.vue"
   },

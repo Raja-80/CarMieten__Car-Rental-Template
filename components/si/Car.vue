@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="flex flex-row justify-around items-center text-red-600">
-                ${{ item.price.salePrice }}/ per day
+                {{this.$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
                 <div>
                     <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name" :aria-label="item.name">
                         <button type="submit"

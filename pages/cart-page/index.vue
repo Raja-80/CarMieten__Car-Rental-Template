@@ -6,7 +6,7 @@
             <div v-if="loading.cart" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
-            
+
             <div class="flex lg:flex-row flex-col justify-center lg:items-start items-center border-b lg:h-72 h-96">
                 <div class="flex flex-col border-r  h-full">
 
@@ -49,7 +49,7 @@
 
                         <p class="text-sm font-medium text-black py-1">Pickup Date: {{ pickupDate }}</p>
                         <p class="text-sm font-medium text-black py-1">Drop-off Date: {{ dropOffDate }}</p>
-                        <!-- <p class="text-sm font-medium text-black py-1">Start Location: {{ pickupLocation }}</p> -->
+                        <p class="text-sm font-medium text-black py-1">Start Location: {{ pickupLocation }}</p>
                         <p class="text-sm font-medium text-black py-1">Finish Location: {{ dropOffLocation }}</p>
 
                         <div class="selected-items">
@@ -128,8 +128,24 @@
                 <div class=" text-xl py-3  text-center text-white bg-red-600 hover:bg-opacity-90">
                     PROCEED TO CHECKOUT
                 </div>
-            </nuxt-link>
+                <!-- <button v-if="$settings.sections.product.proceed_to_checkout.active"
+                                v-show="!$store.state.apps.find(a => a.placement.indexOf('REPLACE_BUYNOW') >= 0)"
+                                @click="buyNow"
+                                class="flex justify-center w-full p-2 text-white ai-c bg-primary click-effect">
+                                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart"
+                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                    class="w-6 h-6 translate">
+                                    <path fill="currentColor"
+                                        d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z">
+                                    </path>
+                                </svg>
+                                <span>&ensp;</span>
+                                <span class="w-full">{{ $settings.sections.product.proceed_to_checkout.text }}</span>
+                            </button> -->
 
+            </nuxt-link>
+            <si-app-loader v-show="!outofstock" placement="REPLACE_BUYNOW" />
+            <si-app-loader placement="AFTER_ADD_TO_CART" />
         </div>
 
 
@@ -185,13 +201,42 @@ export default {
             return 0;
         },
     },
+    methods: {
+
+        buyNow() {
+            // Add to cart and redirect to checkout
+            // if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type =='variable' && !this.showVarianteModal) {
+            //  this.showVarianteModal = true
+            //  return;
+            // }
+            this.addToCart();
+            setTimeout(() => {
+                window.location.href = '/checkout2';
+            }, 500);
+        },
+        addToCart() {
+            // Call add to cart event
+            this.$tools.call('ADD_TO_CART', {
+                _id: this.item._id,
+                quantity: this.quantity.value,
+                price: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
+                variant: this.variant ? { _id: this.variant._id } : null
+            });
+            if (this.$settings.sections.products.add_to_cart_to_checkout) {
+                setTimeout(() => {
+                    window.location.href = '/checkout2';
+                }, 500);
+            }
+            this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
+        },
+    },
     mounted() {
 
         const queryParams = this.$route.query;
 
         this.pickupDate = queryParams.pickupDate || '';
         this.dropOffDate = queryParams.dropOffDate || '';
-        // this.pickupLocation = queryParams.pickupLocation || '';
+        this.pickupLocation = queryParams.pickupLocation || '';
         this.dropOffLocation = queryParams.dropOffLocation || '';
         this.selectedItems = queryParams.selectedItems || [];
         // this.selectedCar = queryParams.selectedCar || null;

@@ -42,7 +42,6 @@ You can directly use them in pages and other components without the need to impo
 - `<SiReview>` | `<si-review>` (components/si/Review.vue)
 - `<SiSlidingone>` | `<si-slidingone>` (components/si/Slidingone.vue)
 - `<SiSvg>` | `<si-svg>` (components/si/Svg.vue)
-- `<SiBlogDetails>` | `<si-blog-details>` (components/si/blogDetails.vue)
 - `<SectionsPalestSectionsCollections>` | `<sections-palest-sections-collections>` (components/sections/palest_sections/Collections.vue)
 - `<SectionsPalestSectionsCopyright>` | `<sections-palest-sections-copyright>` (components/sections/palest_sections/Copyright.vue)
 - `<SectionsPalestSectionsFooter>` | `<sections-palest-sections-footer>` (components/sections/palest_sections/Footer.vue)

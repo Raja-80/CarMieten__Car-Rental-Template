@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div class="container" v-if="item">
         <div class="m-2">
             <h2 class="text-2xl">{{ $settings.sections.product.upsell.title }}</h2>
@@ -16,16 +16,4 @@ export default {
         item: { type: Object, default: null },
     }
 }
-</script> -->
-<template>
-    <div class="">
-        
-    </div>
-  </template>
-  <script>
-  export default {
-    
-    
-  
-  }
-  </script>
+</script>

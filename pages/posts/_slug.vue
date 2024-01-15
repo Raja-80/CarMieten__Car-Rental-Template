@@ -3,14 +3,17 @@
         <div v-if="loading" class="flex items-center justify-center my-5">
             <si-loader></si-loader>
         </div>
-        <div class="flex flex-row" >
-            <div v-if="item" class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
+        <div class="flex flex-row">
+            <!-- <div v-if="item" class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
                 <div class="flex justify-center">
                     <img class="h-full" :src="item.image ? item.image.url : null" alt="post image" />
                 </div>
                 <div class="px-10 lg:pt-10">
                     <div class="my-6 flex flex-row justify-start items-center">
-                        <img class="h-3 pr-3" src="~/assets/images/calendar.png" alt="calendar icon" />
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" class="pr-3" viewBox="0 0 448 512">
+                            <path fill="#dc2626"
+                                d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
+                        </svg>
                         <div class="text-xs">{{ formatDate(item.createdAt) }}</div>
                     </div>
                     <div class="pb-6 font-semibold text-2xl">
@@ -24,6 +27,10 @@
                     </div>
 
                 </div>
+            </div> -->
+
+            <div >
+                <si-blog :item="item"></si-blog>
             </div>
             <div class="flex flex-col lg:pt-10 lg:mr-10 mx-5">
 

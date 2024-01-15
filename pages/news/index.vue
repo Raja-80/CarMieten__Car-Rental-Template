@@ -1,128 +1,20 @@
 <template>
     <div class="container flex lg:flex-row flex-col  py-14">
 
-        <div class="flex flex-col lg:mr-20">
+        <div v-if="!loading.posts" class="flex flex-col lg:mr-20">
 
-            <div v-if="item" class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
-                <div class="flex justify-center">
-                    <img class="h-full" :src="item.image ? item.image.url : null" alt="post image" />
-                </div>
-                <div class="px-10 lg:pt-10">
-                    <div class="my-6 flex flex-row justify-start items-center">
-                        <img class="h-3 pr-3" src="~/assets/images/calendar.png" alt="calendar icon" />
-                        <div class="text-xs">{{ formatDate(item.createdAt) }}</div>
-                    </div>
-                    <div class="pb-6 font-semibold text-2xl">
-                        {{ item.title }}
-                        <div class="mt-3 font-light text-xs">By :: <span class="text-red-600">{{ item.publisher.firstname }}
-                                {{
-                                    item.publisher.lastname }}</span></div>
-                    </div>
-                    <div class="text-sm font-light pb-8">
-                        {{ item.content }}
-                    </div>
-
-                </div>
+            <div v-if="items.length > 0" v-for="item in items" :key="item._id">
+                <si-blog :item="item"></si-blog>
             </div>
 
-            <!-- <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
-                <div class="flex justify-center ">
-                    <img class="h-full" src="~/assets/images/news/1042706084.jpg" alt="company logo" />
+            <div v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
+                <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer hover:text-red-600 hover:bg-gray-200 text-base font-semibold',
+                    paginate.current_page === pageNumber ? 'bg-red-600 text-white' : 'bg text-black',]">
 
-                </div>
+                    {{ pageNumber }}
 
-                <div class="px-10 lg:pt-10">
-                    <div class="  my-6 flex flex-row justify-start items-center">
-                        <img class="h-3 pr-3" src="~/assets/images/calendar.png" alt="company logo" />
-                        <div class=" text-xs">
-                            OCTOBER 19, 2019
-                        </div>
-                    </div>
-                    <div class="pb-6 font-semibold text-2xl ">
-                        Porsche sees opportunity to broaden subscriptions
-                        <div class="mt-3 font-light text-xs">By :: <span class=" text-red-600">ADMIN</span></div>
-                    </div>
-                    <div class=" text-sm font-light pb-8">
-                        Integer tortor bibendum est faucibus gravida aliquam nulla lectus lacinia eget lorem acdua eros
-                        pharetral interdum quisque convallis nula dpsum val mualiq amet consectetur adipisicing sed
-                        eiusmod tem pory. Utenim ad minim ven quis nostrud exercitation ulamco laboris nisi ut aliquip
-                        exldolor in reprehenderit voluptate velit non proident sunt in culpa.
-                    </div>
-                    <div class="">
-                        <button type="submit"
-                            class=" text-black border-2 border-gray-300 focus:outline-none hover:bg-red-600 hover:border-opacity-0 hover:text-white py-2 px-3 font-light text-xs">
-                            READ MORE
-                        </button>
-                    </div>
-                </div>
-
+                </button>
             </div>
-
-
-            <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
-                <div class="flex justify-center ">
-                    <img class="h-full" src="~/assets/images/news/460704445-1.jpg" alt="company logo" />
-
-                </div>
-
-                <div class="px-10 pt-10">
-                    <div class="  my-6 flex flex-row justify-start items-center">
-                        <img class="h-3 pr-3" src="~/assets/images/calendar.png" alt="company logo" />
-                        <div class=" text-xs">
-                            OCTOBER 19, 2019
-                        </div>
-                    </div>
-                    <div class="pb-6 font-semibold text-2xl ">
-                        Porsche sees opportunity to broaden subscriptions
-                        <div class="mt-3 font-light text-xs">By :: <span class=" text-red-600">ADMIN</span></div>
-                    </div>
-                    <div class=" text-sm font-light pb-8">
-                        Integer tortor bibendum est faucibus gravida aliquam nulla lectus lacinia eget lorem acdua eros
-                        pharetral interdum quisque convallis nula dpsum val mualiq amet consectetur adipisicing sed
-                        eiusmod tem pory. Utenim ad minim ven quis nostrud exercitation ulamco laboris nisi ut aliquip
-                        exldolor in reprehenderit voluptate velit non proident sunt in culpa.
-                    </div>
-                    <div class="">
-                        <button type="submit"
-                            class=" text-black border-2 border-gray-300 focus:outline-none hover:bg-red-600 hover:border-opacity-0 hover:text-white py-2 px-3 font-light text-xs">READ
-                            MORE</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
-                <div class="flex justify-center ">
-                    <img class="h-full" src="~/assets/images/news/137547772.jpg" alt="company logo" />
-
-                </div>
-
-                <div class="px-10 pt-10">
-                    <div class="  my-6 flex flex-row justify-start items-center">
-                        <img class="h-3 pr-3" src="~/assets/images/calendar.png" alt="company logo" />
-                        <div class=" text-xs">
-                            OCTOBER 19, 2019
-                        </div>
-                    </div>
-                    <div class="pb-6 font-semibold text-2xl ">
-                        Porsche sees opportunity to broaden subscriptions
-                        <div class="mt-3 font-light text-xs">By :: <span class=" text-red-600">ADMIN</span></div>
-                    </div>
-                    <div class=" text-sm font-light pb-8">
-                        Integer tortor bibendum est faucibus gravida aliquam nulla lectus lacinia eget lorem acdua eros
-                        pharetral interdum quisque convallis nula dpsum val mualiq amet consectetur adipisicing sed
-                        eiusmod tem pory. Utenim ad minim ven quis nostrud exercitation ulamco laboris nisi ut aliquip
-                        exldolor in reprehenderit voluptate velit non proident sunt in culpa.
-                    </div>
-                    <div class="">
-                        <button type="submit"
-                            class=" text-black border-2 border-gray-200 focus:outline-none hover:bg-red-600 hover:border-opacity-0 hover:text-white py-2 px-3 font-light text-xs">
-                            READ MORE
-                        </button>
-                    </div>
-                </div>
-
-            </div> -->
 
         </div>
 
@@ -176,17 +68,30 @@
 export default {
     data() {
         return {
+            loading: {
+                posts: true,
+            },
             news: this.$settings.sections.news,
-            fleets: this.$settings.sections.fleets,
-            cars: this.$settings.sections.fleets.cars,
-
+            query: {},
+            param: [],
+            items: [],
+            paginate: { page: 1, limit: 3, total: 12 },
+            params: { page: 1, search: this.$route.query.search, limit: 3 },
+            lastParams: { page: 1, search: this.$route.query.search, limit: 3 },
         }
     },
     async fetch() {
         try {
-            
-            const { data } = await this.$storeino.pages.get({ type: 'POST' })
-            this.item = data;
+
+            for (const key in this.$route.query) {
+                if (!this.$route.query[key]) continue;
+                switch (key) {
+                    case 'page': this.$set(this.params, 'page', this.$route.query[key]); break;
+                }
+            }
+
+            this.lastParams = this.params;
+            await this.getItems();
 
             this.$store.state.seo.title = this.item.title + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.item.excerpt || this.$settings.store_description;
@@ -212,6 +117,53 @@ export default {
             const date = new Date(dateString);
             return date.toLocaleDateString('en-US', options).toUpperCase();
         },
+
+        setParams(e, key, value) {
+            // if (key.indexOf('page') >= 0) {
+            //     this.$set(this.params, key, e.target.value);
+            //     return false;
+            // }
+            if (key === 'page') {
+                this.params.page = value;
+            }
+
+            for (const key in this.params) {
+                switch (key) {
+                    case 'page': this.query['page'] = [this.params[key]]; break;
+                }
+            }
+
+            let url = `/news/`;
+            url += this.param.length > 0 ? [...new Set(this.param)].join(',') : '';
+            for (const key in this.query) {
+                url += url.indexOf('?') == -1 ? '?' : '&';
+                if (typeof this.query[key] == 'object') {
+                    url += `${key}=${this.query[key].join(',')}`;
+                } else url += `${key}=${this.query[key]}`;
+            }
+            window.history.pushState({}, '', url);
+        },
+
+        async getItems(page = null) {
+            if (page != null) this.setParams({ target: { value: page } }, 'page', page);
+            this.items = [];
+            this.loading.posts = true;
+            try {
+                this.params.search = this.$route.query.search;
+                this.params.page = page || this.paginate.current_page;
+                this.params.limit = 3;
+                this.params.type = 'POST';
+                this.lastParams = this.$tools.copy(this.params);
+                const { data } = await this.$storeino.pages.search(this.params);
+                this.items = data.results;
+                this.paginate = data.paginate;
+            } catch (e) {
+                console.log({ e });
+            }
+            this.loading.posts = false;
+        },
+
+
     },
 }
 </script>

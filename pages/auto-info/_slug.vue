@@ -6,8 +6,8 @@
         <div class="flex flex-col  w-full px-6 ">
             <!-- {{ disableDates }} -->
             <hr>
-            reservedhistory
-            {{ this.selectedCar.bookingProps.reservedHistory }}
+            <!-- reservedhistory -->
+            <!-- {{ this.selectedCar.bookingProps.reservedHistory }} -->
             <!-- {{ this.selectedCar.images[1].src }} -->
             <!-- {{ selectedCar.slug }} -->
             <!-- {{ this.reviews.data }} -->
@@ -71,21 +71,6 @@
                     </div>
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
-
-                            <!-- 
-                                <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
-                                    <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
-                                        {{ item.name }} :
-
-                                    </div>
-                                    <div class="lg:w-2/4 text-sm font-light">
-                                        {{ item.desc }}
-
-                                    </div>
-                                </div>
-                                <div class="border-b-2 border-gray-100 pt-3"></div>
-
-                                 </div>  -->
 
 
                             <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
@@ -158,7 +143,17 @@
                                 <div class=" text-red-600 font-light text-sm pb-1">{{ formatReviewDate(review.createdAt)
                                 }}
                                 </div>
-                                <div class=" text-yellow-500 pb-1"><span v-html="getStarIcons(review.rating)"></span>
+                                <div class="flex  pb-1">
+                                    <span v-for="(star, i) in 5"
+                                        :class="star <= review.rating ? 'text-yellow-500 ' : 'text-gray-400'" :key="i">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star"
+                                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                                            class="w-5 h-5 translate">
+                                            <path fill="currentColor"
+                                                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                                                class=""></path>
+                                        </svg>
+                                    </span>
                                 </div>
                                 <div class="text-sm text-black leading-loose font-light pb-1">{{ review.content }}</div>
                             </div>
@@ -248,9 +243,9 @@
                     </div>
                 </div>
                 <div class="w-full">
-                    <button @click="addToCart" type="button"
+                    <button v-if="$settings.sections.product.booking_this_car.active" @click="addToCart" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700">
-                        BOOKING THIS CAR
+                        {{ $settings.sections.product.booking_this_car.text }}
                     </button>
                 </div>
             </div>
@@ -275,6 +270,7 @@ export default {
             selectedCar: null,
             selectedTitle: 'VEHICLE DESCRIPTION',
             disableDates: {},
+            reservedHistory: null,
             reviews: { paginate: { page: 0 }, results: [] },
             locations: {
                 pickup: 'Select Location',
@@ -306,14 +302,9 @@ export default {
 
                 this.reviews = await this.$storeino.reviews.search({});
 
-                // this.disableDates = this.getDisabledDates(this.selectedCar.bookingProps.reservedHistory);
-
-                const reservedHistory = this.selectedCar.bookingProps.reservedHistory;
-                // this.disableDates = this.populateDisabledDates(reservedHistory);
-
-                // this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
-                // this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
-                // this.$store.state.seo.keywords = this.selectedCar.seo.keywords.length > 0 ? this.selectedCar.seo.keywords || [] : this.$settings.store_keywords || [];
+                this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
+                this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
+                this.$store.state.seo.keywords = this.selectedCar.seo.keywords.length > 0 ? this.selectedCar.seo.keywords || [] : this.$settings.store_keywords || [];
 
                 if (this.selectedCar.images.length > 0) { this.$store.state.seo.image = this.selectedCar.images[0].src; }
                 // New meta tags
@@ -325,8 +316,7 @@ export default {
                 //     this.$store.state.seo.metaTags.push(meta);
                 // });
                 this.loading = false;
-                // this.quantity = this.item.quantity;
-                // Set default image if exists
+
                 if (this.selectedCar.images.length > 0) this.setImage(0);
 
                 if (this.selectedCar.type == 'simple') {
@@ -354,10 +344,11 @@ export default {
                     return currentDate >= start && currentDate <= end;
                 });
 
-                // Using $set to add the isReserved to the disableDates object with a value of true
+                const isPast = currentDate < new Date().setHours(0, 0, 0, 0);
+
                 this.$set(this.disableDates, date, isReserved);
 
-                return isReserved
+                return isReserved || isPast;
             };
         },
 
@@ -383,45 +374,18 @@ export default {
             // Call add to cart event
             this.$tools.call('ADD_TO_CART', {
                 _id: this.selectedCar._id,
-                quantity: this.selectedCar.quantity.value,
+                // quantity: this.selectedCar.quantity.value,
                 price: this.selectedCar.price.salePrice,
-                pickupDate: this.pickupDate,
-                dropOffDate: this.dropOffDate,
+                // pickupDate: this.pickupDate,
+                // dropOffDate: this.dropOffDate,
 
             });
-            if (this.$settings.sections.auto_info.add_to_cart - page) {
+            if (this.$settings.sections.alerts.added_to_cart) {
                 setTimeout(() => {
                     window.location.href = '/cart-page';
                 }, 500);
             }
             this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
-        },
-
-        getStarIcons(rating) {
-            const fullStars = Math.floor(rating);
-            const halfStar = rating % 1 !== 0;
-            const emptyStars = 5 - Math.ceil(rating);
-
-            let stars = '';
-
-            for (let i = 0; i < fullStars; i++) {
-                stars += '<i class="fas fa-star"></i>';
-            }
-
-            if (halfStar) {
-                stars += '<i class="fas fa-star-half-alt"></i>';
-            }
-
-            for (let i = 0; i < emptyStars; i++) {
-                stars += '<i class="far fa-star"></i>';
-            }
-
-            return stars;
-        },
-
-        formatDate(date) {
-            const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
-            return new Date(date).toLocaleDateString(undefined, options);
         },
 
     }, computed: {
@@ -456,22 +420,5 @@ input:checked+.toggle-wrapper {
 
 input:checked+.toggle-wrapper+.toggle-button {
     transform: translateX(100%);
-}
-
-.alert {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: #f87171;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-    display: none;
-}
-
-.show-alert {
-    display: block;
 }
 </style>

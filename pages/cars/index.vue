@@ -96,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-row justify-around items-center text-red-600">
-                                ${{ item.price.salePrice }}/ per day
+                                {{$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
                                 <div>
                                     <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name" :aria-label="item.name">
                                         <button type="submit"
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class=" text-center text-base text-red-600 w-1/4 pt-5">
-                                    ${{ item.price.salePrice }}/ per day
+                                    {{$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
                                 </div>
 
                             </div>
@@ -258,7 +258,7 @@
                     </select>
                 </div>
             </div>
-            <!-- <div class="w-full">
+            <div class="w-full">
                 <p class="text-black text-base font-medium pb-6">
                     DROP-OFF LOCATION
                 </p>
@@ -271,7 +271,7 @@
 
                     </select>
                 </div>
-            </div> -->
+            </div>
             <div class="pb-12">
                 <p class="text-black text-base font-medium pb-4">
                     PRICE RANGE

@@ -34,7 +34,6 @@ export { default as SiProductVariants } from '../../components/si/ProductVariant
 export { default as SiReview } from '../../components/si/Review.vue'
 export { default as SiSlidingone } from '../../components/si/Slidingone.vue'
 export { default as SiSvg } from '../../components/si/Svg.vue'
-export { default as SiBlogDetails } from '../../components/si/blogDetails.vue'
 export { default as SectionsPalestSectionsCollections } from '../../components/sections/palest_sections/Collections.vue'
 export { default as SectionsPalestSectionsCopyright } from '../../components/sections/palest_sections/Copyright.vue'
 export { default as SectionsPalestSectionsFooter } from '../../components/sections/palest_sections/Footer.vue'
