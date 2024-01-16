@@ -8,9 +8,9 @@
             <input class="max w-full h-2 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="maxVal"
                 :min="min" :max="max" @change="setParams($event, 'price.salePrice-to')">
         </div>
-        <div class="flex justify-between m-1 mt-3">
-            <p class="text-black font-light text-sm">{{ minVal }}</p>
-            <p class="text-black font-light text-sm">{{ maxVal }}</p>
+        <div class="flex justify-between m-1 mt-5">
+            <p class="text-black font-normal text-sm">{{ minVal }}</p>
+            <p class="text-black font-normal text-sm">{{ maxVal }}</p>
         </div>
     </div>
 </template>

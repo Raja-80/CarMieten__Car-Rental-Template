@@ -1,9 +1,9 @@
 <template>
     <div class="container flex flex-row justify-center items-start pb-32 pt-16 w-full ">
 
-        <!-- {{ this.fuels }} -->
         <!-- {{ this.items[0].bookingProps.firstAddresses[0].city.name }} -->
 
+        <!-- {{ collections.length }} -->
 
         <!-- Loader -->
         <div v-if="loading.products" class="flex items-center justify-center my-5">
@@ -16,7 +16,8 @@
             <!-- {{ this.params }} -->
 
             <!-- CARS SIDE -->
-            <div v-if="!loading.products" class="flex flex-col justify-center items-center lg:pr-5  w-5/6">
+            <div v-if="!loading.products" class="flex flex-col justify-center items-center lg:pr-5 w-full">
+
                 <!-- APPEARANCE -->
                 <div class="flex flex-row justify-between items-center border-b w-full pb-5 p-3">
 
@@ -69,9 +70,10 @@
                     <h1 class="py-3">{{ $settings.sections.cars.no_products_text }}</h1>
                 </div>
 
+
                 <!-- CARS GRID DISPLAYING -->
-                <div v-if="currentView === 'grid'" class="flex flex-wrap justify-evenly items-start">
-                    <div v-for="item in items" :key="item._id" class="p-3 lg:w-2/6 ">
+                <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start">
+                    <div v-for="item in items" :key="item.id" class="p-3 ">
                         <div class="flex justify-center items-center py-8 ">
                             <nuxt-link :to="`/auto-info/${item.slug}`">
                                 <nuxt-img class=" h-36"
@@ -282,7 +284,7 @@
                 </div>
             </div>
 
-            <div class="pb-12">
+            <div class="pb-12 w-full">
                 <p class="text-black text-base font-medium pb-4 w-full">
                     PRICE RANGE
                 </p>
@@ -309,12 +311,10 @@
                         width="15" height="15" x="0" y="0" viewBox="0 0 451.847 451.847"
                         style="enable-background:new 0 0 512 512 ; cursor:pointer;" xml:space="preserve" class="rotated">
                         <g>
-                            <!-- <g xmlns="http://www.w3.org/2000/svg">
+                            <g xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
                                     fill="#7a7575" data-original="#000000" style="" class="" />
-                            </g> -->
-                            <!-- <g xmlns="http://www.w3.org/2000/svg">
                             </g>
                             <g xmlns="http://www.w3.org/2000/svg">
                             </g>
@@ -343,7 +343,9 @@
                             <g xmlns="http://www.w3.org/2000/svg">
                             </g>
                             <g xmlns="http://www.w3.org/2000/svg">
-                            </g> -->
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
                         </g>
                     </svg>
                 </div>
@@ -365,11 +367,20 @@
                 <p class="text-black text-base font-medium pb-4">
                     CAR BRAND
                 </p>
-                <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
+                <div v-for="(item, i) in visibleBrands" :key="i" class="flex items-center px-2">
                     <input class="w-4 h-4 mx-1" :id="item.slug"
                         :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0"
                         @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox" />
                     <label class="capitalize cursor-pointer" :for="item.slug">{{ item.name }}</label>
+                </div>
+                <div class="flex flex-row justify-start items-center">
+                    <button v-if="!showAllBrands" @click="showAllBrands = true"
+                        class=" font-medium focus:shadow-md focus:underline hover:underline hover:text-red-600">See
+                        More</button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
                 </div>
             </div>
 
@@ -407,6 +418,7 @@ export default {
             filters: null,
             items: [],
             collections: [],
+            showAllBrands: false,
             brands: [],
             paginate: { page: 1, limit: 9, total: 12 },
             params: { page: 1, search: this.$route.query.search, limit: 9, 'collections.slug-in': [], sort: { createdAt: -1 } },
@@ -432,7 +444,7 @@ export default {
         };
     },
 
-    async fetch() {
+    async mounted() {
 
         console.log(this.params, '<- param', this.items, '<- items')
 
@@ -508,6 +520,21 @@ export default {
             }
         },
 
+        setActive: function (id, idRet) {
+            var element = document.getElementById(id);
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                element.classList.add('active');
+            }
+            var icon = document.getElementById(idRet);
+            if (icon.classList.contains('active')) {
+                icon.classList.remove('active');
+            } else {
+                icon.classList.add('active');
+            }
+        },
+
         setParams(e, key, value) {
             if (key.indexOf('price') >= 0 || key.indexOf('page') >= 0) {
                 this.$set(this.params, key, e.target.value);
@@ -559,7 +586,7 @@ export default {
             this.collections = [];
             this.loading.collections = true;
             try {
-                const { data } = await this.$storeino.collections.search({});
+                const { data } = await this.$storeino.collections.search({limit:1000});
                 this.collections = data.results;
             } catch (e) {
                 console.log({ e });
@@ -571,10 +598,29 @@ export default {
             for (let itm of this.collections) {
                 if (itm.childrens && itm.childrens.length > 0) itm.childrens = [];
             }
+
+            // for (let i = 0; i < this.collections.length; i++) {
+            //     for (let j = 0; j < this.collections.length; j++) {
+            //         if (this.collections[i].parent == this.collections[j]._id) {
+            //             let childObject = this.collections[i];
+            //             this.collections[j].childrens.push(childObject);
+            //             this.collections.splice(i, 1);
+            //             i--;
+            //         }
+            //     }
+            // }
+
             for (let i = 0; i < this.collections.length; i++) {
                 for (let j = 0; j < this.collections.length; j++) {
-                    if (this.collections[i].parent == this.collections[j]._id) {
+                    if (
+                        this.collections[i] &&
+                        this.collections[j] &&
+                        this.collections[i].parent == this.collections[j]._id
+                    ) {
                         let childObject = this.collections[i];
+                        if (!this.collections[j].childrens) {
+                            this.collections[j].childrens = [];
+                        }
                         this.collections[j].childrens.push(childObject);
                         this.collections.splice(i, 1);
                         i--;
@@ -648,6 +694,10 @@ export default {
             });
 
             return Array.from(citiesSet);
+        },
+
+        visibleBrands() {
+            return this.showAllBrands ? this.brands : this.brands.slice(0, 5);
         },
 
     },
