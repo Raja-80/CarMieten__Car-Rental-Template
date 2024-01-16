@@ -228,6 +228,7 @@ export default {
         }
     },
     async fetch(){
+
         this.$store.state.seo.title = this.$settings.sections.shop.title + ' - ' + this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.sections.shop.description || this.$settings.store_description;
         if(this.$route.params.slug){
@@ -236,6 +237,7 @@ export default {
                 this.params['collections.slug-in'].push(item);
             });
         }
+
         for (const key in this.$route.query) {
             if(!this.$route.query[key]) continue;
             switch (key) {
@@ -247,12 +249,14 @@ export default {
                 case 'page': this.$set(this.params, 'page', this.$route.query[key]);break;
             }
         }
+
         this.lastParams = this.params;
         await this.getFilters();
         await this.getItems();
         await this.getCollections();
         await this.getBrands();
         this.subCollections();
+        
     },
     methods: {
         subCollections(){

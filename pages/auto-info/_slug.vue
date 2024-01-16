@@ -269,7 +269,8 @@
                     <b>{{ 'Out of stock' }}</b>
                 </div>
                 <div v-else class="w-full">
-                    <button v-if="$settings.sections.product.booking_this_car.active" @click="buyNow" type="button"
+                    <button v-if="$settings.sections.product.booking_this_car.active" 
+                    v-show="!$store.state.apps.find(a => a.placement.indexOf('REPLACE_BUYNOW') >= 0)" @click="buyNow" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700">
                         {{ $settings.sections.product.booking_this_car.text }}
                     </button>

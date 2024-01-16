@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="flex items-center h-2 bg-gray-200 rounded-md relative range">
+        <div class="flex items-center h-2 bg-gray-300 rounded-md relative range">
             <div class="absolute top-0 range-width h-3"
                 :style="`left:${minVal * 100 / max}%;width:${(maxVal - minVal) * 100 / max}%`"></div>
             <input class="min w-full h-2 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="minVal"
@@ -8,9 +8,9 @@
             <input class="max w-full h-2 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="maxVal"
                 :min="min" :max="max" @change="setParams($event, 'price.salePrice-to')">
         </div>
-        <div class="flex justify-between m-1">
-            <p>{{ min }}</p>
-            <p>{{ max }}</p>
+        <div class="flex justify-between m-1 mt-3">
+            <p class="text-black font-light text-sm">{{ minVal }}</p>
+            <p class="text-black font-light text-sm">{{ maxVal }}</p>
         </div>
     </div>
 </template>
@@ -52,12 +52,14 @@ export default {
     -webkit-appearance: none;
     -moz-appearance: none;
     position: relative;
-    height: 17px;
-    width: 17px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
-    z-index: 3;
+    z-index: 4;
     cursor: pointer;
-    background: var(--primary-color);
+    background: rgb(202, 36, 36);
+    border: 3px solid white;
+    border-radius: 100%;
     box-shadow: 0px 1px 10px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -70,5 +72,6 @@ export default {
 }
 
 .range .range-width {
-    background-color: rgb(var(--primary-rgb), 0.6);
-}</style>
+    background-color: rgb(rgb(202, 36, 36), 0.6);
+}
+</style>

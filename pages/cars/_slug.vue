@@ -2,7 +2,7 @@
     <div class="container flex flex-row justify-center items-start pb-32 pt-16 w-full ">
 
         <!-- {{ this.fuels }} -->
-        <!-- {{ this.engines }} -->
+        <!-- {{ this.items[0].bookingProps.firstAddresses[0].city.name }} -->
 
 
         <!-- Loader -->
@@ -11,9 +11,9 @@
         </div>
 
 
-        <div class="flex flex-col justify-between items-center">
+        <div class="flex flex-col justify-between items-center lg:w-3/4">
 
-            {{ this.params }}
+            <!-- {{ this.params }} -->
 
             <!-- CARS SIDE -->
             <div v-if="!loading.products" class="flex flex-col justify-center items-center lg:pr-5  w-5/6">
@@ -70,11 +70,11 @@
                 </div>
 
                 <!-- CARS GRID DISPLAYING -->
-                <div v-if="currentView === 'grid'" class="flex flex-wrap justify-around items-center">
+                <div v-if="currentView === 'grid'" class="flex flex-wrap justify-evenly items-start">
                     <div v-for="item in items" :key="item._id" class="p-3 lg:w-2/6 ">
-                        <div class="flex justify-center items-center py-8">
+                        <div class="flex justify-center items-center py-8 ">
                             <nuxt-link :to="`/auto-info/${item.slug}`">
-                                <nuxt-img class="h-full"
+                                <nuxt-img class=" h-36"
                                     :src="item.images[0] ? item.images[0].src : $store.state.defaults.logo"
                                     alt="car_image" />
                             </nuxt-link>
@@ -86,13 +86,28 @@
                             </div>
                             <div class="px-3 ">
                                 <div class="flex flex-wrap justify-start items-center ">
-                                    <!-- <div v-if="item.bookingProps.extraInfo.length > 0"
-                                    v-for="info in item.bookingProps.extraInfo.slice(3)" :key="info"
-                                    class=" font-light py-1 w-2/4 text-xs">
+                                    <div v-if="item.bookingProps.extraInfo.length > 0"
+                                        v-for="info in item.bookingProps.extraInfo" :key="info"
+                                        class="flex flex-row font-light py-1 w-2/4 text-xs">
 
-                                    <span class=" text-xs ">+</span> {{ info.name }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M5.268,10.732c-0.976-0.976-2.559-0.976-3.536,0s-0.976,2.559,0,3.536l4.645,4.645	c1.449,1.449,3.797,1.449,5.246,0L12.536,18L5.268,10.732z"
+                                                opacity=".35"></path>
+                                            <path
+                                                d="M22.268,4.732c-0.976-0.976-2.559-0.976-3.536,0L9,14.464L12.536,18l9.732-9.732C23.244,7.291,23.244,5.708,22.268,4.732z">
+                                            </path>
+                                        </svg>
 
-                                </div> -->
+                                        <div class="pl-1">
+                                            {{ info.name }}
+                                        </div>
+
+                                    </div>
+                                    <!-- <div v-else-if="item.bookingProps.extraInfo.length > 0">
+
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="flex flex-row justify-around items-center text-red-600">
@@ -144,7 +159,8 @@
                                                 AUTO MAKER :
                                             </div>
                                             <span class="text-black font-light pt-1">
-                                                {{ item.collections[0].name.toUpperCase() }}</span>
+                                                {{ item.brand.name.toUpperCase() }}
+                                            </span>
                                         </div>
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
@@ -166,12 +182,6 @@
                                     </div>
 
                                     <div class="flex flex-col justify-start  text-black font-medium">
-                                        <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                            <div>
-                                                AUTO VERSION :
-                                            </div>
-                                            <!-- <span class="text-black font-light">&nbsp &nbsp {{ item.collections[0].name.toUpperCase() }}</span> -->
-                                        </div>
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
@@ -208,8 +218,6 @@
                     </div>
                 </div>
 
-
-
             </div>
 
             <!-- PAGINATION BUTTONS -->
@@ -224,7 +232,7 @@
         </div>
 
         <!-- Filtering side -->
-        <div class="hidden lg:flex flex-col justify-center items-start py-10 px-8 bg  ">
+        <div class="hidden lg:flex flex-col justify-center items-start py-10 px-8 bg  lg:w-1/4">
 
             <p class="text-black text-base font-medium pb-6">
                 BOOKING TIME
@@ -253,11 +261,12 @@
                         class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
 
                         <option>Select Location</option>
-                        <option v-for="(location, i) in pickuplocations" :key="i">{{ location.name }}</option>
+                        <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
 
                     </select>
                 </div>
             </div>
+
             <div class="w-full">
                 <p class="text-black text-base font-medium pb-6">
                     DROP-OFF LOCATION
@@ -267,70 +276,101 @@
                         class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
 
                         <option>Select Location</option>
-                        <option v-for="(location, i) in dropofflocations" :key="i">{{ location.name }}</option>
+                        <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
 
                     </select>
                 </div>
             </div>
+
             <div class="pb-12">
-                <p class="text-black text-base font-medium pb-4">
+                <p class="text-black text-base font-medium pb-4 w-full">
                     PRICE RANGE
                 </p>
-                <div v-if="filters" class="flex flex-col my-2 w-full" dir="ltr">
+                <div v-if="filters" class="flex flex-col my-2 " dir="ltr">
                     <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
                 </div>
             </div>
 
-            <div class="w-full  pb-12">
-                <p class="text-black text-base font-medium pb-4">
-                    FUEL TYPE
-                </p>
-                <select v-model="selectedFuelType" @change="setParams($event, '', )"
-                    class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
-                    <option>All Fuel Types</option>
-                    <option v-for="(fuel, i) in fuels.results" :key="i" @change="setParams" value="fuel._id">{{ fuel.name }}
-                    </option>
-                </select>
+            <div v-if="loading.collections" class="flex items-center justify-center my-5">
+                <si-loader></si-loader>
+            </div>
+            <div v-for="(item, i) in collections" :key="i" class="px-2">
+                <div class="flex items-center">
+                    <input v-if="item.childrens && item.childrens.length == 0" class="w-4 h-4 mx-1"
+                        :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0"
+                        :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox" />
+                    <label @click="setActive(i + 'fit', i + 'ret')" v-if="item.childrens && item.childrens.length > 0"
+                        class="capitalize cursor-pointer collec-name" :for="item.slug">{{ item.name }}</label>
+                    <label v-if="item.childrens && item.childrens.length == 0" class="capitalize cursor-pointer collec-name"
+                        :for="item.slug">{{ item.name }}</label>
+                    <svg @click="setActive(i + 'fit', i + 'ret')" :id="i + 'ret'"
+                        v-if="item.childrens && item.childrens.length > 0" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1"
+                        width="15" height="15" x="0" y="0" viewBox="0 0 451.847 451.847"
+                        style="enable-background:new 0 0 512 512 ; cursor:pointer;" xml:space="preserve" class="rotated">
+                        <g>
+                            <!-- <g xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
+                                    fill="#7a7575" data-original="#000000" style="" class="" />
+                            </g> -->
+                            <!-- <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g>
+                            <g xmlns="http://www.w3.org/2000/svg">
+                            </g> -->
+                        </g>
+                    </svg>
+                </div>
+                <div :id="i + 'fit'" class="fit-collapsible" :class="item.childrens.length > 0 ? 'sub-collections' : ''">
+                    <ul class="list-sub-collections fit-collapsible-content"
+                        v-if="item.childrens && item.childrens.length > 0">
+                        <li v-for="(child, i) in item.childrens" :key="i">
+                            <input class="w-4 h-4 mx-1"
+                                :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0"
+                                :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)"
+                                type="checkbox" />
+                            <label :for="child.slug" class="cursor-pointer c-p c-grey">{{ child.name }}</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="w-full  pb-12">
-                <p class="text-black text-base font-medium pb-4">
-                    PRODUCTION YEAR
-                </p>
-                <select v-model="selectedProductionYear"
-                    @change="setParams($event, 'productionYear', selectedProductionYear)"
-                    class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
-                    <option>All Production Years</option>
-                    <option v-for="(year, i) in years.results" :key="i">{{ year.name }}</option>
-                </select>
-            </div>
-
-            <div class="w-full  pb-12">
-                <p class="text-black text-base font-medium pb-4">
-                    ENGINE VOLUME
-                </p>
-                <select v-model="selectedEngineVolume" @change="setParams($event, 'engineVolume', selectedEngineVolume)"
-                    class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
-                    <option>All Engine Volumes</option>
-                    <option v-for="(engine, i) in engines.results" :key="i">{{ engine.name }}</option>
-                </select>
-            </div>
-
-            <div class="w-full pb-12">
+            <div class="w-full py-12">
                 <p class="text-black text-base font-medium pb-4">
                     CAR BRAND
                 </p>
-                <select v-model="selectedCarBrand"
-                    :selected="params['brand.slug-in'] && params['brand.slug-in'].indexOf(brand.slug) >= 0"
-                    @change="setParams($event, 'brand.slug-in', brand.slug)"
-                    class="w-full cursor-pointer pl-4 py-2 text-black text-xs bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
-
-                    <option>All Brands</option>
-                    <option v-for="(brand, i) in brands" :key="i">
-                        {{ brand.name }}
-                    </option>
-
-                </select>
+                <div v-for="(item, i) in brands" :key="i" class="flex items-center px-2">
+                    <input class="w-4 h-4 mx-1" :id="item.slug"
+                        :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0"
+                        @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox" />
+                    <label class="capitalize cursor-pointer" :for="item.slug">{{ item.name }}</label>
+                </div>
             </div>
 
             <div class="item-center mx-10">
@@ -359,22 +399,18 @@ export default {
                 products: true,
                 filters: true,
                 brands: true,
-                years: true,
-                engines: true,
-                fuels: true,
+                collections: true,
+
             },
             query: {},
             param: [],
             filters: null,
-            years: [],
-            engines: [],
-            fuels: [],
             items: [],
+            collections: [],
             brands: [],
-            avialableCars: [],
             paginate: { page: 1, limit: 9, total: 12 },
-            params: { page: 1, search: this.$route.query.search, limit: 9,'collections.slug-in': [], sort: { createdAt: -1 } },
-            lastParams: { page: 1, search: this.$route.query.search, limit: 9,'collections.slug-in': [], sort: { createdAt: -1 } },
+            params: { page: 1, search: this.$route.query.search, limit: 9, 'collections.slug-in': [], sort: { createdAt: -1 } },
+            lastParams: { page: 1, search: this.$route.query.search, limit: 9, 'collections.slug-in': [], sort: { createdAt: -1 } },
             sorts: [
                 { field: { 'price.salePrice': 1 }, name: this.$settings.sections.cars.sorts.price_desc },
                 { field: { 'price.salePrice': -1 }, name: this.$settings.sections.cars.sorts.price_asc },
@@ -386,9 +422,6 @@ export default {
             pickupDate: null,
             dropOffDate: null,
             form: this.$settings.sections.form,
-            selectedFuelType: 'All Fuel Types',
-            selectedProductionYear: 'All Production Years',
-            selectedEngineVolume: 'All Engines Volumes',
             selectedCarBrand: 'All Brands',
             currentView: 'grid',
             lastView: '',
@@ -396,26 +429,15 @@ export default {
                 pickup: 'Select Location',
                 dropoff: 'Select Location',
             },
-            pickuplocations: [
-                { name: 'Location 01' },
-                { name: 'Location 02' },
-                { name: 'Location 03' },
-                { name: 'Location 04' },
-            ],
-            dropofflocations: [
-                { name: 'Location 01' },
-                { name: 'Location 02' },
-                { name: 'Location 03' },
-                { name: 'Location 04' },
-            ],
         };
     },
 
-    async mounted() {
+    async fetch() {
 
         console.log(this.params, '<- param', this.items, '<- items')
 
-        console.log(this.$route.params.slug)
+        // console.log(this.$route.params.slug)
+
         if (this.$route.params.slug) {
             this.param = this.$route.params.slug.split(',');
             this.$route.params.slug.split(',').forEach(item => {
@@ -423,25 +445,28 @@ export default {
             });
 
         }
-        console.log('params-collections',this.params['collections.slug-in'])
+
+        // console.log('params-collections', this.params['collections.slug-in'])
 
         for (const key in this.$route.query) {
             if (!this.$route.query[key]) continue;
             switch (key) {
                 case 'price-from': this.$set(this.params, 'price.salePrice-from', this.$route.query[key]); break;
                 case 'price-to': this.$set(this.params, 'price.salePrice-to', this.$route.query[key]); break;
+                case 'tags': this.$set(this.params, 'tags-in', this.$route.query[key].split(',')); break;
                 case 'brands': this.$set(this.params, 'brand.slug-in', this.$route.query[key].split(',')); break;
                 case 'page': this.$set(this.params, 'page', this.$route.query[key]); break;
             }
         }
 
+        console.log(this.pricems, 'before lastparams')
+
         this.lastParams = this.params;
         await this.getFilters();
         await this.getItems();
         await this.getBrands();
-        await this.getYear();
-        await this.getFuel();
-        await this.getEngine();
+        await this.getCollections();
+        this.subCollections();
 
         console.log('after lastparams')
 
@@ -461,9 +486,8 @@ export default {
         resetFilters() {
             this.pickupDate = '';
             this.dropOffDate = '';
-            this.selectedProductionYear = 'All Production Years';
-            this.selectedEngineVolume = 'All Engines Volumes';
-            this.selectedFuelType = 'All Fuel Types';
+            this.locations.pickup = 'Select Location';
+            this.locations.dropoff = 'Select Location';
             this.selectedCarBrand = 'All Brands';
         },
 
@@ -489,7 +513,7 @@ export default {
                 this.$set(this.params, key, e.target.value);
                 return false;
             } else {
-                if (e.target.selected) {
+                if (e.target.checked) {
                     if (!this.params[key]) this.params[key] = this.$set(this.params, key, []);
                     this.params[key].push(value);
                 } else {
@@ -501,6 +525,7 @@ export default {
                     case 'collections.slug-in': this.param = this.params[key]; break;
                     case 'price.salePrice-from': this.query['price-from'] = this.params[key]; break;
                     case 'price.salePrice-to': this.query['price-to'] = this.params[key]; break;
+                    case 'tags-in': this.query['tags'] = this.params[key]; break;
                     case 'brand.slug-in': this.query['brands'] = this.params[key]; break;
                     case 'page': this.query['page'] = [this.params[key]]; break;
 
@@ -516,6 +541,7 @@ export default {
             }
             window.history.pushState({}, '', url);
         },
+
         async getFilters() {
             this.filters = null;
             this.loading.filters = true;
@@ -529,52 +555,32 @@ export default {
             this.loading.filters = false;
         },
 
-        async getYear() {
-            this.years = [];
-            this.loading.years = true;
+        async getCollections() {
+            this.collections = [];
+            this.loading.collections = true;
             try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d351631895c06900c1697' });
-                this.years = data;
+                const { data } = await this.$storeino.collections.search({});
+                this.collections = data.results;
             } catch (e) {
                 console.log({ e });
             }
-            this.loading.years = false;
+            this.loading.collections = false;
         },
 
-        async getFuel() {
-            this.fuels = [];
-            this.loading.fuels = true;
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d0e2231895c06900c077c' });
-                this.fuels = data;
-            } catch (e) {
-                console.log({ e });
+        subCollections() {
+            for (let itm of this.collections) {
+                if (itm.childrens && itm.childrens.length > 0) itm.childrens = [];
             }
-            this.loading.fuels = false;
-        },
-
-        async getEngine() {
-            this.engines = [];
-            this.loading.engines = true;
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d331631895c06900c153e' });
-                this.engines = data;
-            } catch (e) {
-                console.log({ e });
+            for (let i = 0; i < this.collections.length; i++) {
+                for (let j = 0; j < this.collections.length; j++) {
+                    if (this.collections[i].parent == this.collections[j]._id) {
+                        let childObject = this.collections[i];
+                        this.collections[j].childrens.push(childObject);
+                        this.collections.splice(i, 1);
+                        i--;
+                    }
+                }
             }
-            this.loading.engines = false;
-        },
-
-        async getAvialableCars() {
-            this.avialableCars = [];
-            this.loading.avialableCars = true;
-            try {
-                // const { data } = await this.$storeino.prod.search({ parent: '659d331631895c06900c153e' });
-                // this.avialableCars = data;
-            } catch (e) {
-                console.log({ e });
-            }
-            this.loading.avialableCars = false;
         },
 
         async getBrands() {
@@ -597,10 +603,8 @@ export default {
                 this.params.search = this.$route.query.search;
                 this.params.page = page || this.paginate.current_page;
                 this.params.limit = 9;
-                // if (this.selectedFuelType != 'All Fuel Types' || this.selectedEngineVolume != 'All Engines Volumes' || this.selectedProductionYear != 'All Production Years') {
-                //     // this.params.collections.\_id-in = this.selectedFuelType;
-                // }
-                // this.params.productType = 'BOOKING';
+                // this.params.bookingProps.firstAddresses.city[0]._id = this.locations.pickup;
+                this.params.productType = 'BOOKING';
                 this.lastParams = this.$tools.copy(this.params);
                 const { data } = await this.$storeino.products.search(this.params);
                 this.items = data.results;
@@ -628,6 +632,23 @@ export default {
     },
     computed: {
 
+        uniqueCities() {
+
+            const citiesSet = new Set();
+
+            this.items.forEach((item) => {
+                if (item.bookingProps.firstAddresses && item.bookingProps.firstAddresses.length > 0) {
+                    item.bookingProps.firstAddresses.forEach((address) => {
+                        const city = address.city.name;
+                        if (!citiesSet.has(city)) {
+                            citiesSet.add(city);
+                        }
+                    });
+                }
+            });
+
+            return Array.from(citiesSet);
+        },
 
     },
 
