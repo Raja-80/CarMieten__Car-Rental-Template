@@ -80,7 +80,7 @@
                                 <span class="w-full">{{ $settings.sections.product.booking_this_car.text }}</span>
                             </button>
                             <span class="w-1 h-1"></span>
-                            <!-- <button v-if="$settings.sections.product.proceed_to_checkout.active"
+                            <button v-if="$settings.sections.product.proceed_to_checkout.active"
                                 v-show="!$store.state.apps.find(a => a.placement.indexOf('REPLACE_BUYNOW') >= 0)"
                                 @click="buyNow"
                                 class="flex justify-center w-full p-2 text-white ai-c bg-primary click-effect">
@@ -93,7 +93,7 @@
                                 </svg>
                                 <span>&ensp;</span>
                                 <span class="w-full">{{ $settings.sections.product.proceed_to_checkout.text }}</span>
-                            </button> -->
+                            </button>
                         </div>
                         <si-app-loader v-show="!outofstock" placement="REPLACE_BUYNOW" />
                         <si-app-loader placement="AFTER_ADD_TO_CART" />
@@ -262,23 +262,23 @@ export default {
                 }
             }
             // Set default quantity
-            // this.quantitySelected(this.quantity.default);
-            // // Generate share urls
-            // let url = `https://${this.$store.state.domain}/posts/${slug}`;
-            // // for (const button of this.socialMedia) {
-            // //     button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
-            // // }
-            // if(!process.server){
-            //     this.$storeino.fbpx('PageView')
-            //     this.$storeino.fbpx('ViewContent',{
-            //         content_name: this.item.name?this.item.name:'',
-            //         content_ids: [this.item._id],
-            //         content_type: "product",
-            //         value: this.item.price.salePrice,
-            //         currency: this.$store.state.currency.code
-            //     });
-            //     this.$tools.call('PAGE_VIEW', this.item);
-            // }
+            this.quantitySelected(this.quantity.default);
+            // Generate share urls
+            let url = `https://${this.$store.state.domain}/posts/${slug}`;
+            for (const button of this.socialMedia) {
+                button.url = button.url.replace(/\{title\}/gi, this.item.name).replace(/\{url\}/gi, url);
+            }
+            if(!process.server){
+                this.$storeino.fbpx('PageView')
+                this.$storeino.fbpx('ViewContent',{
+                    content_name: this.item.name?this.item.name:'',
+                    content_ids: [this.item._id],
+                    content_type: "product",
+                    value: this.item.price.salePrice,
+                    currency: this.$store.state.currency.code
+                });
+                this.$tools.call('PAGE_VIEW', this.item);
+            }
 
         } catch (e) {
             console.log(e);

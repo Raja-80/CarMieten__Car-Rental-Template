@@ -1,18 +1,15 @@
 <template>
-    <div class="container flex flex-row justify-center items-start pb-32 pt-16 w-full ">
+    <div class="container flex lg:flex-row flex-col justify-center lg:items-start items-center pb-32 pt-16 w-full ">
 
-        <!-- {{ this.items[0].bookingProps.firstAddresses[0].city.name }} -->
+        {{ this.cars }}
 
-        <!-- {{ collections.length }} -->
+        <si-loader-global></si-loader-global>
 
-        <!-- Loader -->
-        <div v-if="loading.products" class="flex items-center justify-center my-5">
-            <si-loader></si-loader>
-        </div>
+        <div class="flex flex-col justify-between items-center lg:w-3/4 w-4/4">
 
-
-        <div class="flex flex-col justify-between items-center lg:w-3/4">
-
+            <div v-if="loading.products" class="flex items-center justify-center my-5">
+                <si-loader></si-loader>
+            </div>
             <!-- {{ this.params }} -->
 
             <!-- CARS SIDE -->
@@ -130,9 +127,10 @@
 
                 <!-- CARS LIST DISPLAYING -->
                 <div v-else-if="currentView === 'list'" class="flex flex-col justify-around items-center ">
-                    <div v-for="item in items" :key="item._id" class="flex flex-row  p-4 lg:w-full ">
+                    <div v-for="item in items" :key="item._id"
+                        class="flex lg:flex-row flex-col justify-center items-center lg:p-4 p-8 w-full ">
 
-                        <div class="flex justify-center items-center py-10 w-2/6">
+                        <div class="flex justify-center items-center lg:py-10 py-6 lg:w-2/6 w-full">
                             <nuxt-link :to="`/auto-info/${item.slug}`">
                                 <nuxt-img class=" h-32 w-full"
                                     :src="item.images[0] ? item.images[0].src : $store.state.defaults.logo"
@@ -140,7 +138,7 @@
                             </nuxt-link>
                         </div>
 
-                        <div class="flex flex-col px-4 py-6 w-4/6">
+                        <div class="flex flex-col px-4 py-6 lg:w-4/6 w-full">
 
                             <nuxt-link :to="`/auto-info/${item.slug}`">
                                 <div class="text-black pb-3 font-semibold hover:text-red-600 hover:underline">
@@ -151,33 +149,34 @@
                                 {{ item.description }}
                             </div>
 
-                            <div class="flex flex-row items-start w-full">
+                            <div class="flex lg:flex-row flex-col  items-start w-full">
 
                                 <div
-                                    class="flex flex-row justify-between items-center bg font-light p-5 text-sm text-black w-3/4">
+                                    class="flex lg:flex-row flex-col lg:justify-between items-start bg font-light p-5 text-sm text-black lg:w-3/4 w-full">
                                     <div class="flex flex-col justify-start  text-black font-medium">
-                                        <div class="flex flex-col justify-start  text-black font-normal text-xs pb-1">
+                                        <div
+                                            class="flex lg:flex-col flex-row justify-start lg:items-start items-center  text-black font-normal text-xs pb-1">
                                             <div>
                                                 AUTO MAKER :
                                             </div>
-                                            <span class="text-black font-light pt-1">
+                                            <span class="text-black font-light lg:pt-1 lg:pl-0 pl-4 ">
                                                 {{ item.brand.name.toUpperCase() }}
                                             </span>
                                         </div>
 
-                                        <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
+                                        <!-- <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 MILEAGE :
                                             </div>
-                                            <!-- <span class="text-black font-light">
-                                            &nbsp &nbsp{{ mileageInfo(item).toUpperCase() }}</span> -->
-                                        </div>
+                                            <span class="text-black font-light">
+                                            &nbsp &nbsp{{ mileageInfo(item).toUpperCase() }}</span>
+                                        </div> -->
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 ENGINE :
                                             </div>
-                                            <!-- <span class="text-black font-light">
+                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">
                                             &nbsp &nbsp{{ transmission(item).toUpperCase() }}</span> -->
                                         </div>
 
@@ -189,14 +188,14 @@
                                             <div>
                                                 YEAR :
                                             </div>
-                                            <!-- <span class="text-black font-light">&nbsp &nbsp {{ mileageInfo(item).toUpperCase() }}</span> -->
+                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ mileageInfo(item).toUpperCase() }}</span> -->
                                         </div>
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 FUEL :
                                             </div>
-                                            <!-- <span class="text-black font-light">&nbsp &nbsp {{ carFuel(item).toUpperCase() }}</span> -->
+                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ carFuel(item).toUpperCase() }}</span> -->
                                         </div>
 
 
@@ -204,19 +203,21 @@
                                             <div>
                                                 TRANSMISSION :
                                             </div>
-                                            <!-- <span class="text-black font-light">&nbsp &nbsp {{ transmission(item).toUpperCase() }}</span> -->
+                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ transmission(item).toUpperCase() }}</span> -->
                                         </div>
 
                                     </div>
 
                                 </div>
 
-                                <div class=" text-center text-base text-red-600 w-1/4 pt-5">
+                                <div class=" text-center text-base text-red-600 lg:w-1/4 w-full pt-5">
                                     {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
                                 </div>
 
                             </div>
+                            <div class="border-b border-gray-200 py-3"></div>
                         </div>
+
                     </div>
                 </div>
 
@@ -260,7 +261,7 @@
                 </p>
                 <div class="w-full pb-12">
                     <select v-model="locations.pickup"
-                        class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
+                        class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
 
                         <option>Select Location</option>
                         <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
@@ -275,7 +276,7 @@
                 </p>
                 <div class="w-full pb-12">
                     <select v-model="locations.dropoff"
-                        class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
+                        class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
 
                         <option>Select Location</option>
                         <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
@@ -296,15 +297,17 @@
             <div v-if="loading.collections" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
-            <div v-for="(item, i) in collections" :key="i" class="px-2">
+
+            <div v-for="(item, i) in collections" :key="i" class="w-full pb-12 ">
                 <div class="flex items-center">
                     <input v-if="item.childrens && item.childrens.length == 0" class="w-4 h-4 mx-1"
                         :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(item.slug) >= 0"
                         :id="item.slug" @change="setParams($event, 'collections.slug-in', item.slug)" type="checkbox" />
                     <label @click="setActive(i + 'fit', i + 'ret')" v-if="item.childrens && item.childrens.length > 0"
-                        class="capitalize cursor-pointer collec-name" :for="item.slug">{{ item.name }}</label>
-                    <label v-if="item.childrens && item.childrens.length == 0" class="capitalize cursor-pointer collec-name"
+                        class="capitalize cursor-pointer collec-name text-black text-base font-medium w-full"
                         :for="item.slug">{{ item.name }}</label>
+                    <label v-if="item.childrens && item.childrens.length == 0"
+                        class="capitalize cursor-pointer collec-name " :for="item.slug">{{ item.name }}</label>
                     <svg @click="setActive(i + 'fit', i + 'ret')" :id="i + 'ret'"
                         v-if="item.childrens && item.childrens.length > 0" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" version="1.1"
@@ -349,10 +352,11 @@
                         </g>
                     </svg>
                 </div>
-                <div :id="i + 'fit'" class="fit-collapsible" :class="item.childrens.length > 0 ? 'sub-collections' : ''">
+                <div :id="i + 'fit'" class="fit-collapsible pb-2 max-h-40 overflow-y-auto" :class="[
+                    item.childrens.length > 0 ? 'sub-collections' : '']">
                     <ul class="list-sub-collections fit-collapsible-content"
                         v-if="item.childrens && item.childrens.length > 0">
-                        <li v-for="(child, i) in item.childrens" :key="i">
+                        <li v-for="(child, i) in item.childrens" :key="i" class="pb-2">
                             <input class="w-4 h-4 mx-1"
                                 :checked="params['collections.slug-in'] && params['collections.slug-in'].indexOf(child.slug) >= 0"
                                 :id="child.slug" @change="setParams($event, 'collections.slug-in', child.slug)"
@@ -363,24 +367,37 @@
                 </div>
             </div>
 
-            <div class="w-full py-12">
-                <p class="text-black text-base font-medium pb-4">
-                    CAR BRAND
-                </p>
-                <div v-for="(item, i) in visibleBrands" :key="i" class="flex items-center px-2">
-                    <input class="w-4 h-4 mx-1" :id="item.slug"
-                        :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0"
-                        @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox" />
-                    <label class="capitalize cursor-pointer" :for="item.slug">{{ item.name }}</label>
-                </div>
-                <div class="flex flex-row justify-start items-center">
-                    <button v-if="!showAllBrands" @click="showAllBrands = true"
-                        class=" font-medium focus:shadow-md focus:underline hover:underline hover:text-red-600">See
-                        More</button>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 9l6 6 6-6" />
+            <div v-if="loading.brands" class="flex items-center justify-center my-5">
+                <si-loader></si-loader>
+            </div>
+            <div class="pb-12 w-full">
+
+                <div class="flex items-center w-full">
+                    <label @click="setActive('brandFit', 'brandRet')"
+                        class="capitalize cursor-pointer collec-name text-black text-base font-medium pb-4 w-full">
+                        CAR BRAND
+                    </label>
+                    <svg @click="setActive('brandFit', 'brandRet')" :id="'brandRet'" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="15" height="15" x="0" y="0"
+                        viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 512 512; cursor:pointer;"
+                        xml:space="preserve" class="rotated">
+                        <g xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
+                                fill="#7a7575" data-original="#000000" style="" class="" />
+                        </g>
                     </svg>
+                </div>
+                <div :id="'brandFit'" class="fit-collapsible pb-2 max-h-40 overflow-y-auto" :class="[
+                    brands.length > 0 ? 'sub-collections' : '']">
+                    <ul class="list-sub-collections fit-collapsible-content">
+                        <li v-for="(item, i) in brands" :key="i" class="pb-1">
+                            <input class="w-4 h-4 mx-1"
+                                :checked="params['brand.slug-in'] && params['brand.slug-in'].indexOf(item.slug) >= 0"
+                                :id="item.slug" @change="setParams($event, 'brand.slug-in', item.slug)" type="checkbox" />
+                            <label :for="item.slug" class="cursor-pointer c-p c-grey">{{ item.name }}</label>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
@@ -434,13 +451,14 @@ export default {
             pickupDate: null,
             dropOffDate: null,
             form: this.$settings.sections.form,
-            selectedCarBrand: 'All Brands',
             currentView: 'grid',
             lastView: '',
             locations: {
                 pickup: 'Select Location',
                 dropoff: 'Select Location',
             },
+            year: '',
+            cars: [],
         };
     },
 
@@ -483,9 +501,23 @@ export default {
         console.log('after lastparams')
 
         try {
+            
+            const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
+            this.cars = data;
+
             console.log('Fetching data...');
 
-            this.selectedCarBrand = this.$route.query.maker || 'All Makers';
+            if (this.$route.query.pickupDate) {
+                this.pickupDate = new Date(this.$route.query.pickupDate);
+            }
+
+            if (this.$route.query.dropOffDate) {
+                this.dropOffDate = new Date(this.$route.query.dropOffDate);
+            }
+
+            if (this.$route.query.pickupAdresse) {
+                this.locations.pickup = this.$route.query.pickupAdresse;
+            }
 
             this.loading.products = false;
         } catch (error) {
@@ -494,46 +526,6 @@ export default {
         }
     },
     methods: {
-
-        resetFilters() {
-            this.pickupDate = '';
-            this.dropOffDate = '';
-            this.locations.pickup = 'Select Location';
-            this.locations.dropoff = 'Select Location';
-            this.selectedCarBrand = 'All Brands';
-        },
-
-        convertToDate(dateString) {
-            if (dateString instanceof Date) {
-                return dateString;
-            }
-            if (typeof dateString === 'string') {
-                return new Date(dateString);
-            }
-            return null;
-        },
-
-        changeView(newView) {
-            if (this.currentView !== newView) {
-                this.lastView = this.currentView;
-                this.currentView = newView;
-            }
-        },
-
-        setActive: function (id, idRet) {
-            var element = document.getElementById(id);
-            if (element.classList.contains('active')) {
-                element.classList.remove('active');
-            } else {
-                element.classList.add('active');
-            }
-            var icon = document.getElementById(idRet);
-            if (icon.classList.contains('active')) {
-                icon.classList.remove('active');
-            } else {
-                icon.classList.add('active');
-            }
-        },
 
         setParams(e, key, value) {
             if (key.indexOf('price') >= 0 || key.indexOf('page') >= 0) {
@@ -569,6 +561,47 @@ export default {
             window.history.pushState({}, '', url);
         },
 
+        async getItems(page = null) {
+            if (page != null) this.setParams({ target: { value: page } }, 'page', page);
+            this.items = [];
+            this.loading.products = true;
+            try {
+                this.params.search = this.$route.query.search;
+                this.params.page = page || this.paginate.current_page;
+                this.params.limit = 9;
+                this.params.productType = 'BOOKING';
+                this.lastParams = this.$tools.copy(this.params);
+                const { data } = await this.$storeino.products.search(this.params);
+                this.items = data.results;
+                this.paginate = data.paginate;
+            } catch (e) {
+                console.log({ e });
+            }
+            this.loading.products = false;
+        },
+
+        searchItems() {
+            const formattedPickupDate = this.pickupDate instanceof Date ? this.pickupDate.toISOString() : '';
+            const formattedDropOffDate = this.dropOffDate instanceof Date ? this.dropOffDate.toISOString() : '';
+
+            const queryParams = {
+                pickupDate: formattedPickupDate,
+                dropOffDate: formattedDropOffDate,
+            };
+
+            if (this.locations.pickup !== 'Select Location') {
+                queryParams.pickupAdresse = this.locations.pickup;
+            }
+
+            if (this.locations.dropoff !== 'Select Location') {
+                queryParams.dropoffAdresse = this.locations.dropoff;
+            }
+
+            const url = `/auto-info?${new URLSearchParams(queryParams)}`;
+
+            this.$router.push(url);
+        },
+
         async getFilters() {
             this.filters = null;
             this.loading.filters = true;
@@ -586,7 +619,7 @@ export default {
             this.collections = [];
             this.loading.collections = true;
             try {
-                const { data } = await this.$storeino.collections.search({limit:1000});
+                const { data } = await this.$storeino.collections.search({ limit: 1000 });
                 this.collections = data.results;
             } catch (e) {
                 console.log({ e });
@@ -598,18 +631,6 @@ export default {
             for (let itm of this.collections) {
                 if (itm.childrens && itm.childrens.length > 0) itm.childrens = [];
             }
-
-            // for (let i = 0; i < this.collections.length; i++) {
-            //     for (let j = 0; j < this.collections.length; j++) {
-            //         if (this.collections[i].parent == this.collections[j]._id) {
-            //             let childObject = this.collections[i];
-            //             this.collections[j].childrens.push(childObject);
-            //             this.collections.splice(i, 1);
-            //             i--;
-            //         }
-            //     }
-            // }
-
             for (let i = 0; i < this.collections.length; i++) {
                 for (let j = 0; j < this.collections.length; j++) {
                     if (
@@ -629,6 +650,65 @@ export default {
             }
         },
 
+        async getYearP(item) {
+            this.year = '';
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d351631895c06900c1697' });
+                const allYears = data.results;
+
+                for (let itm of item.collections) {
+                    if (itm) {
+
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+
+        toggleShowAllBrands() {
+            this.showAllBrands = !this.showAllBrands;
+        },
+
+        resetFilters() {
+            this.pickupDate = '';
+            this.dropOffDate = '';
+            this.locations.pickup = 'Select Location';
+            this.locations.dropoff = 'Select Location';
+        },
+
+        convertToDate(dateString) {
+            if (dateString instanceof Date) {
+                return dateString;
+            }
+            if (typeof dateString === 'string') {
+                return new Date(dateString);
+            }
+            return null;
+        },
+
+        changeView(newView) {
+            if (this.currentView !== newView) {
+                this.lastView = this.currentView;
+                this.currentView = newView;
+            }
+        },
+
+        setActive: function (id, idRet) {
+            var element = document.getElementById(id);
+            if (element.classList.contains('active')) {
+                element.classList.remove('active');
+            } else {
+                element.classList.add('active');
+            }
+            var icon = document.getElementById(idRet);
+            if (icon.classList.contains('active')) {
+                icon.classList.remove('active');
+            } else {
+                icon.classList.add('active');
+            }
+        },
+
         async getBrands() {
             this.brands = [];
             this.loading.brands = true;
@@ -640,27 +720,25 @@ export default {
             }
             this.loading.brands = false;
         },
+        updateFilteredItems() {
+            const selectedCity = this.locations.pickup !== 'Select Location' ? this.locations.pickup : '';
 
-        async getItems(page = null) {
-            if (page != null) this.setParams({ target: { value: page } }, 'page', page);
-            this.items = [];
-            this.loading.products = true;
-            try {
-                this.params.search = this.$route.query.search;
-                this.params.page = page || this.paginate.current_page;
-                this.params.limit = 9;
-                // this.params.bookingProps.firstAddresses.city[0]._id = this.locations.pickup;
-                this.params.productType = 'BOOKING';
-                this.lastParams = this.$tools.copy(this.params);
-                const { data } = await this.$storeino.products.search(this.params);
-                this.items = data.results;
-                this.paginate = data.paginate;
-            } catch (e) {
-                console.log({ e });
-            }
-            this.loading.products = false;
+            this.items = this.items.filter(car => {
+                return car.bookingProps && car.bookingProps.firstAddresses &&
+                    Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
+                        return address.city.name === selectedCity;
+                    });
+            });
         },
+        // async fetchCities() {
+        //     try {
+        //         const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
+        //         this.cars = data;
 
+        //     } catch (e) {
+        //         console.log({ e });
+        //     }
+        // },
 
     },
     watch: {
@@ -674,7 +752,8 @@ export default {
         },
         "$route.query.search"(val) {
             this.$set(this.params, 'search', val);
-        }
+        },
+        'locations.pickup': 'updateFilteredItems',
     },
     computed: {
 
@@ -682,7 +761,7 @@ export default {
 
             const citiesSet = new Set();
 
-            this.items.forEach((item) => {
+            this.cars.forEach((item) => {
                 if (item.bookingProps.firstAddresses && item.bookingProps.firstAddresses.length > 0) {
                     item.bookingProps.firstAddresses.forEach((address) => {
                         const city = address.city.name;
@@ -696,10 +775,10 @@ export default {
             return Array.from(citiesSet);
         },
 
-        visibleBrands() {
-            return this.showAllBrands ? this.brands : this.brands.slice(0, 5);
-        },
+    },
 
+    created() {
+        this.fetchCities();
     },
 
 }; 
@@ -708,6 +787,95 @@ export default {
 <style>
 .bg {
     background-color: #f7f7f7;
+}
+
+
+[dir="ltr"] .collec-name {
+    margin-right: auto;
+}
+
+[dir="rtl"] .collec-name {
+    margin-left: auto;
+}
+
+
+[dir="ltr"] .sub-collections .list-sub-collections {
+    list-style: none;
+    padding-left: 10px;
+}
+
+[dir="rtl"] .sub-collections .list-sub-collections {
+    list-style: none;
+    padding-right: 10px;
+}
+
+[dir="rtl"] .list-sub-collections li {
+    text-align: left;
+}
+
+.fit-collapsible {
+    overflow: unset;
+    text-align: left;
+    display: block;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+.fit-collapsible .fit-collapsible-content {
+    max-height: 0;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.fit-collapsible.active .fit-collapsible-content {
+    max-height: 500px;
+}
+
+.sub-collections.max-h-40.overflow-y-auto {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.sub-collections::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Handle */
+.sub-collections::-webkit-scrollbar-thumb {
+    background-color: #5a6575;
+    border-radius: 6px;
+}
+
+/* Handle on hover */
+.sub-collections::-webkit-scrollbar-thumb:hover {
+    background-color: #7d808d;
+}
+
+/* Button at the top and bottom of the scrollbar */
+.sub-collections::-webkit-scrollbar-button {
+    display: none;
+}
+
+.rotated {
+    transform: rotate(0deg);
+    transition: 0.3s;
+}
+
+.rotated.active {
+    transform: rotate(180deg);
+}
+
+[dir="rtl"] .rotated {
+    transform: rotate(90deg);
+    transition: 0.3s;
+}
+
+[dir="rtl"] .rotated.active {
+    transform: rotate(0deg);
 }
 </style>
     

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="p-3 my-2 bg-white ">
-            <h2 class="mb-2 text-2xl">{{$settings.sections.cart.title}}</h2>
+            <h2 class="mb-2 text-2xl">CART</h2>
             <hr>
             <div v-if="loading.cart" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
@@ -11,7 +11,7 @@
             </div>
             <div v-if="!loading.cart && items.length > 0" class="flex flex-col mb-2 shadow">
                 <div class="flex justify-between p-2 bg-white">
-                    <h2>{{ $settings.sections.cart.total_text }}</h2>
+                    <h2>TOTAL</h2>
                     <h2 class="text-2xl text-red-700">{{ total }} {{ $store.state.currency.symbol }}</h2>
                 </div>
                 <div class="flex justify-between w-full p-2">
@@ -124,7 +124,7 @@ export default {
                         }
                         if(item.upsell){
                             cartItem.upsell = item.upsell;
-                            const discount = cartItem.upsell.type == 'percentage' ? cartItem.price * (cartItem.upsell.value / 100) : cartItem.upsell.value
+                            const discount = cartItem.upsell.type == 'percentage' ? cartItem.price * (cartItem.upsell.value / 100) : cartItem.upsell.value;
                             cartItem.price = cartItem.price - discount;
                         }
                         cartItem.total = cartItem.price * cartItem.quantity.value;

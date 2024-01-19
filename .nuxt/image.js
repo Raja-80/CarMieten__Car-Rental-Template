@@ -3,8 +3,8 @@ import { createImage} from '~image'
 import NuxtImg from '~image/components/nuxt-img.vue'
 import NuxtPicture from '~image/components/nuxt-picture.vue'
 
-import * as staticRuntime$9b5b from '/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/node_modules/@nuxt/image/dist/runtime/providers/static.js'
-import * as ipxRuntime$2dff from '/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/car_rent/node_modules/@nuxt/image/dist/runtime/providers/ipx.js'
+import * as staticRuntime$95b0 from '/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/node_modules/@nuxt/image/dist/runtime/providers/static.js'
+import * as ipxRuntime$beb0 from '/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/node_modules/@nuxt/image/dist/runtime/providers/ipx.js'
 
 const imageOptions = {
   "screens": {
@@ -23,8 +23,8 @@ const imageOptions = {
 }
 
 imageOptions.providers = {
-  ['static']: { provider: staticRuntime$9b5b, defaults: {} },
-  ['ipx']: { provider: ipxRuntime$2dff, defaults: {} }
+  ['static']: { provider: staticRuntime$95b0, defaults: {} },
+  ['ipx']: { provider: ipxRuntime$beb0, defaults: {} }
 }
 
 Vue.component(NuxtImg.name, NuxtImg)

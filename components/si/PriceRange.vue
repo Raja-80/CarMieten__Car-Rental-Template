@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="flex items-center h-2 bg-gray-300 rounded-md relative range">
+        <div class="flex items-center h-2 bg-gray-500 rounded-md relative range">
             <div class="absolute top-0 range-width h-3"
                 :style="`left:${minVal * 100 / max}%;width:${(maxVal - minVal) * 100 / max}%`"></div>
             <input class="min w-full h-2 absolute top-0 left-0 appearance-none bg-transparent" type="range" v-model="minVal"

@@ -1,19 +1,9 @@
 <template>
     <div class="container flex lg:flex-row flex-col justify-between lg:items-start items-center pb-32 pt-14"
         v-if="selectedCar">
-
-        <!-- {{ selectedCar }} -->
-        <!-- {{ this.$storeino }} -->
-
         <div class="flex flex-col  w-full px-6 ">
-            <!-- {{ disableDates }} -->
-            <hr>
-            <!-- reservedhistory -->
-            <!-- {{ this.selectedCar.bookingProps.reservedHistory }} -->
-            <!-- {{ this.selectedCar.images[1].src }} -->
-            <!-- {{ selectedCar.slug }} -->
-            <!-- {{ this.reviews.data }} -->
-
+            <!-- {{this.$store.state.cart.item}} -->
+            <!-- {{ this.upsells }} -->
             <div class="flex flex-col w-full ">
                 <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
                     <div>
@@ -22,11 +12,6 @@
                             :src="selectedCar.images[0] ? selectedCar.images[0].src : $store.state.defaults.logo"
                             alt="car" />
                     </div>
-                    <!-- <div class="px-10 lg:pt-10">
-                        <div>
-                            <si-carousel component="si-carimage" :list="selectedCar.images"></si-carousel>
-                        </div>
-                    </div> -->
                 </div>
             </div>
             <div class="lg:w-full mx-4 pb-16 lg:pb-0 lg:mx-0">
@@ -45,7 +30,7 @@
                         :class="{ 'text-red-600 border-b-2 border-red-600': selectedTitle === 'REVIEWS' }"
                         class=" hover:text-red-600  py-5">REVIEWS</button>
                 </div>
-                <!-- Dynamic Content Area -->
+                <!-- Content Area -->
                 <div class="w-full">
                     <div v-if="selectedTitle === 'VEHICLE DESCRIPTION'" class=" font-light leading-loose pt-12">
                         <div v-html="selectedCar.html" class=" text-black" style="color: black !important;"></div>
@@ -61,20 +46,10 @@
                                 <div class="border-b-2 border-gray-100 pt-3"></div>
 
                             </div>
-                            <!-- <div v-else class=" font-light py-3 w-1/4 mr-2">
-
-                                <div class="text-black text-base text-center font-medium pt-3">
-                                    THERE IS NO EQUIPMENT INFORMATION
-                                </div>
-
-                            </div> -->
                         </div>
-
                     </div>
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
-
-
                             <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     AUTO MAKER :
@@ -179,27 +154,29 @@
             <div class="bg w-full py-12 px-10">
 
                 <div class="w-full">
-                    <p class="block mb-1 text-black text-sm font-normal " for="pickupDate">
-                        PICK-UP LOCATION
-                    </p>
+                    <label class="block mb-1 text-black text-sm font-normal " for="pickupDate">
+                        DROP-OFF LOCATION
+                    </label>
                     <div class="w-full pb-12">
                         <select v-model="locations.pickup"
                             class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-3 focus:shadow-outline outline-none">
 
                             <option>Select Location</option>
-                            <option v-for="(location, i) in pickuplocations" :key="i">{{ location.name }}</option>
+                            <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
 
                         </select>
                     </div>
                 </div>
 
                 <div class="w-full pb-12">
-                    <label class="block mb-1 text-black text-sm font-normal " for="dropoffDate">DROP-OFF LOCATION</label>
+                    <label class="block mb-1 text-black text-sm font-normal " for="dropoffDate">
+                        DROP-OFF LOCATION
+                    </label>
                     <select v-model="locations.dropOff" placeholder="Select Location"
                         class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none">
 
                         <option>Select Location</option>
-                        <option v-for="(location, i) in dropofflocations" :key="i">{{ location.name }}</option>
+                        <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
 
                     </select>
                 </div>
@@ -269,8 +246,12 @@
                     <b>{{ 'Out of stock' }}</b>
                 </div>
                 <div v-else class="w-full">
-                    <button v-if="$settings.sections.product.booking_this_car.active" 
-                     @click="buyNow" type="button"
+                    <div v-if="!loading.cart && items.length > 0" class="flex flex-col mb-2 shadow">
+                        <div class="flex justify-between p-2 bg-white">
+                            <h2 class="text-2xl text-red-700">{{ total }} {{ $store.state.currency.symbol }}</h2>
+                        </div>
+                    </div>
+                    <button v-if="$settings.sections.product.booking_this_car.active" @click="buyNow" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700">
                         {{ $settings.sections.product.booking_this_car.text }}
                     </button>
@@ -288,11 +269,14 @@ import 'vue2-datepicker/index.css';
 
 
 export default {
+    
     components: {
         Datepicker,
     },
+
     data() {
         return {
+            loading: { cart: true, upsells: true },
             pickupDate: '',
             dropOffDate: '',
             form: this.$settings.sections.form,
@@ -300,111 +284,78 @@ export default {
             selectedTitle: 'VEHICLE DESCRIPTION',
             disableDates: {},
             reservedHistory: null,
-            upsells: {},
+            // upsells: {},
             outofstock: false,
             reviews: { paginate: { page: 0 }, results: [] },
             locations: {
                 pickup: 'Select Location',
                 dropOff: 'Select Location',
             },
-            items: [
-                { name: 'CHILD SEAT', selected: false, price: 50, duration: 'Total' },
-                { name: 'ADDITIONAL DRIVER', selected: false, price: 35, duration: 'Total' },
-                { name: 'GPS NAVIGATION', selected: false, price: 25, duration: 'Day' },
-                { name: 'WIFI ACCESS', selected: false, price: 15, duration: 'Day' },
-            ],
-            dropofflocations: [
-                { name: 'Location 01' },
-                { name: 'Location 02' },
-                { name: 'Location 03' },
-                { name: 'Location 04' },
-            ],
-            pickuplocations: [
-                { name: 'Location 01' },
-                { name: 'Location 02' },
-                { name: 'Location 03' },
-                { name: 'Location 04' },
-            ],
+            items: [],
+            dropofflocations: 'Select Location',
+            pickuplocations: 'Select Location',
+            items: [],
+            total: 0,
+            upsells: []
         };
     },
 
-    methods: {
-
-        // t(key) {
-        //     const langs = {
-        //         price_title_products: {
-        //             EN: "Price:	",
-        //             FR: "Prix:	",
-        //             AR: "السعر: ",
-        //             ES: "Prezo: ",
-        //             PT: "Preço: "
-        //         },
-                
-        //     }
-        //     return langs[key] && langs[key][this.$store.state.language.code] || '';
-        // },
-        
-        async fetchData() {
-            const { slug } = this.$route.params;
-            try {
-                const { data } = await this.$storeino.products.get({ slug });
-                this.selectedCar = data;
-
-                this.reviews = await this.$storeino.reviews.search({});
-
-                this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
-                this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
-                this.$store.state.seo.keywords = this.selectedCar.seo.keywords.length > 0 ? this.selectedCar.seo.keywords || [] : this.$settings.store_keywords || [];
-
-                if (this.selectedCar.images.length > 0) { this.$store.state.seo.image = this.selectedCar.images[0].src; }
-                // New meta tags
-                // [{ hid: "product:price:amount", property: "product:price:amount", content: this.price.salePrice },
-                // { hid: "productID", itemprop: "productID", content: this.selectedCar && this.selectedCar ? this.selectedCar._id : 'productID' }
-                // ].forEach(meta => {
-                //     const index = this.$store.state.seo.metaTags.findIndex(m => m.hid === meta.hid);
-                //     if (index > -1) { this.$store.state.seo.metaTags.splice(index, 1, meta); }
-                //     this.$store.state.seo.metaTags.push(meta);
-                // });
-                this.loading = false;
-
-                // if (this.selectedCar.images.length > 0) this.setImage(0);
-
-
-                // Check outof stock
-                if (!this.selectedCar.outStock.disabled && this.selectedCar.quantity.instock <= 0) {
-                    this.outofstock = true;
-                }
-
-                if (!process.server) {
-                    this.$storeino.fbpx('PageView')
-                    this.$storeino.fbpx('ViewContent', {
-                        content_name: this.selectedCar.name ? this.selectedCar.name : '',
-                        content_ids: [this.selectedCar._id],
-                        content_type: "product",
-                        value: this.selectedCar.price.salePrice,
-                        currency: this.$store.state.currency.code
-                    });
-                    this.$tools.call('PAGE_VIEW', this.selectedCar);
-                }
-
-            } catch (err) {
-                console.error(err);
-                this.$nuxt.error({ statusCode: 404, message: 'product_not_found' });
+    async fetch() {
+        const { slug } = this.$route.params;
+        try {
+            const { data } = await this.$storeino.products.get({ slug });
+            this.selectedCar = data;
+            this.reviews = await this.$storeino.reviews.search({});
+            if (this.$route.query.pickupDate) {
+                this.pickupDate = new Date(this.$route.query.pickupDate);
             }
-        },
+            if (this.$route.query.dropOffDate) {
+                this.dropOffDate = new Date(this.$route.query.dropOffDate);
+            }
+            if (this.$route.query.pickupAdresse) {
+                this.locations.pickup = this.$route.query.pickupAdresse;
+            }
+            if (this.$route.query.dropoffAdresse) {
+                this.locations.dropoff = this.$route.query.dropoffAdresse;
+            }
+            this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
+            this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
+            this.$store.state.seo.keywords = this.selectedCar.seo.keywords.length > 0 ? this.selectedCar.seo.keywords || [] : this.$settings.store_keywords || [];
+            if (this.selectedCar.images.length > 0) { this.$store.state.seo.image = this.selectedCar.images[0].src; }
+            this.loading = false;
+            if (!this.selectedCar.outStock.disabled && this.selectedCar.quantity.instock <= 0) {
+                this.outofstock = true;
+            }
+            if (!process.server) {
+                this.$storeino.fbpx('PageView')
+                this.$storeino.fbpx('ViewContent', {
+                    content_name: this.selectedCar.name ? this.selectedCar.name : '',
+                    content_ids: [this.selectedCar._id],
+                    content_type: "product",
+                    value: this.selectedCar.price.salePrice,
+                    currency: this.$store.state.currency.code
+                });
+                this.$tools.call('PAGE_VIEW', this.selectedCar);
+            }
 
+        } catch (err) {
+            console.error(err);
+            this.$nuxt.error({ statusCode: 404, message: 'product_not_found' });
+        }
+    },
+
+    methods: {
         populateDisabledDates(reservedDates) {
             return (date, currentDateArray) => {
-                // Convert the selected date to a JavaScript Date object
+                
                 const currentDate = new Date(date);
-
-                // Check if the currentDate is in the reservedDates array
+                
                 const isReserved = reservedDates.some(reservation => {
                     const start = new Date(reservation.startTime);
                     const end = new Date(reservation.endTime);
                     return currentDate >= start && currentDate <= end;
                 });
-
+               
                 const isPast = currentDate < new Date().setHours(0, 0, 0, 0);
 
                 this.$set(this.disableDates, date, isReserved);
@@ -428,55 +379,103 @@ export default {
         },
 
         addToCart() {
-            // Call add to cart event
             this.$tools.call('ADD_TO_CART', {
                 _id: this.selectedCar._id,
                 quantity: this.selectedCar.quantity.value,
                 price: this.selectedCar.price.salePrice,
-                // pickupDate: this.pickupDate,
-                // dropOffDate: this.dropOffDate,
-
             });
-            this.$storeino.fbpx('AddToCart', {
-                content_name: this.item.name,
-                content_ids: [this.item._id],
-                content_type: "product",
-                value: this.variant ? this.variant.price.salePrice : this.item.price.salePrice,
-                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
-            })
-            // if (this.$settings.sections.alerts.added_to_cart) {
-            //     setTimeout(() => {
-            //         // window.location.href = '/cart-page';
-            //     }, 500);
-            // }
+            if (this.$settings.sections.alerts.added_to_cart) {
+                setTimeout(() => {
+                    window.location.href = '/checkout';
+                }, 500);
+            }
             this.$tools.toast(this.$settings.sections.alerts.added_to_cart);
         },
 
         buyNow() {
-            // Add to cart and redirect to checkout
-            if (this.$settings.checkout_required_fields.show_variante_reminder && this.item.type == 'variable' && !this.showVarianteModal) {
-                this.showVarianteModal = true
-                return;
-            }
+            // if (this.$settings.checkout_required_fields.show_variante_reminder && this.selectedCar.type == 'variable' && !this.showVarianteModal) {
+            //     this.showVarianteModal = true
+            //     return;
+            // }
             this.addToCart();
             setTimeout(() => {
-                // window.location.href = '/checkout2';
+                window.location.href = '/checkout';
             }, 500);
         },
-        
 
+        // async initCart() {
+        //     this.items = [];
+        //     const ids = this.$store.state.cart.map(item => item._id);
+        //     this.loading.cart = true;
+        //     if (ids.length > 0) {
+        //         try {
+        //             const response = await this.$storeino.products.search({ '_id-in': ids, limit: 1000 });
+        //             const products = response.data.results;
+        //             for (const item of this.$store.state.cart) {
+        //                 const cartItem = {};
+        //                 const product = products.find(p => p._id === item._id);
+        //                 cartItem._id = product._id;
+        //                 cartItem.slug = product.slug;
+        //                 cartItem.name = product.name;
+        //                 cartItem.price = product.price.salePrice;
+        //                 cartItem.quantity = product.quantity;
+        //                 cartItem.quantity.value = item.quantity;
+        //                 cartItem.image = product.images.length > 0 ? product.images[0].src : '';
+        //                 if (item.upsell) {
+        //                     cartItem.upsell = item.upsell;
+        //                     const discount = cartItem.upsell.type == 'percentage' ? cartItem.price * (cartItem.upsell.value / 100) : cartItem.upsell.value;
+        //                     cartItem.price = cartItem.price - discount;
+        //                 }
+        //                 cartItem.total = cartItem.price * cartItem.quantity.value;
+        //                 this.items.push(cartItem);
+        //             }
+        //             this.calcTotal();
+        //         } catch (e) {
+        //             console.log({ e });
+        //         }
+        //     }
+        //     this.loading.cart = false;
+        // },
+
+        // async getUpsells() {
+
+        //     this.loading.upsells = true;
+
+        //     try {
+        //         const response = await this.$storeino.upsells.search({ 'product._id-in': this.selectedCar._id });
+        //         this.upsells = response.data.results;
+        //     } catch (e) {
+        //         console.log({ e });
+        //     }
+
+        //     this.loading.upsells = false;
+        // },
+        calcTotal() {
+            this.total = this.items.reduce((total, item) => total + (item.price * item.quantity.value), 0);
+        }
     },
-    computed: {
 
+    computed: {
         filteredReviews() {
-            // Reviews based on the selected car
             const selectedProductId = this.selectedCar._id;
             return this.reviews.data.results.filter(review => review.product._id === selectedProductId);
         },
+        uniqueCities() {
+            const citiesSet = new Set();
+            this.items.forEach((item) => {
+                if (item.bookingProps.firstAddresses && item.bookingProps.firstAddresses.length > 0) {
+                    item.bookingProps.firstAddresses.forEach((address) => {
+                        const city = address.city.name;
+                        if (!citiesSet.has(city)) {
+                            citiesSet.add(city);
+                        }
+                    });
+                }
+            });
+            return Array.from(citiesSet);
+        },
     },
-    created() {
-        this.fetchData();
-    },
+
     mounted() {
         if (this.selectedCar) this.$tools.call('PAGE_VIEW', this.selectedCar);
         window.addEventListener("APP_LOADER", () => {
@@ -500,8 +499,6 @@ export default {
                 currency: this.$store.state.currency.code
             })
         }
-
-
         if (this.selectedCar) {
             const iframes = document.querySelectorAll('iframe')
             for (const ifram of iframes) {
@@ -519,7 +516,18 @@ export default {
             }
         }
     },
-
+    watch: {
+        async "$store.state.cart.length"() {
+            // await this.initCart();
+            // await this.getUpsells();
+        },
+        items: {
+            deep: true,
+            handler() {
+                this.calcTotal();
+            }
+        }
+    },
 };
 </script>
 

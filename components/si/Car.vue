@@ -11,18 +11,32 @@
                 {{ item.seo.title }}
                 <div class="border-b pt-5"></div>
             </div>
-            <div class="px-3 pb-4">
+            <div class="px-3 ">
                 <div class="flex flex-wrap justify-start items-center ">
-                    <div v-if="item.bookingProps.extraInfo.length > 0" v-for="info in item.bookingProps.extraInfo.slice(3)"
-                        :key="info" class=" font-light py-1 w-2/4 text-xs">
+                    <div v-if="item.bookingProps.extraInfo.length > 0" v-for="info in item.bookingProps.extraInfo"
+                        :key="info" class="flex flex-row font-light py-1 w-2/4 text-xs">
 
-                        <span class=" text-xs ">+</span> {{ info.name }}
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 24 24">
+                            <path
+                                d="M5.268,10.732c-0.976-0.976-2.559-0.976-3.536,0s-0.976,2.559,0,3.536l4.645,4.645	c1.449,1.449,3.797,1.449,5.246,0L12.536,18L5.268,10.732z"
+                                opacity=".35"></path>
+                            <path
+                                d="M22.268,4.732c-0.976-0.976-2.559-0.976-3.536,0L9,14.464L12.536,18l9.732-9.732C23.244,7.291,23.244,5.708,22.268,4.732z">
+                            </path>
+                        </svg>
+
+                        <div class="pl-1">
+                            {{ info.name }}
+                        </div>
 
                     </div>
+                    <!-- <div v-else-if="item.bookingProps.extraInfo.length > 0">
+
+                                    </div> -->
                 </div>
             </div>
             <div class="flex flex-row justify-around items-center text-red-600">
-                {{this.$store.state.currency.symbol}} {{ item.price.salePrice }}/ per day
+                {{ this.$store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
                 <div>
                     <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name" :aria-label="item.name">
                         <button type="submit"

@@ -32,6 +32,7 @@
             <div >
                 <si-blog :item="item"></si-blog>
             </div>
+            
             <div class="flex flex-col lg:pt-10 lg:mr-10 mx-5">
 
                 <div class="w-full text-xs pb-8 ">
@@ -80,9 +81,7 @@
                 </a>
             </div>
         </div>
-        <!-- <div v-if="item" class="related">
-            <sections-related-posts :item="item" />
-        </div> -->
+        
     </div>
 </template>
 <script>

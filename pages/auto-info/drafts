@@ -29,3 +29,17 @@
 
         //     return disabledDateFunction;
         // },
+        
+        // t(key) {
+        //     const langs = {
+        //         price_title_products: {
+        //             EN: "Price:	",
+        //             FR: "Prix:	",
+        //             AR: "السعر: ",
+        //             ES: "Prezo: ",
+        //             PT: "Preço: "
+        //         },
+
+        //     }
+        //     return langs[key] && langs[key][this.$store.state.language.code] || '';
+        // },
