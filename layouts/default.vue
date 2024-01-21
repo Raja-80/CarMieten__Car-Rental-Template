@@ -21,7 +21,8 @@
     <div class="bg-black">
       <sections-copyright></sections-copyright>
     </div>
-
+    <!-- <nuxt-img v-if="service_1.show_icon" class=" h-11 mb-6 pr-2"
+                        :src="service_1.icon ? service_1.icon.src : $store.state.defaults.logo" alt="company logo" /> -->
   </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
   head() {
     return {
       title: this.$store.state.seo.title,
+      background_img_url: this.$settings.sections.banner.background_img,
       meta: [
         { hid: 'description', name: 'description', content: this.$store.state.seo.description },
         { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
@@ -93,7 +95,7 @@ export default {
     }
   }, computed: {
     isHomePage() {
-      
+
 
       return this.$route.path === '/';
     },

@@ -48,6 +48,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
                             <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
@@ -57,7 +58,7 @@
                                 <span class="lg:w-2/4 text-sm font-light">
                                     {{ selectedCar.collections[0].name.toUpperCase() }}</span>
                             </div>
-
+                            
                             <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     MILEAGE :
@@ -72,14 +73,6 @@
                                 </div>
                                 <!-- <span  class="lg:w-2/4 text-sm font-light">
                                             &nbsp &nbsp{{ transmission(item).toUpperCase() }}</span> -->
-                            </div>
-
-
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
-                                    AUTO VERSION :
-                                </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">&nbsp &nbsp {{ item.collections[0].name.toUpperCase() }}</span> -->
                             </div>
 
                             <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
@@ -203,13 +196,13 @@
                     </div>
                 </div>
 
-                <div class="w-full pb-12">
+                <!-- <div class="w-full pb-12">
                     <label class="block mb-1 text-black text-sm font-normal pb-4">
                         EXTRA RESOURCE
                     </label>
                     <div>
                         <ul>
-                            <li v-for="(item, index) in items" :key="index">
+                            <li v-for="(item, index) in upsells" :key="index">
                                 <label :for="'toggle' + index"
                                     class="flex flex-row justify-between items-center cursor-pointer w-full  ">
 
@@ -240,7 +233,7 @@
                         </ul>
 
                     </div>
-                </div>
+                </div> -->
                 <si-app-loader placement="BEFORE_ADD_TO_CART" />
                 <div v-if="outofstock" class="flex justify-center p-2 text-white bg-red-700 ai-c">
                     <b>{{ 'Out of stock' }}</b>
@@ -269,7 +262,7 @@ import 'vue2-datepicker/index.css';
 
 
 export default {
-    
+
     components: {
         Datepicker,
     },
@@ -284,7 +277,6 @@ export default {
             selectedTitle: 'VEHICLE DESCRIPTION',
             disableDates: {},
             reservedHistory: null,
-            // upsells: {},
             outofstock: false,
             reviews: { paginate: { page: 0 }, results: [] },
             locations: {
@@ -294,7 +286,7 @@ export default {
             items: [],
             dropofflocations: 'Select Location',
             pickuplocations: 'Select Location',
-            items: [],
+            // items: [],
             total: 0,
             upsells: []
         };
@@ -347,15 +339,15 @@ export default {
     methods: {
         populateDisabledDates(reservedDates) {
             return (date, currentDateArray) => {
-                
+
                 const currentDate = new Date(date);
-                
+
                 const isReserved = reservedDates.some(reservation => {
                     const start = new Date(reservation.startTime);
                     const end = new Date(reservation.endTime);
                     return currentDate >= start && currentDate <= end;
                 });
-               
+
                 const isPast = currentDate < new Date().setHours(0, 0, 0, 0);
 
                 this.$set(this.disableDates, date, isReserved);
@@ -437,6 +429,9 @@ export default {
         //     this.loading.cart = false;
         // },
 
+
+
+
         // async getUpsells() {
 
         //     this.loading.upsells = true;
@@ -450,6 +445,7 @@ export default {
 
         //     this.loading.upsells = false;
         // },
+
         calcTotal() {
             this.total = this.items.reduce((total, item) => total + (item.price * item.quantity.value), 0);
         }

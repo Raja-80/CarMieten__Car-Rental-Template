@@ -1,12 +1,12 @@
 <template>
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div></div>
 </template>
 <style>
     .lds-roller {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 .lds-roller div {
   animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -16,10 +16,10 @@
   content: " ";
   display: block;
   position: absolute;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: rgb(129, 126, 126);
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {

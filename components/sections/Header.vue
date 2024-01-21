@@ -43,11 +43,11 @@
                             <transition name="slide">
                                 <div v-if="item._id == activeId">
                                     <div v-for="(item, i) in item.childrens" :key="i" class="bg-gray-100">
-                                        <a class="p-1 mx-1 rounded-md bg-gray-50 text-black text-base mb-2 hover:transparent hover:text-red-600 duration-10 flex"
+                                        <a class="p-1 mx-1 rounded-md lg:bg-gray-50 text-black text-base mb-2 hover:transparent hover:text-red-600 duration-10 flex"
                                             :href="item.url">{{ item.text }}</a>
                                         <ul class="p-2" v-if="item.childrens && item.childrens.length > 0">
                                             <li v-for="(child, ii) in item.childrens" :key="ii">
-                                                <a class="p-1 mx-1 rounded-md bg-gray-50 text-black text-base mb-2 hover:transparent hover:text-red-600 duration-10 flex"
+                                                <a class="p-1 mx-1 rounded-md lg:bg-gray-50 text-black text-base mb-2 hover:transparent hover:text-red-600 duration-10 flex"
                                                     :href="child.url">
                                                     {{ child.text }}
                                                 </a>

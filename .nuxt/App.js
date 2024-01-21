@@ -14,6 +14,8 @@ import '../assets/css/main.css'
 
 import '../assets/css/fontCss.css'
 
+import '../node_modules/.cache/nuxt-google-fonts/css/nuxt-google-fonts.css'
+
 import _65a88512 from '../layouts/account.vue'
 import _6f6c098b from '../layouts/default.vue'
 

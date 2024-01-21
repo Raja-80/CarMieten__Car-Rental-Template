@@ -1,8 +1,10 @@
 <template>
     <div class="container flex lg:flex-row flex-col  py-14">
 
-        <div v-if="!loading.posts" class="flex flex-col lg:mr-20">
-
+        <div v-if="!loading.posts" class="flex flex-col lg:mr-13 mx-7">
+            <div v-if="loading.posts" class="flex items-center justify-center my-5">
+                <si-loader></si-loader>
+            </div>
             <div v-if="items.length > 0" v-for="item in items" :key="item._id">
                 <si-blog :item="item"></si-blog>
             </div>
@@ -21,7 +23,7 @@
         <div class="flex flex-col lg:pt-10 lg:mr-10 mx-5">
 
             <div class="w-full text-xs pb-8 ">
-                <input type="text" placeholder="Search"
+                <input type="text" placeholder="Search" v-model="searchTerm" @input="onSearchInput"
                     class=" placeholder-gray-400  w-full bg py-2 pl-4 border-2 border-gray-100 rounded-xs focus:border-blue-500 focus:shadow-outline outline-none">
             </div>
 
@@ -78,6 +80,7 @@ export default {
             paginate: { page: 1, limit: 3, total: 12 },
             params: { page: 1, search: this.$route.query.search, limit: 3 },
             lastParams: { page: 1, search: this.$route.query.search, limit: 3 },
+            searchTerm: this.$route.query.search || '',
         }
     },
     async fetch() {
@@ -91,18 +94,18 @@ export default {
             }
 
             this.lastParams = this.params;
+
             await this.getItems();
 
-            this.$store.state.seo.title = this.item.title + ' - ' + this.$settings.store_name;
-            this.$store.state.seo.description = this.item.excerpt || this.$settings.store_description;
-            if (this.item.image) { this.$store.state.seo.image = this.item.image.url; }
-
-
-            let url = `https://${this.$store.state.domain}/posts/${slug}`;
-            for (const button of this.socialMedia) {
-                button.url = button.url.replace(/\{title\}/gi, this.item.title).replace(/\{url\}/gi, url);
+            if (this.items.length > 0) {
+                this.$store.state.seo.title = this.items[0].title + ' - ' + this.$settings.store_name;
+                this.$store.state.seo.description = this.items[0].excerpt || this.$settings.store_description;
+                if (this.items[0].image) {
+                    this.$store.state.seo.image = this.items[0].image.url;
+                }
             }
-            this.loading = false;
+
+            this.loading.posts = false;
         } catch (e) {
             console.log({ e });
             this.$nuxt.error({ statusCode: 404, message: 'post_not_found' })
@@ -119,12 +122,10 @@ export default {
         },
 
         setParams(e, key, value) {
-            // if (key.indexOf('page') >= 0) {
-            //     this.$set(this.params, key, e.target.value);
-            //     return false;
-            // }
             if (key === 'page') {
                 this.params.page = value;
+            } else if (key === 'search') {
+                this.searchTerm = value;
             }
 
             for (const key in this.params) {
@@ -149,7 +150,7 @@ export default {
             this.items = [];
             this.loading.posts = true;
             try {
-                this.params.search = this.$route.query.search;
+                this.params.search = this.searchTerm;
                 this.params.page = page || this.paginate.current_page;
                 this.params.limit = 3;
                 this.params.type = 'POST';
@@ -162,9 +163,16 @@ export default {
             }
             this.loading.posts = false;
         },
-
-
+        onSearchInput() {
+            this.getItems();
+        },
     },
+    // watch: {
+    //     searchTerm(newTerm) {
+    //         this.params.search = newTerm;
+    //         this.getItems(); // Optionally, you can trigger the search immediately when the term changes.
+    //     },
+    // },
 }
 </script>
 

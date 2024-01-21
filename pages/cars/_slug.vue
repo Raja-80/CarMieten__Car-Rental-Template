@@ -1,16 +1,11 @@
 <template>
     <div class="container flex lg:flex-row flex-col justify-center lg:items-start items-center pb-32 pt-16 w-full ">
-
-        {{ this.cars }}
-
-        <si-loader-global></si-loader-global>
-
+        
         <div class="flex flex-col justify-between items-center lg:w-3/4 w-4/4">
 
             <div v-if="loading.products" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
-            <!-- {{ this.params }} -->
 
             <!-- CARS SIDE -->
             <div v-if="!loading.products" class="flex flex-col justify-center items-center lg:pr-5 w-full">
@@ -164,20 +159,14 @@
                                             </span>
                                         </div>
 
-                                        <!-- <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                            <div>
-                                                MILEAGE :
-                                            </div>
-                                            <span class="text-black font-light">
-                                            &nbsp &nbsp{{ mileageInfo(item).toUpperCase() }}</span>
-                                        </div> -->
-
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 ENGINE :
                                             </div>
-                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">
-                                            &nbsp &nbsp{{ transmission(item).toUpperCase() }}</span> -->
+                                            <span class="text-black font-light lg:pl-0 pl-4 ">
+
+                                                {{ getEngine(item) }}
+                                            </span>
                                         </div>
 
                                     </div>
@@ -188,22 +177,27 @@
                                             <div>
                                                 YEAR :
                                             </div>
-                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ mileageInfo(item).toUpperCase() }}</span> -->
+                                            <span class="text-black font-light lg:pl-0 pl-4 ">
+                                                {{ getYearP(item) }}
+                                            </span>
                                         </div>
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 FUEL :
                                             </div>
-                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ carFuel(item).toUpperCase() }}</span> -->
+                                            <span class="text-black font-light lg:pl-0 pl-4 ">
+                                                {{ getFuel(item) }}
+                                            </span>
                                         </div>
-
 
                                         <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
                                             <div>
                                                 TRANSMISSION :
                                             </div>
-                                            <!-- <span class="text-black font-light lg:pl-0 pl-4 ">&nbsp &nbsp {{ transmission(item).toUpperCase() }}</span> -->
+                                            <span class="text-black font-light lg:pl-0 pl-4 ">
+                                                {{ getTransmission(item) }}
+                                            </span>
                                         </div>
 
                                     </div>
@@ -236,24 +230,33 @@
 
         <!-- Filtering side -->
         <div class="hidden lg:flex flex-col justify-center items-start py-10 px-8 bg  lg:w-1/4">
+            <div v-if="loading.collections" class="flex items-center justify-center my-5">
+                <si-loader></si-loader>
+            </div>
 
             <p class="text-black text-base font-medium pb-6">
                 BOOKING TIME
             </p>
             <div class="flex flex-col justify-start items-start pb-12">
                 <div class="pb-8 w-full">
-                    <datepicker id="pickupDate" v-model="pickupDate"
+                    <datepicker id="pickupDate" v-model="pickupDate" @input="handlePickupDateSelection"
                         class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
-                        placeholder="Select date...">
+                        placeholder="Select date..." :disabled-dates="disablePastDates">
                     </datepicker>
                 </div>
 
-                <div class="w-full ">
+                <transition name="slid" v-if="isPickupDateSelected" class="w-full ">
                     <datepicker id="dropOffDate" v-model="dropOffDate"
                         class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
-                        placeholder="Select date...">
+                        placeholder="Select date..." :disabled-dates="disablePastDates">
                     </datepicker>
-                </div>
+                </transition>
+
+                <transition name="slid" v-if="isPickupDateSelected && !dropOffDate">
+                    <div class=" text-white text-sm font-light w-full p-2 mt-2 bg-red-500 rounded-md shadow-md">
+                        Please choose a Drop-Off Date to find available cars.
+                    </div>
+                </transition>
             </div>
             <div class="w-full">
                 <p class="text-black text-base font-medium pb-6">
@@ -270,7 +273,7 @@
                 </div>
             </div>
 
-            <div class="w-full">
+            <!-- <div class="w-full">
                 <p class="text-black text-base font-medium pb-6">
                     DROP-OFF LOCATION
                 </p>
@@ -283,7 +286,7 @@
 
                     </select>
                 </div>
-            </div>
+            </div> -->
 
             <div class="pb-12 w-full">
                 <p class="text-black text-base font-medium pb-4 w-full">
@@ -294,9 +297,6 @@
                 </div>
             </div>
 
-            <div v-if="loading.collections" class="flex items-center justify-center my-5">
-                <si-loader></si-loader>
-            </div>
 
             <div v-for="(item, i) in collections" :key="i" class="w-full pb-12 ">
                 <div class="flex items-center">
@@ -367,11 +367,11 @@
                 </div>
             </div>
 
-            <div v-if="loading.brands" class="flex items-center justify-center my-5">
-                <si-loader></si-loader>
-            </div>
             <div class="pb-12 w-full">
 
+                <div v-if="loading.brands" class="flex items-center justify-center my-5">
+                    <si-loader></si-loader>
+                </div>
                 <div class="flex items-center w-full">
                     <label @click="setActive('brandFit', 'brandRet')"
                         class="capitalize cursor-pointer collec-name text-black text-base font-medium pb-4 w-full">
@@ -457,8 +457,13 @@ export default {
                 pickup: 'Select Location',
                 dropoff: 'Select Location',
             },
-            year: '',
             cars: [],
+            originalItems: [],
+            isPickupDateSelected: false,
+            year: '',
+            engine: '',
+            fuel: '',
+            transmission: '',
         };
     },
 
@@ -496,15 +501,12 @@ export default {
         await this.getItems();
         await this.getBrands();
         await this.getCollections();
+
         this.subCollections();
 
         console.log('after lastparams')
 
         try {
-            
-            const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
-            this.cars = data;
-
             console.log('Fetching data...');
 
             if (this.$route.query.pickupDate) {
@@ -573,7 +575,11 @@ export default {
                 this.lastParams = this.$tools.copy(this.params);
                 const { data } = await this.$storeino.products.search(this.params);
                 this.items = data.results;
+                this.originalItems = [...this.items];
                 this.paginate = data.paginate;
+
+                await this.updateFilteredItems();
+
             } catch (e) {
                 console.log({ e });
             }
@@ -651,14 +657,64 @@ export default {
         },
 
         async getYearP(item) {
-            this.year = '';
+
             try {
                 const { data } = await this.$storeino.collections.search({ parent: '659d351631895c06900c1697' });
                 const allYears = data.results;
 
                 for (let itm of item.collections) {
-                    if (itm) {
+                    const foundYear = allYears.find(year => year.slug === itm.slug);
+                    if (foundYear) {
+                        return foundYear.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getEngine(item) {
 
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d331631895c06900c153e' });
+                const allEngines = data.results;
+
+                for (let itm of item.collections) {
+                    const foundEngine = allEngines.find(engine => engine.slug === itm.slug);
+                    if (foundEngine) {
+                        return foundEngine.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getFuel(item) {
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d0e2231895c06900c077c' });
+                const allFuels = data.results;
+
+                for (let itm of item.collections) {
+                    const foundFuel = allFuels.find(fuel => fuel.slug === itm.slug);
+                    if (foundFuel) {
+                        return foundFuel.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getTransmission(item) {
+
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659e8ac031895c06900c2efa' });
+                const allTranss = data.results;
+
+                for (let itm of item.collections) {
+                    const foundTranss = allTranss.find(transs => transs.slug === itm.slug);
+                    if (foundTranss) {
+                        return foundTranss.name;
                     }
                 }
             } catch (e) {
@@ -721,25 +777,77 @@ export default {
             this.loading.brands = false;
         },
         updateFilteredItems() {
-            const selectedCity = this.locations.pickup !== 'Select Location' ? this.locations.pickup : '';
 
-            this.items = this.items.filter(car => {
-                return car.bookingProps && car.bookingProps.firstAddresses &&
-                    Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
-                        return address.city.name === selectedCity;
+            if (this.dropOffDate === null && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
+
+                this.items = [...this.originalItems];
+
+            } else if (this.dropOffDate === null && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
+
+                this.items = this.items.filter(car => {
+                    return car.bookingProps && car.bookingProps.firstAddresses &&
+                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
+                            return address.city.name === this.locations.pickup;
+                        });
+                });
+            } else if (this.dropOffDate instanceof Date && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
+
+                this.items = this.items.filter(car => {
+
+                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
+                        const reservationStart = new Date(reservation.startTime).getTime();
+                        const reservationEnd = new Date(reservation.endTime).getTime();
+                        const pickupDate = this.pickupDate.getTime();
+                        const dropOffDate = this.dropOffDate.getTime();
+
+                        return !(pickupDate >= reservationEnd || dropOffDate <= reservationStart);
                     });
-            });
+
+                    return isAvailableInRange;
+                });
+            } else if (this.dropOffDate instanceof Date && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
+
+                this.items = this.items.filter(car => {
+
+                    const isSameCity = !this.locations.pickup || (car.bookingProps && car.bookingProps.firstAddresses &&
+                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
+                            return address.city.name === this.locations.pickup;
+                        }));
+
+                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
+                        const reservationStart = new Date(reservation.startTime).getTime();
+                        const reservationEnd = new Date(reservation.endTime).getTime();
+                        const pickupDate = this.pickupDate.getTime();
+                        const dropOffDate = this.dropOffDate.getTime();
+
+                        return !(pickupDate >= reservationEnd || dropOffDate <= reservationStart);
+                    });
+
+                    return isSameCity && isAvailableInRange;
+                });
+            }
+
         },
-        // async fetchCities() {
-        //     try {
-        //         const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
-        //         this.cars = data;
+        async fetchCars() {
+            try {
+                const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
+                this.cars = data.results;
 
-        //     } catch (e) {
-        //         console.log({ e });
-        //     }
-        // },
+            } catch (e) {
+                console.log({ e });
+            }
+        },
 
+        handlePickupDateSelection() {
+            this.isPickupDateSelected = !!this.pickupDate;
+        },
+
+        disablePastDates(date) {
+            const currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+
+            return date < currentDate;
+        },
     },
     watch: {
         params: {
@@ -754,6 +862,7 @@ export default {
             this.$set(this.params, 'search', val);
         },
         'locations.pickup': 'updateFilteredItems',
+        dropOffDate: 'updateFilteredItems',
     },
     computed: {
 
@@ -778,7 +887,7 @@ export default {
     },
 
     created() {
-        this.fetchCities();
+        this.fetchCars();
     },
 
 }; 

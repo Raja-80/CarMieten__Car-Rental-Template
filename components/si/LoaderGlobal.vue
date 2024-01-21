@@ -24,7 +24,7 @@ export default {
   justify-content: center;
   width: 50px;
   height: 50px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid rgb(236, 102, 102);
   color: #fff;
   font-size: 20px;
   font-weight: bold;
@@ -34,10 +34,10 @@ export default {
   line-height: 56px;
   box-sizing: border-box;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #ca5b5b;
   outline: none;
   transition: all ease 0.5s;
-  border-left-color: #fff;
+  border-left-color: #804444;
 }
 .loading-icon {
   animation: rotation 1s infinite linear;

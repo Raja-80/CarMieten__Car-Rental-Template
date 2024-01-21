@@ -37,13 +37,13 @@
             <div class="flex lg:flex-row flex-col">
 
                 <div class="pr-16">
-                    <nuxt-img v-if="app.show_store" class=" mb-6 pr-2"
+                    <nuxt-img v-if="app.show_play_store" :to="app.app_play_store_link" class=" mb-6 pr-2"
                         :src="app.store_icon ? app.store_icon.src : $store.state.defaults.logo" alt="company logo" />
 
                 </div>
 
                 <div>
-                    <nuxt-img v-if="app.show_apple" class=" mb-6 pr-2"
+                    <nuxt-img v-if="app.show_apple_store" :to="app.app_apple_store_link" class=" mb-6 pr-2"
                         :src="app.apple_icon ? app.apple_icon.src : $store.state.defaults.logo" alt="company logo" />
 
                 </div>

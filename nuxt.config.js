@@ -23,7 +23,13 @@ export default {
   components: true,
   buildModules: [
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
   ],
+  googleFonts: {
+    families: {
+      Inter: [300,500,700],
+    }
+  },
   modules: [
     '@nuxt/image',
     '@nuxtjs/axios',

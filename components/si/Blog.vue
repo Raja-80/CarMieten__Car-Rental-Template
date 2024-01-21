@@ -1,13 +1,12 @@
 <template>
     <div>
-        <div class="flex flex-col justify-between items-start ">
-            <div class="flex justify-center items-start pt-10">
+        <div v-if="item" class="flex flex-col justify-between items-start ">
+            <div  class="flex justify-center items-start pt-10">
 
                 <nuxt-img :to="`/posts/${item.slug}`" class="h-full "
                     :src="item.image.url ? item.image.url : $store.state.defaults.logo" alt="customer profile" />
 
             </div>
-
 
             <div class="my-6 flex flex-row justify-start items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" class="pr-3" viewBox="0 0 448 512">
