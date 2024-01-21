@@ -1,6 +1,6 @@
 <template>
     <div class="container flex lg:flex-row flex-col justify-center lg:items-start items-center pb-32 pt-16 w-full ">
-        
+
         <div class="flex flex-col justify-between items-center lg:w-3/4 w-4/4">
 
             <div v-if="loading.products" class="flex items-center justify-center my-5">
@@ -239,12 +239,18 @@
             </p>
             <div class="flex flex-col justify-start items-start pb-12">
                 <div class="pb-8 w-full">
+                    <p class="text-black text-sm font-normal pb-3">
+                        Pick-up Date
+                    </p>
                     <datepicker id="pickupDate" v-model="pickupDate" @input="handlePickupDateSelection"
                         class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
                         placeholder="Select date..." :disabled-dates="disablePastDates">
                     </datepicker>
                 </div>
 
+                <p v-if="isPickupDateSelected" class="text-black text-sm font-normal pb-3">
+                    Drop-off Date
+                </p>
                 <transition name="slid" v-if="isPickupDateSelected" class="w-full ">
                     <datepicker id="dropOffDate" v-model="dropOffDate"
                         class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
@@ -272,21 +278,6 @@
                     </select>
                 </div>
             </div>
-
-            <!-- <div class="w-full">
-                <p class="text-black text-base font-medium pb-6">
-                    DROP-OFF LOCATION
-                </p>
-                <div class="w-full pb-12">
-                    <select v-model="locations.dropoff"
-                        class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
-
-                        <option>Select Location</option>
-                        <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
-
-                    </select>
-                </div>
-            </div> -->
 
             <div class="pb-12 w-full">
                 <p class="text-black text-base font-medium pb-4 w-full">
@@ -563,7 +554,68 @@ export default {
             window.history.pushState({}, '', url);
         },
 
-        async getItems(page = null) {
+        async updateFilteredItems(applyFilters = true) {
+
+            console.log('Updating filtered items...');
+
+            if (this.dropOffDate === null && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
+
+                this.items = [...this.originalItems];
+
+            } else if (this.dropOffDate === null && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
+
+                this.items = this.items.filter(car => {
+                    return car.bookingProps && car.bookingProps.firstAddresses &&
+                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
+                            return address.city.name === this.locations.pickup;
+                        });
+                });
+            } else if (this.dropOffDate instanceof Date && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
+
+                this.items = this.items.filter(car => {
+
+                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
+                        const reservationStart = new Date(reservation.startTime).getTime();
+                        const reservationEnd = new Date(reservation.endTime).getTime();
+                        const pickupDate = this.pickupDate.getTime();
+                        const dropOffDate = this.dropOffDate.getTime();
+
+                        return !(pickupDate > reservationEnd || dropOffDate < reservationStart);
+                    });
+
+                    return isAvailableInRange;
+                });
+            } else if (this.dropOffDate instanceof Date && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
+
+                this.items = this.items.filter(car => {
+
+                    const isSameCity = !this.locations.pickup || (car.bookingProps && car.bookingProps.firstAddresses &&
+                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
+                            return address.city.name === this.locations.pickup;
+                        }));
+
+                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
+                        const reservationStart = new Date(reservation.startTime).getTime();
+                        const reservationEnd = new Date(reservation.endTime).getTime();
+                        const pickupDate = this.pickupDate.getTime();
+                        const dropOffDate = this.dropOffDate.getTime();
+
+                        return !(pickupDate > reservationEnd || dropOffDate < reservationStart);
+                    });
+
+                    return isSameCity && isAvailableInRange;
+                });
+            }
+
+            if (applyFilters) {
+                await this.getItems(null, false);
+            }
+            console.log('Filtered items updated.');
+        },
+
+        async getItems(page = null, applyFilters = true) {
+            console.log('Getting items...');
+
             if (page != null) this.setParams({ target: { value: page } }, 'page', page);
             this.items = [];
             this.loading.products = true;
@@ -578,13 +630,17 @@ export default {
                 this.originalItems = [...this.items];
                 this.paginate = data.paginate;
 
-                await this.updateFilteredItems();
+                await this.updateFilteredItems(applyFilters);
 
             } catch (e) {
                 console.log({ e });
             }
             this.loading.products = false;
+
+
+            console.log('Items retrieved.');
         },
+
 
         searchItems() {
             const formattedPickupDate = this.pickupDate instanceof Date ? this.pickupDate.toISOString() : '';
@@ -607,6 +663,8 @@ export default {
 
             this.$router.push(url);
         },
+
+
 
         async getFilters() {
             this.filters = null;
@@ -776,58 +834,7 @@ export default {
             }
             this.loading.brands = false;
         },
-        updateFilteredItems() {
 
-            if (this.dropOffDate === null && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
-
-                this.items = [...this.originalItems];
-
-            } else if (this.dropOffDate === null && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
-
-                this.items = this.items.filter(car => {
-                    return car.bookingProps && car.bookingProps.firstAddresses &&
-                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
-                            return address.city.name === this.locations.pickup;
-                        });
-                });
-            } else if (this.dropOffDate instanceof Date && (this.locations.pickup === 'Select Location' || this.locations.pickup === '')) {
-
-                this.items = this.items.filter(car => {
-
-                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
-                        const reservationStart = new Date(reservation.startTime).getTime();
-                        const reservationEnd = new Date(reservation.endTime).getTime();
-                        const pickupDate = this.pickupDate.getTime();
-                        const dropOffDate = this.dropOffDate.getTime();
-
-                        return !(pickupDate >= reservationEnd || dropOffDate <= reservationStart);
-                    });
-
-                    return isAvailableInRange;
-                });
-            } else if (this.dropOffDate instanceof Date && (this.locations.pickup !== 'Select Location' || this.locations.pickup !== '')) {
-
-                this.items = this.items.filter(car => {
-
-                    const isSameCity = !this.locations.pickup || (car.bookingProps && car.bookingProps.firstAddresses &&
-                        Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
-                            return address.city.name === this.locations.pickup;
-                        }));
-
-                    const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
-                        const reservationStart = new Date(reservation.startTime).getTime();
-                        const reservationEnd = new Date(reservation.endTime).getTime();
-                        const pickupDate = this.pickupDate.getTime();
-                        const dropOffDate = this.dropOffDate.getTime();
-
-                        return !(pickupDate >= reservationEnd || dropOffDate <= reservationStart);
-                    });
-
-                    return isSameCity && isAvailableInRange;
-                });
-            }
-
-        },
         async fetchCars() {
             try {
                 const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });

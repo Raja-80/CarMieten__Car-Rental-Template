@@ -120,7 +120,7 @@ export default {
             pickupDate: '',
             dropOffDate: '',
             pickupAdresse: 'Select Location',
-            selectedCarBrands: 'All Brandss',
+            selectedCarBrands: 'All Brands',
             banner: this.$settings.sections.banner,
             form: this.$settings.sections.form,
             products: [],
