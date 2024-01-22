@@ -788,7 +788,7 @@ export default {
             this.pickupDate = '';
             this.dropOffDate = '';
             this.locations.pickup = 'Select Location';
-            this.locations.dropoff = 'Select Location';
+            // this.locations.dropoff = 'Select Location';
         },
 
         convertToDate(dateString) {

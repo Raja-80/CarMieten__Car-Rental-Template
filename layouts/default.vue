@@ -1,8 +1,8 @@
 <template>
   <div class="">
 
-    <div class="relative bg-cover"
-      :style="{ backgroundImage: 'url(' + require('~/assets/images/banner_dflt.jpg') + ')' }">
+    <div dir="ltr" class="relative bg-cover"
+      :style="{ backgroundImage: 'url(' + require(background_img.src) + ')' }">
 
       <sections-header></sections-header>
       <sections-banner></sections-banner>
@@ -13,12 +13,12 @@
       </svg>
     </div>
 
-    <nuxt />
+    <nuxt dir="ltr" />
 
-    <div class="footer">
+    <div dir="ltr" class="footer">
       <sections-footer></sections-footer>
     </div>
-    <div class="bg-black">
+    <div dir="ltr" class="bg-black">
       <sections-copyright></sections-copyright>
     </div>
     <!-- <nuxt-img v-if="service_1.show_icon" class=" h-11 mb-6 pr-2"
@@ -31,7 +31,6 @@ export default {
   head() {
     return {
       title: this.$store.state.seo.title,
-      background_img_url: this.$settings.sections.banner.background_img,
       meta: [
         { hid: 'description', name: 'description', content: this.$store.state.seo.description },
         { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
@@ -71,6 +70,7 @@ export default {
   data() {
     return {
       rgb: { r: 0, g: 130, b: 70 },
+      background_img: this.$settings.sections.banner.background_img,
       // otherLinks: [],
     }
   },
@@ -107,6 +107,15 @@ export default {
 .footer {
   background-color: rgba(26, 26, 26, 255);
 }
+
+[dir='ltr'] .to-right {
+  transform: translateX(20rem);
+}
+
+[dir='rtl'] .to-right {
+  transform: translateX(-20rem) !important;
+}
+
 </style>
 
 

@@ -3,14 +3,14 @@
 
         <div v-if="isHomePage" class=" flex justify-around items-center">
 
-            <!-- Banner description -->
+            <!-- Banner title side -->
 
             <div class="hidden lg:block bg-fixed text-white pl-4">
                 <h1 class=" font-semibold text-6xl mb-2">
-                    {{ $settings.sections.banner.title }}
+                    {{ banner.title }}
                 </h1>
-                <p class=" font-light w-10/12 ">
-                    {{ $settings.sections.banner.description }}
+                <p v-if="banner.show_description" class=" font-light w-10/12 ">
+                    {{ banner.description }}
                 </p>
             </div>
 
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class="pb-7 w-full">
+                    <div v-if="form.show_brands" class="pb-7 w-full">
                         <label class="block mb-1 text-black text-xs font-light" for="selectItem">
                             {{ form.brands_title }}
                         </label>
@@ -133,6 +133,7 @@ export default {
 
         const response = await this.$storeino.products.search({ productType: 'BOOKING' });
         this.products = response.data.results;
+        
     },
     computed: {
 
