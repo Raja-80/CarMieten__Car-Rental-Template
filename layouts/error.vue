@@ -1,11 +1,11 @@
 <template>
-    <div class="container bg-gray-400">
+    <div class="container ">
 		<div class="row">
 			<div class="text-gray-50 text-center py-24 flex items-center flex-col">
 				<div class="relative">
 				<h1 class="relative text-9xl tracking-tighter-less text-shadow font-sans font-bold">
 					<span>{{ String(error.statusCode).split('').join(' ') }}</span></h1>
-					<span class="my-4 text-primary font-semibold text-4xl">Page Not Found</span>
+					<span class="my-4 text-primary font-semibold text-4xl">{{  }}</span>
 				</div>
 				<h5 class="text-primary font-semibold text-xl my-4"></h5>
 				<a href="/cars" class="bg-primary inline-flex  px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">Back To Booking Cars</a>

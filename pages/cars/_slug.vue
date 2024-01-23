@@ -492,6 +492,7 @@ export default {
         await this.getItems();
         await this.getBrands();
         await this.getCollections();
+        // await this.getYearP(someItem);
 
         this.subCollections();
 

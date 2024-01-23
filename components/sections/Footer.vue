@@ -7,7 +7,9 @@
                 <div class="cursor-pointer flex items-center lg:pb-24 pb-6">
                     <nuxt-img v-if="footer.show_logo" class="h-10" :src="logo ? logo.src : $store.state.defaults.logo"
                         alt="company logo" />
-                    <div class="text-sm font-semibold text-white ml-3">{{ footer.company_name }}</div>
+                    <nuxt-link :to="`/`" class="cursor-pointer text-sm font-semibold text-white ml-3">
+                        {{ footer.company_name }}
+                    </nuxt-link>
                 </div>
 
                 <div>
@@ -32,7 +34,9 @@
                     <div class="flex flex-col justify-between items-start">
                         <div v-for="(link, index) in useful_links.links.items" :key="index">
 
-                            <nuxt-link :to="link.url" class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{ link.text }}</nuxt-link>
+                            <nuxt-link :to="link.url"
+                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{
+                                    link.text }}</nuxt-link>
 
                         </div>
                     </div>
@@ -53,8 +57,10 @@
                     <div class="flex flex-col justify-between items-start">
                         <div v-for="(link, index) in terms.links.items" :key="index">
 
-                            <nuxt-link :to="link.url" class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{ link.text }}</nuxt-link>
-                            
+                            <nuxt-link :to="link.url"
+                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{
+                                    link.text }}</nuxt-link>
+
 
                         </div>
                     </div>

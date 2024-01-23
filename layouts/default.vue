@@ -2,7 +2,7 @@
   <div class="">
 
     <div dir="ltr" class="relative bg-cover"
-      :style="{ backgroundImage: 'url(' + require(background_img.src) + ')' }">
+      :style="{ backgroundImage: 'url(' + require('~/assets/images/banner_dflt.jpg') + ')' }">
 
       <sections-header></sections-header>
       <sections-banner></sections-banner>

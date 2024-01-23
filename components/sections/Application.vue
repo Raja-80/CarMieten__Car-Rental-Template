@@ -1,9 +1,9 @@
 <template>
     <div v-if="app.show_section" class="app container pb-32 pt-24 flex lg:flex-row flex-col justify-around items-center">
 
-        <div class=" lg:pl-40 pb-96">
+        <div class=" lg:pl-40 ">
 
-            <div class="lg:pl-20 absolute lg:-top-14 lg:left-96 -top-10 right-2">
+            <div class="lg:pl-20 ">
                 <div>
                     <nuxt-img v-if="app.show_image" class=" "
                         :src="app.image ? app.image.src : $store.state.defaults.logo" alt="company logo" />
@@ -37,13 +37,13 @@
             <div class="flex lg:flex-row flex-col">
 
                 <div class="pr-16">
-                    <nuxt-img v-if="app.show_play_store" :to="app.app_play_store_link" class=" mb-6 pr-2"
+                    <nuxt-img :to="`/${app.app_play_store_link}`" v-if="app.show_play_store"  class=" mb-6 pr-2 cursor-pointer"
                         :src="app.store_icon ? app.store_icon.src : $store.state.defaults.logo" alt="company logo" />
 
                 </div>
 
                 <div>
-                    <nuxt-img v-if="app.show_apple_store" :to="app.app_apple_store_link" class=" mb-6 pr-2"
+                    <nuxt-img :to="`/${app.app_apple_store_link}`" v-if="app.show_apple_store" class=" mb-6 pr-2 cursor-pointer"
                         :src="app.apple_icon ? app.apple_icon.src : $store.state.defaults.logo" alt="company logo" />
 
                 </div>

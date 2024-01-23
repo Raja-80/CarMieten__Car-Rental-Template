@@ -3,10 +3,10 @@
 
         <nav class="container flex justify-between items-center p-2 text-white">
             <div class="cursor-pointer flex items-center lg-pl-0 pl-6">
-                <nuxt-img class="h-10 " :src="logo ? logo.src : $store.state.defaults.logo" alt="company logo" />
-                <div class="cursor-pointer text-lg font-semibold ml-3">
+                <nuxt-img :to="`/`" class="h-10 " :src="logo ? logo.src : $store.state.defaults.logo" alt="company logo" />
+                <nuxt-link :to="`/`" class="cursor-pointer text-lg font-semibold ml-3">
                     {{ nav.name }}
-                </div>
+                </nuxt-link>
             </div>
 
             <!-- Responsive Menu -->
@@ -157,7 +157,7 @@ export default {
         closeMenu() {
             this.isOpen = false;
         },
-        
+
     },
 };
 </script>

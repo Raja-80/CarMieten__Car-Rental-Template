@@ -2,8 +2,6 @@
     <div class="container flex lg:flex-row flex-col justify-between lg:items-start items-center pb-32 pt-14"
         v-if="selectedCar">
         <div class="flex flex-col  w-full px-6 ">
-            <!-- {{this.$store.state.cart.item}} -->
-            <!-- {{ this.upsells }} -->
             <div class="flex flex-col w-full ">
                 <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
                     <div>
@@ -51,50 +49,49 @@
 
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     AUTO MAKER :
                                 </div>
-                                <span class="lg:w-2/4 text-sm font-light">
-                                    {{ selectedCar.collections[0].name.toUpperCase() }}</span>
-                            </div>
-                            
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
-                                    MILEAGE :
-                                </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">
-                                            &nbsp &nbsp{{ mileageInfo(item).toUpperCase() }}</span> -->
+                                <span class="lg:w-2/4 text-sm font-light ">
+                                    {{ selectedCar.brand.name.toUpperCase() }}</span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     ENGINE :
                                 </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">
-                                            &nbsp &nbsp{{ transmission(item).toUpperCase() }}</span> -->
+                                <span class="lg:w-2/4 text-sm font-light">
+                                    {{ getEngine(selectedCar) }}
+                                </span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     YEAR :
                                 </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">&nbsp &nbsp {{ mileageInfo(item).toUpperCase() }}</span> -->
+                                <span class="lg:w-2/4 text-sm font-light">
+                                    {{ this.year }}
+                                </span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     FUEL :
                                 </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">&nbsp &nbsp {{ carFuel(item).toUpperCase() }}</span> -->
+                                <span class="lg:w-2/4 text-sm font-light">
+                                    {{ getFuel(selectedCar) }}
+                                </span>
                             </div>
 
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
                                     TRANSMISSION :
                                 </div>
-                                <!-- <span  class="lg:w-2/4 text-sm font-light">&nbsp &nbsp {{ transmission(item).toUpperCase() }}</span> -->
+                                <span class="lg:w-2/4 text-sm font-light">
+                                    {{ getTransmission(selectedCar) }}
+                                </span>
                             </div>
 
                         </div>
@@ -288,16 +285,32 @@ export default {
             pickuplocations: 'Select Location',
             // items: [],
             total: 0,
-            upsells: []
+            upsells: [],
+            year: null,
+            engine: null,
+            fuel: null,
+            transmission: null,
         };
     },
 
     async fetch() {
         const { slug } = this.$route.params;
+        this.year = await this.getYearP(this.selectedCar);
+        this.engine = await this.getEngine(this.selectedCar);
+        this.fuel = await this.getFuel(this.selectedCar);
+        this.transmission = await this.getTransmission(this.selectedCar);
+
+
         try {
             const { data } = await this.$storeino.products.get({ slug });
             this.selectedCar = data;
             this.reviews = await this.$storeino.reviews.search({});
+
+            const response = await this.$storeino.upsells.search({ 'with': ['products'],'product._id-in': this.selectedCar._id, limit: 1000 });
+            this.upsells= response.data.results;
+
+            console.log('upsells..', this.upsells)
+
             if (this.$route.query.pickupDate) {
                 this.pickupDate = new Date(this.$route.query.pickupDate);
             }
@@ -337,6 +350,72 @@ export default {
     },
 
     methods: {
+        async getYearP(item) {
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d351631895c06900c1697' });
+                const allYears = data.results;
+
+                for (let itm of item.collections) {
+                    const foundYear = allYears.find(year => year.slug === itm.slug);
+                    if (foundYear) {
+                        return foundYear.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getEngine(item) {
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d331631895c06900c153e' });
+                const allEngines = data.results;
+
+                for (let itm of item.collections) {
+                    const foundEngine = allEngines.find(engine => engine.slug === itm.slug);
+                    if (foundEngine) {
+                        return foundEngine.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getFuel(item) {
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659d0e2231895c06900c077c' });
+                const allFuels = data.results;
+
+                for (let itm of item.collections) {
+                    const foundFuel = allFuels.find(fuel => fuel.slug === itm.slug);
+                    if (foundFuel) {
+                        return foundFuel.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+        async getTransmission(item) {
+
+
+            try {
+                const { data } = await this.$storeino.collections.search({ parent: '659e8ac031895c06900c2efa' });
+                const allTranss = data.results;
+
+                for (let itm of item.collections) {
+                    const foundTranss = allTranss.find(transs => transs.slug === itm.slug);
+                    if (foundTranss) {
+                        return foundTranss.name;
+                    }
+                }
+            } catch (e) {
+                console.log({ e });
+            }
+        },
+
         populateDisabledDates(reservedDates) {
             return (date, currentDateArray) => {
 
@@ -373,7 +452,7 @@ export default {
         addToCart() {
             this.$tools.call('ADD_TO_CART', {
                 _id: this.selectedCar._id,
-                quantity: this.selectedCar.quantity.value,
+                quantity: this.selectedCar.quantity,
                 price: this.selectedCar.price.salePrice,
             });
             if (this.$settings.sections.alerts.added_to_cart) {
@@ -430,22 +509,6 @@ export default {
         // },
 
 
-
-
-        // async getUpsells() {
-
-        //     this.loading.upsells = true;
-
-        //     try {
-        //         const response = await this.$storeino.upsells.search({ 'product._id-in': this.selectedCar._id });
-        //         this.upsells = response.data.results;
-        //     } catch (e) {
-        //         console.log({ e });
-        //     }
-
-        //     this.loading.upsells = false;
-        // },
-
         calcTotal() {
             this.total = this.items.reduce((total, item) => total + (item.price * item.quantity.value), 0);
         }
@@ -472,7 +535,7 @@ export default {
         },
     },
 
-    mounted() {
+    async mounted() {
         if (this.selectedCar) this.$tools.call('PAGE_VIEW', this.selectedCar);
         window.addEventListener("APP_LOADER", () => {
             window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
