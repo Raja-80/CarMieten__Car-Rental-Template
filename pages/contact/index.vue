@@ -8,7 +8,6 @@
                 width="700" height="700" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
-            <!-- {{ maps.ifram_adresse }} -->
 
         </div>
 

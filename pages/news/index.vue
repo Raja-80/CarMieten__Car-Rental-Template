@@ -1,33 +1,25 @@
 <template>
-    <div class="container flex lg:flex-row flex-col  py-14">
+    <div class="container flex flex-col justify-center items-center px-16 py-14">
 
-        <div v-if="!loading.posts" class="flex flex-col lg:mr-13 mx-7">
-            <div v-if="loading.posts" class="flex items-center justify-center my-5">
-                <si-loader></si-loader>
-            </div>
-            <div v-if="items.length > 0" v-for="item in items" :key="item._id">
-                <si-blog :item="item"></si-blog>
-            </div>
-
-            <div v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
-                <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer hover:text-red-600 hover:bg-gray-200 text-base font-semibold',
-                    paginate.current_page === pageNumber ? 'bg-red-600 text-white' : 'bg text-black',]">
-
-                    {{ pageNumber }}
-
-                </button>
-            </div>
-
+        <div v-if="loading.posts" class="flex items-center justify-center my-8 w-full">
+            <si-loader></si-loader>
         </div>
 
-        <div class="flex flex-col lg:pt-10 lg:mr-10 mx-5">
+        <div v-if="news_search" class="flex flex-col py-10 mx-5 w-full">
 
-            <div class="w-full text-xs pb-8 ">
+            <div class="flex flex-row items-center w-full text-xs pb-8 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-7 h-7 mr-1">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
                 <input type="text" placeholder="Search" v-model="searchTerm" @input="onSearchInput"
                     class=" placeholder-gray-400  w-full bg py-2 pl-4 border-2 border-gray-100 rounded-xs focus:border-blue-500 focus:shadow-outline outline-none">
+
+
             </div>
 
-            <div class="flex flex-col w-full border-2 pb-10 border-gray-100">
+            <!-- <div class="flex flex-col w-full border-2 pb-10 border-gray-100">
                 <div class="w-full py-5 bg">
                     <div class=" text-black text-base font-medium pl-4">
                         NEWSLETTER
@@ -57,9 +49,36 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
         </div>
+        <div v-if="!loading.posts" class="flex flex-col mx-7 w-full">
+
+            <div v-if="items.length > 0" v-for="item in items" :key="item._id">
+                <si-blog :item="item"></si-blog>
+            </div>
+
+            <div v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
+                <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer hover:text-red-600 hover:bg-gray-200 text-base font-semibold',
+                    paginate.current_page === pageNumber ? 'bg-red-600 text-white' : 'bg text-black',]">
+
+                    {{ pageNumber }}
+
+                </button>
+            </div>
+
+            <!-- if there are no news -->
+            <div v-if="items.length <= 0"
+                class="flex flex-col w-full py-10 text-base text-center font-medium text-white ">
+                <b class=" bg-red-400 rounded-xl">{{ t('No_News_Founded') }}</b>
+                <nuxt-link :to="`/`"
+                    class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">
+                    Back To Home Page
+                </nuxt-link>
+            </div>
+        </div>
+
+
 
 
 
@@ -73,7 +92,7 @@ export default {
             loading: {
                 posts: true,
             },
-            news: this.$settings.sections.news,
+            news_search: this.$settings.sections.news_pge.search_for_news,
             query: {},
             param: [],
             items: [],
@@ -115,6 +134,27 @@ export default {
         this.$storeino.fbpx('PageView')
     },
     methods: {
+
+        t(key) {
+            const langs = {
+                No_News_Founded: {
+                    EN: "No News Founded",
+                    FR: "Aucune Nouvelle Trouvée",
+                    AR: "لا أخبار تم العثور عليها",
+                    // ES: " ",
+                    // PT: " "
+                },
+                Search: {
+                    EN: "Search",
+                    FR: "Recherche",
+                    AR: "بحث",
+                    // ES: "",
+                    // PT: ""
+                },
+            }
+            return langs[key] && langs[key][this.$store.state.language.code] || '';
+        },
+
         formatDate(dateString) {
             const options = { month: 'long', day: 'numeric', year: 'numeric' };
             const date = new Date(dateString);
@@ -167,12 +207,7 @@ export default {
             this.getItems();
         },
     },
-    // watch: {
-    //     searchTerm(newTerm) {
-    //         this.params.search = newTerm;
-    //         this.getItems(); // Optionally, you can trigger the search immediately when the term changes.
-    //     },
-    // },
+
 }
 </script>
 

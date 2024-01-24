@@ -28,7 +28,7 @@
                                 <select v-model="pickupAdresse"
                                     class="w-full cursor-pointer pl-1 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
 
-                                    <option>Select Location</option>
+                                    <option>All Locations</option>
                                     <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}
                                     </option>
 
@@ -119,7 +119,7 @@ export default {
         return {
             pickupDate: '',
             dropOffDate: '',
-            pickupAdresse: 'Select Location',
+            pickupAdresse: 'All Locations',
             selectedCarBrands: 'All Brands',
             banner: this.$settings.sections.banner,
             form: this.$settings.sections.form,
@@ -128,12 +128,17 @@ export default {
         };
     }, async fetch() {
 
-        const { data } = await this.$storeino.brands.search()
-        this.brands = data.results;
+        try {
+            const { data } = await this.$storeino.brands.search()
+            this.brands = data.results;
 
-        const response = await this.$storeino.products.search({ productType: 'BOOKING' });
-        this.products = response.data.results;
-        
+            const response = await this.$storeino.products.search({ productType: 'BOOKING' });
+            this.products = response.data.results;
+
+        } catch (err) {
+            console.error(err);
+            this.$nuxt.error({ statusCode: 404, message: 'product_not_found' });
+        }
     },
     computed: {
 
@@ -170,7 +175,7 @@ export default {
                 dropOffDate: formattedDropOffDate,
             };
 
-            if (this.pickupAdresse !== 'Select Location') {
+            if (this.pickupAdresse !== 'All Locations') {
                 queryParams.pickupAdresse = this.pickupAdresse;
             }
 

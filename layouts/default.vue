@@ -3,7 +3,8 @@
 
     <div dir="ltr" class="relative bg-cover"
       :style="{ backgroundImage: 'url(' + require('~/assets/images/banner_dflt.jpg') + ')' }">
-
+      <!-- <nuxt-img v-if="service_1.show_icon" class="relative bg-cover"
+        :src="background_img ? background_img.src : $store.state.defaults.logo" alt="company logo" /> -->
       <sections-header></sections-header>
       <sections-banner></sections-banner>
 
@@ -115,7 +116,6 @@ export default {
 [dir='rtl'] .to-right {
   transform: translateX(-20rem) !important;
 }
-
 </style>
 
 

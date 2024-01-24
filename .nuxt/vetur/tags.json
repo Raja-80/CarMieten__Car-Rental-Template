@@ -101,6 +101,9 @@
   "SiReview": {
     "description": "Auto imported from components/si/Review.vue"
   },
+  "SiSearchEditable": {
+    "description": "Auto imported from components/si/SearchEditable.vue"
+  },
   "SiSlidingone": {
     "description": "Auto imported from components/si/Slidingone.vue"
   },

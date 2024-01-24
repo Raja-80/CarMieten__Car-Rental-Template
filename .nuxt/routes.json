@@ -105,13 +105,6 @@
     "_name": "_472ccd9f"
   },
   {
-    "name": "posts-slug",
-    "path": "/posts/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/posts/_slug.vue",
-    "chunkName": "pages/posts/_slug",
-    "_name": "_42dad2ee"
-  },
-  {
     "name": "products-slug",
     "path": "/products/:slug?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/products/_slug.vue",

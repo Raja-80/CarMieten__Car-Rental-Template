@@ -58,8 +58,9 @@
                         <div v-for="(link, index) in terms.links.items" :key="index">
 
                             <nuxt-link :to="link.url"
-                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{
-                                    link.text }}</nuxt-link>
+                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">
+                                {{ link.text }}
+                            </nuxt-link>
 
 
                         </div>

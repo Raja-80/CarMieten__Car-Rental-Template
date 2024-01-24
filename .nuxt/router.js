@@ -19,7 +19,6 @@ const _3c8ad626 = () => interopDefault(import('../pages/blog/_slug.vue' /* webpa
 const _d4772fac = () => interopDefault(import('../pages/cars/_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
 const _712ccc30 = () => interopDefault(import('../pages/collections/_slug.vue' /* webpackChunkName: "pages/collections/_slug" */))
 const _472ccd9f = () => interopDefault(import('../pages/pages/_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
-const _42dad2ee = () => interopDefault(import('../pages/posts/_slug.vue' /* webpackChunkName: "pages/posts/_slug" */))
 const _5510b02f = () => interopDefault(import('../pages/products/_slug.vue' /* webpackChunkName: "pages/products/_slug" */))
 const _63732741 = () => interopDefault(import('../pages/shop/_slug.vue' /* webpackChunkName: "pages/shop/_slug" */))
 
@@ -94,10 +93,6 @@ export const routerOptions = {
     path: "/pages/:slug?",
     component: _472ccd9f,
     name: "pages-slug"
-  }, {
-    path: "/posts/:slug?",
-    component: _42dad2ee,
-    name: "posts-slug"
   }, {
     path: "/products/:slug?",
     component: _5510b02f,

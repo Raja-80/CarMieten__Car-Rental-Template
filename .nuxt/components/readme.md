@@ -40,6 +40,7 @@ You can directly use them in pages and other components without the need to impo
 - `<SiProductQuantity>` | `<si-product-quantity>` (components/si/ProductQuantity.vue)
 - `<SiProductVariants>` | `<si-product-variants>` (components/si/ProductVariants.vue)
 - `<SiReview>` | `<si-review>` (components/si/Review.vue)
+- `<SiSearchEditable>` | `<si-search-editable>` (components/si/SearchEditable.vue)
 - `<SiSlidingone>` | `<si-slidingone>` (components/si/Slidingone.vue)
 - `<SiSvg>` | `<si-svg>` (components/si/Svg.vue)
 - `<SectionsPalestSectionsCollections>` | `<sections-palest-sections-collections>` (components/sections/palest_sections/Collections.vue)
