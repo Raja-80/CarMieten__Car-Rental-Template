@@ -11,9 +11,6 @@
   "SectionsBook": {
     "description": "Auto imported from components/sections/Book.vue"
   },
-  "SectionsCollections": {
-    "description": "Auto imported from components/sections/Collections.vue"
-  },
   "SectionsFleets": {
     "description": "Auto imported from components/sections/Fleets.vue"
   },
@@ -29,9 +26,6 @@
   "SectionsNews": {
     "description": "Auto imported from components/sections/News.vue"
   },
-  "SectionsProducts": {
-    "description": "Auto imported from components/sections/Products.vue"
-  },
   "SectionsReviews": {
     "description": "Auto imported from components/sections/Reviews.vue"
   },
@@ -41,14 +35,8 @@
   "SectionsCopyright": {
     "description": "Auto imported from components/sections/copyright.vue"
   },
-  "SectionsOthers": {
-    "description": "Auto imported from components/sections/others.vue"
-  },
   "SiAppLoader": {
     "description": "Auto imported from components/si/AppLoader.vue"
-  },
-  "SiAvatar": {
-    "description": "Auto imported from components/si/Avatar.vue"
   },
   "SiBlog": {
     "description": "Auto imported from components/si/Blog.vue"
@@ -62,12 +50,6 @@
   "SiCarousel": {
     "description": "Auto imported from components/si/Carousel.vue"
   },
-  "SiCartItem": {
-    "description": "Auto imported from components/si/CartItem.vue"
-  },
-  "SiCollection": {
-    "description": "Auto imported from components/si/Collection.vue"
-  },
   "SiFullImage": {
     "description": "Auto imported from components/si/FullImage.vue"
   },
@@ -80,9 +62,6 @@
   "SiLoaderGlobal": {
     "description": "Auto imported from components/si/LoaderGlobal.vue"
   },
-  "SiPost": {
-    "description": "Auto imported from components/si/Post.vue"
-  },
   "SiPriceRange": {
     "description": "Auto imported from components/si/PriceRange.vue"
   },
@@ -92,23 +71,17 @@
   "SiProductPrice": {
     "description": "Auto imported from components/si/ProductPrice.vue"
   },
-  "SiProductQuantity": {
-    "description": "Auto imported from components/si/ProductQuantity.vue"
-  },
-  "SiProductVariants": {
-    "description": "Auto imported from components/si/ProductVariants.vue"
-  },
   "SiReview": {
     "description": "Auto imported from components/si/Review.vue"
-  },
-  "SiSearchEditable": {
-    "description": "Auto imported from components/si/SearchEditable.vue"
   },
   "SiSlidingone": {
     "description": "Auto imported from components/si/Slidingone.vue"
   },
   "SiSvg": {
     "description": "Auto imported from components/si/Svg.vue"
+  },
+  "SiCarDetails": {
+    "description": "Auto imported from components/si/carDetails.vue"
   },
   "SectionsPalestSectionsCollections": {
     "description": "Auto imported from components/sections/palest_sections/Collections.vue"

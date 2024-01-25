@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container">
         <div v-if="loading" class="flex items-center justify-center my-5">
             <si-loader></si-loader>
@@ -7,7 +7,7 @@
             <meta itemprop="productID" :content="item._id" />
             <div class="w-full md:w-1/2">
                 <div class="relative flex flex-col p-2">
-                    <!-- <button v-if="$store.state.wishlist.find(i => i._id == item._id)" @click="removeFromWishlist"
+                    <button v-if="$store.state.wishlist.find(i => i._id == item._id)" @click="removeFromWishlist"
                         title="Wishlist"
                         class="absolute p-2 m-2 mx-1 bg-gray-100 rounded-md item top-1 right-2 hover:bg-gray-200">
                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img"
@@ -16,10 +16,10 @@
                                 d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z">
                             </path>
                         </svg>
-                    </button> -->
-                    <!-- <button v-else @click="addToWishlist" title="Wishlist" class="absolute p-2 m-2 mx-1 bg-gray-100 rounded-md item top-1 right-2 hover:bg-gray-200">
+                    </button>
+                    <button v-else @click="addToWishlist" title="Wishlist" class="absolute p-2 m-2 mx-1 bg-gray-100 rounded-md item top-1 right-2 hover:bg-gray-200">
                         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="heart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="w-5 h-5 translate"><path fill="currentColor" d="M458.4 64.3C400.6 15.7 311.3 23 256 79.3 200.7 23 111.4 15.6 53.6 64.3-21.6 127.6-10.6 230.8 43 285.5l175.4 178.7c10 10.2 23.4 15.9 37.6 15.9 14.3 0 27.6-5.6 37.6-15.8L469 285.6c53.5-54.7 64.7-157.9-10.6-221.3zm-23.6 187.5L259.4 430.5c-2.4 2.4-4.4 2.4-6.8 0L77.2 251.8c-36.5-37.2-43.9-107.6 7.3-150.7 38.9-32.7 98.9-27.8 136.5 10.5l35 35.7 35-35.7c37.8-38.5 97.8-43.2 136.5-10.6 51.1 43.1 43.5 113.9 7.3 150.8z" class=""></path></svg>
-                    </button> -->
+                    </button>
                     <si-image width="500" height="500" class="w-full bg-white rounded-md shadow cursor-pointer"
                         @click="$store.state.fullImage = image ? image.src : null" :src="image ? image.src : null"
                         :alt="item.name" />
@@ -58,9 +58,9 @@
                             @selected="variantSelected"></si-product-variants>
                         <si-product-price class="flex text-3xl" :type="'simple'" :price="price"
                             :variants="[]"></si-product-price>
-                        <!-- <div class="flex justify-start" v-show="!outofstock">
+                        <div class="flex justify-start" v-show="!outofstock">
                             <si-product-quantity @selected="quantitySelected" :quantity="quantity"></si-product-quantity>
-                        </div> -->
+                        </div>
                         <hr class="my-2">
                         <si-app-loader placement="BEFORE_ADD_TO_CART" />
                         <div v-if="outofstock" class="flex justify-center p-2 text-white bg-red-700 ai-c">
@@ -98,7 +98,7 @@
                         <si-app-loader v-show="!outofstock" placement="REPLACE_BUYNOW" />
                         <si-app-loader placement="AFTER_ADD_TO_CART" />
                     </div>
-                    <!-- <div class="my-2 bg-white " v-if="$settings.sections.product.share_buttons">
+                    <div class="my-2 bg-white " v-if="$settings.sections.product.share_buttons">
                         <div class="flex items-center">
                             <div class="flex w-full border-b border-gray-200 "></div>
                             <h3 class="p-2 whitespace-nowrap">{{ $settings.sections.product.share_buttons.title }}</h3>
@@ -111,7 +111,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -175,9 +175,9 @@
             </div>
         </div>
         <div v-if="item" class="flex flex-col">
-            <!-- <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
+            <div v-if="item && $settings.sections.product.upsell.active" class="upsells">
                 <sections-upsell :item="item.upsell" />
-            </div> -->
+            </div>
             <div v-if="item" class="p-2 mx-2 my-3 bg-white rounded-md description" id="description" v-html="item.html">
             </div>
             <si-app-loader placement="AFTER_DESCRIPTION" />
@@ -186,9 +186,9 @@
                     :item="item"></sections-reviews>
             </div>
             <si-app-loader placement="REPLACE_REVIEWS" />
-            <!-- <div v-if="item && $settings.sections.product.related.active" class="related">
+            <div v-if="item && $settings.sections.product.related.active" class="related">
                 <sections-related-products :item="item" />
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -531,4 +531,4 @@ export default {
 .col-2 {
     width: 28%;
 }
-</style>
+</style> -->

@@ -17,8 +17,8 @@
         </div>
 
 
-        <div v-if="carsproducts.length > 0">
-            <si-carousel component="si-car" :list="carsproducts"></si-carousel>
+        <div>
+            <si-carousel component="si-car" :list="fleets.cars"></si-carousel>
         </div>
 
     </div>
@@ -30,14 +30,7 @@ export default {
     data() {
         return {
             fleets: this.$settings.sections.fleets,
-            carsproducts:[],
         };
-    }, async fetch() {
-
-        // const { data } = await this.$storeino.products.search({ });
-        const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
-        this.carsproducts = data.results;
-
     },
 
 }

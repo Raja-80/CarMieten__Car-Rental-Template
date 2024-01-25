@@ -7,10 +7,11 @@
 
       <sections-guides></sections-guides>
 
-      <svg class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+      <svg v-if="guides_section" class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
         preserveAspectRatio="none">
         <polygon fill="white" points="0,100 0,0 100,100" />
       </svg>
+
     </div>
 
     <div class="relative bg-cover ">
@@ -18,7 +19,7 @@
       <sections-fleets></sections-fleets>
       <!-- <sections-collections></sections-collections> -->
 
-      <svg class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+      <svg v-if="fleets.active"  class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
         preserveAspectRatio="none">
         <polygon fill="rgb(243 244 246)" points="0,100 100,0 100,100" />
       </svg>
@@ -39,7 +40,7 @@
 
       <sections-reviews></sections-reviews>
 
-      <svg class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+      <svg v-if="reviews_section.show_reviews_section" class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
         preserveAspectRatio="none">
         <polygon fill="rgb(243 244 246)" points="0,100 100,0 100,100" />
       </svg>
@@ -56,7 +57,7 @@
 
       <sections-application></sections-application>
 
-      <svg class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
+      <svg v-if="app.show_section" class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"
         preserveAspectRatio="none">
         <polygon fill="rgba(26,26,26,255)" points="0,100 0,0 100,100" />
       </svg>
@@ -67,10 +68,15 @@
 </template>
 <script>
 export default {
-  // async fetch() {
-  //   this.$store.state.seo.title = this.$settings.store_name;
-  //   this.$store.state.seo.description = this.$settings.store_description;
-  // },
+  data() {
+    return {
+      guides_section: this.$settings.sections.guide.show,
+      reviews_section: this.$settings.sections.reviews, 
+      fleets: this.$settings.sections.fleets,
+      app: this.$settings.sections.app,
+
+    }
+  },
   mounted() {
     this.$tools.call('PAGE_VIEW');
     this.$storeino.fbpx('PageView')

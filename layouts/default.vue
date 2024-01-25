@@ -72,6 +72,7 @@ export default {
     return {
       rgb: { r: 0, g: 130, b: 70 },
       background_img: this.$settings.sections.banner.background_img,
+      // benefits: this.$settings.sections.benefits,
       // otherLinks: [],
     }
   },

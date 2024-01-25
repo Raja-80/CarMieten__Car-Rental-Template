@@ -4,20 +4,15 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _2c5fbc33 = () => interopDefault(import('../pages/cart/index.vue' /* webpackChunkName: "pages/cart/index" */))
-const _1816ea3f = () => interopDefault(import('../pages/cart-page/index.vue' /* webpackChunkName: "pages/cart-page/index" */))
-const _033edad9 = () => interopDefault(import('../pages/checkout/index.vue' /* webpackChunkName: "pages/checkout/index" */))
 const _66d6be43 = () => interopDefault(import('../pages/contact/index.vue' /* webpackChunkName: "pages/contact/index" */))
 const _723fb8b0 = () => interopDefault(import('../pages/error.vue' /* webpackChunkName: "pages/error" */))
 const _2c870826 = () => interopDefault(import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */))
 const _96434ac8 = () => interopDefault(import('../pages/thanks/index.vue' /* webpackChunkName: "pages/thanks/index" */))
-const _01f9f098 = () => interopDefault(import('../pages/wishlist/index.vue' /* webpackChunkName: "pages/wishlist/index" */))
 const _f9cbf51c = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _1ca531fc = () => interopDefault(import('../pages/account/_route.vue' /* webpackChunkName: "pages/account/_route" */))
 const _6e808432 = () => interopDefault(import('../pages/auto-info/_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
 const _3c8ad626 = () => interopDefault(import('../pages/blog/_slug.vue' /* webpackChunkName: "pages/blog/_slug" */))
 const _d4772fac = () => interopDefault(import('../pages/cars/_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
-const _712ccc30 = () => interopDefault(import('../pages/collections/_slug.vue' /* webpackChunkName: "pages/collections/_slug" */))
 const _472ccd9f = () => interopDefault(import('../pages/pages/_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
 const _5510b02f = () => interopDefault(import('../pages/products/_slug.vue' /* webpackChunkName: "pages/products/_slug" */))
 const _63732741 = () => interopDefault(import('../pages/shop/_slug.vue' /* webpackChunkName: "pages/shop/_slug" */))
@@ -34,18 +29,6 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
-    path: "/cart",
-    component: _2c5fbc33,
-    name: "cart"
-  }, {
-    path: "/cart-page",
-    component: _1816ea3f,
-    name: "cart-page"
-  }, {
-    path: "/checkout",
-    component: _033edad9,
-    name: "checkout"
-  }, {
     path: "/contact",
     component: _66d6be43,
     name: "contact"
@@ -61,10 +44,6 @@ export const routerOptions = {
     path: "/thanks",
     component: _96434ac8,
     name: "thanks"
-  }, {
-    path: "/wishlist",
-    component: _01f9f098,
-    name: "wishlist"
   }, {
     path: "/",
     component: _f9cbf51c,
@@ -85,10 +64,6 @@ export const routerOptions = {
     path: "/cars/:slug?",
     component: _d4772fac,
     name: "cars-slug"
-  }, {
-    path: "/collections/:slug?",
-    component: _712ccc30,
-    name: "collections-slug"
   }, {
     path: "/pages/:slug?",
     component: _472ccd9f,

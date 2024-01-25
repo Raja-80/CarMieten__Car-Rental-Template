@@ -1,8 +1,8 @@
 <template>
     <div class="container flex lg:flex-row flex-col justify-between lg:items-start items-center pb-32 pt-14"
-    v-if="selectedCar">
-    
-        <div v-if="loading.upsells " class="flex items-center justify-center my-8 w-full">
+        v-if="selectedCar">
+
+        <div v-if="loading.upsells && loading.selectedCar" class="flex items-center justify-center my-8 w-full">
             <si-loader></si-loader>
         </div>
         <div v-if="selectedCar && !loading.upsells" class="flex flex-col  w-full px-6 ">
@@ -54,49 +54,48 @@
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
                             <div v-if="selectedCar.brand"
-                                class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
+                                class="flex lg:flex-row flex-col lg:justify-center  items-center w-full py-5 ">
+                                <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     AUTO MAKER :
                                 </div>
                                 <span class="lg:w-2/4 text-sm font-light ">
                                     {{ selectedCar.brand.name.toUpperCase() }}</span>
                             </div>
 
-                            <div v-if="engine" class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                                <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     ENGINE :
                                 </div>
                                 <span class="lg:w-2/4 text-sm font-light">
-                                    {{ this.engine }}
+                                    {{ getEngine() }}
                                 </span>
                             </div>
 
-                            <div v-if="year" class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                                <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     YEAR :
                                 </div>
                                 <span class="lg:w-2/4 text-sm font-light">
-                                    {{ this.year }}
+                                    {{ getYearP() }}
                                 </span>
                             </div>
 
-                            <div v-if="fuel" class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                                <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     FUEL :
                                 </div>
                                 <span class="lg:w-2/4 text-sm font-light">
-                                    {{ this.fuel }}
+                                    {{ getFuel() }}
                                 </span>
                             </div>
 
 
-                            <div v-if="transmission"
-                                class="flex lg:flex-row flex-col lg:justify-center  items-center w-full">
-                                <div class="lg:w-2/4 lg:pl-3 text-sm font-medium lg:pb-0 pb-3">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                                <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     TRANSMISSION :
                                 </div>
                                 <span class="lg:w-2/4 text-sm font-light">
-                                    {{ this.transmission }}
+                                    {{ getTransmission() }}
                                 </span>
                             </div>
 
@@ -104,7 +103,7 @@
                     </div>
                     <div v-else-if="selectedTitle === 'REVIEWS'" class="pt-14">
 
-                        <div v-for="(review, index) in filteredReviews" :key="index"
+                        <div v-if="filteredReviews.length > 0" v-for="(review, index) in filteredReviews" :key="index"
                             class="flex flex-row justify-start items-start w-full pb-10">
                             <div class=" lg:w-1/6 w-3/6 lg:mx-8 mx-4 p-2">
                                 <nuxt-img class=" rounded-full border-4 border-gray-200"
@@ -132,6 +131,11 @@
                             </div>
                         </div>
 
+                        <div v-if="filteredReviews.length <= 0"
+                            class="w-full py-3 text-base text-center font-semibold text-red-400 ">
+                            {{ 'There is No Reviews Yet ....' }}
+                        </div>
+
                         <si-app-loader placement="REPLACE_REVIEWS" class="pt-10" />
 
                     </div>
@@ -139,14 +143,18 @@
             </div>
         </div>
 
-        <!-- Filtering side -->
-        <div v-if="selectedCar && !loading.upsells" class="flex flex-col justify-center lg:items-start items-center lg:w-2/6  ">
+        <!-- Booking side -->
+        <div v-if="selectedCar && !loading.upsells"
+            class="flex flex-col justify-center lg:items-start items-center lg:w-2/6  ">
             <p class="w-full text-white bg-black text-center text-xl font-medium py-4">
-                {{ $store.state.currency.symbol }} {{ selectedCar.price.salePrice }}/ per day
+                {{ $store.state.currency.symbol }} {{ selectedCar.price.salePrice }}/ {{ selectedCar.bookingProps.priceBy }}
             </p>
 
             <div class="bg w-full py-12 px-10">
-
+                <div v-if="!datesAndLocationsSelected && showDatesLocationsMessage"
+                    class=" text-white text-sm font-light w-full p-2 my-2 bg-red-500 rounded-md shadow-md">
+                    Please select pickup and drop-off dates and locations to proceed.
+                </div>
                 <div class="w-full">
                     <label class="block mb-1 text-black text-sm font-normal " for="locations.pickup">
                         PICK-UP LOCATION
@@ -199,7 +207,7 @@
                     </div>
                 </div>
 
-                <div v-if="upsells.length >0" class="w-full pb-12">
+                <div v-if="upsells.length > 0" class="w-full pb-12">
                     <label class="block mb-1 text-black text-sm font-normal pb-4">
                         EXTRA RESOURCE
                     </label>
@@ -212,7 +220,7 @@
                                     <div class="relative pb-3 flex flex-row justify-between items-center w-4/6 ">
                                         <div class="  w-4/12">
                                             <input type="checkbox" :id="'toggle' + index" class="hidden"
-                                                v-model="items.slected" />
+                                                v-model="selectedUpsells[index]" />
                                             <div class="toggle-wrapper w-12 h-6 bg-gray-300 rounded-full shadow-inner">
                                             </div>
                                             <div
@@ -228,7 +236,7 @@
                                         <div class="mb-3 text-gray-700 font-light text-xs  ml-3 ">
                                             <span class=" text-red-600">
                                                 {{ $store.state.currency.symbol }} {{ item.price }}
-                                            </span> /{{ item.duration }}
+                                            </span>
                                         </div>
                                     </div>
                                 </label>
@@ -252,7 +260,8 @@
                             <h2 class="text-2xl text-red-700">Total {{ $store.state.currency.symbol }}</h2>
                         </div>
                     </div>
-                    <button v-if="$settings.sections.product.booking_this_car.active" @click="buyNow" type="button"
+                    <button v-if="$settings.sections.product.booking_this_car.active"
+                        @click="buyNow" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700 ">
                         {{ $settings.sections.product.booking_this_car.text }}
                     </button>
@@ -275,7 +284,7 @@ export default {
 
     data() {
         return {
-            loading: { cart: true, upsells: true },
+            loading: { cart: true, upsells: true, selectedCar: true },
             pickupDate: '',
             dropOffDate: '',
             itemsSlected: '',
@@ -293,21 +302,28 @@ export default {
             items: [],
             total: 0,
             upsells: [],
-            year: null,
-            engine: null,
-            fuel: null,
-            transmission: null,
+            selectedUpsells: [],
+            datesAndLocationsSelected: false,
+            showDatesLocationsMessage: false,
         };
     },
 
     async fetch() {
         try {
+
             const { slug } = this.$route.params;
+
+
+            this.loading.selectedCar = true;
 
             const { data } = await this.$storeino.products.get({ slug });
             this.selectedCar = data;
 
+            this.loading.selectedCar = false;
+
+
             this.reviews = await this.$storeino.reviews.search({});
+
 
             this.loading.upsells = true;
 
@@ -316,18 +332,6 @@ export default {
 
             this.loading.upsells = false;
 
-            if (this.$route.query.pickupDate) {
-                this.pickupDate = new Date(this.$route.query.pickupDate);
-            }
-            if (this.$route.query.dropOffDate) {
-                this.dropOffDate = new Date(this.$route.query.dropOffDate);
-            }
-            if (this.$route.query.pickupAdresse) {
-                this.locations.pickup = this.$route.query.pickupAdresse;
-            }
-            if (this.$route.query.dropoffAdresse) {
-                this.locations.dropoff = this.$route.query.dropoffAdresse;
-            }
             this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
             this.$store.state.seo.keywords = this.selectedCar.seo.keywords.length > 0 ? this.selectedCar.seo.keywords || [] : this.$settings.store_keywords || [];
@@ -355,25 +359,25 @@ export default {
     },
 
     methods: {
+
         getYearP() {
 
             if (this.selectedCar) {
                 for (let itm of this.selectedCar.collections) {
                     if (itm.name && itm.name.includes('PRODUCTION YEAR')) {
-                        this.year = itm.slug.replace(/-/g, '');
-                        return;
+                        return itm.slug.replace(/-/g, '').toUpperCase();;
                     }
                 }
             }
+
         },
 
         getEngine() {
 
             if (this.selectedCar) {
                 for (let itm of this.selectedCar.collections) {
-                    if (itm.name && itm.name.includes('TRANSMISSION')) {
-                        this.engine = itm.slug.replace(/-/g, '');
-                        return;
+                    if (itm.name && itm.name.includes('ENGINE VOLUME')) {
+                        return itm.slug.replace(/-/g, '').toUpperCase();;
                     }
                 }
             }
@@ -384,8 +388,7 @@ export default {
             if (this.selectedCar) {
                 for (let itm of this.selectedCar.collections) {
                     if (itm.name && itm.name.includes('FUEL TYPE')) {
-                        this.fuel = itm.slug.replace(/-/g, '');
-                        return;
+                        return itm.slug.replace(/-/g, '').toUpperCase();;
                     }
                 }
             }
@@ -395,9 +398,8 @@ export default {
 
             if (this.selectedCar) {
                 for (let itm of this.selectedCar.collections) {
-                    if (itm.name && itm.name.includes('ENGINE VOLUME')) {
-                        this.transmission = itm.slug.replace(/-/g, '');
-                        return;
+                    if (itm.name && itm.name.includes('TRANSMISSION')) {
+                        return itm.slug.replace(/-/g, '').toUpperCase();;
                     }
                 }
             }
@@ -450,17 +452,26 @@ export default {
                 content_name: this.selectedCar.name,
                 content_ids: [this.selectedCar._id],
                 content_type: "product",
-                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD"
+                currency: this.$store.state.currency && this.$store.state.currency.code ? this.$store.state.currency.code : "USD",
+                value: this.selectedCar.price.salePrice,
             })
 
         },
 
         buyNow() {
 
-            this.addToCart();
-            setTimeout(() => {
-                window.location.href = '/checkout2';
-            }, 500);
+            if (this.pickupDate && this.dropOffDate && this.locations.pickup && this.locations.dropOff) {
+                this.datesAndLocationsSelected = true;
+
+                this.addToCart();
+                setTimeout(() => {
+                    window.location.href = '/checkout2';
+                }, 500);
+            } else {
+                this.datesAndLocationsSelected = false;
+                this.showDatesLocationsMessage = true;
+            }
+
         },
 
     },
@@ -484,41 +495,41 @@ export default {
     },
 
     mounted() {
-        // if (this.selectedCar) this.$tools.call('PAGE_VIEW', this.selectedCar);
-        // window.addEventListener("APP_LOADER", () => {
-        //     window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
-        //         detail: {
-        //             product_id: this.selectedCar._id,
-        //             product_currency: this.$store.state.currency.code,
-        //         }
-        //     }));
-        // });
-        // if (this.selectedCar) {
-        //     this.$storeino.fbpx('PageView')
-        //     this.$storeino.fbpx('ViewContent', {
-        //         content_name: this.selectedCar.name ? this.selectedCar.name : '',
-        //         content_ids: [this.selectedCar._id],
-        //         content_type: "product",
-        //         value: this.selectedCar.price.salePrice,
-        //         currency: this.$store.state.currency.code
-        //     })
-        // }
-        // if (this.selectedCar) {
-        //     const iframes = document.querySelectorAll('iframe')
-        //     for (const ifram of iframes) {
-        //         const parent = ifram.parentNode
-        //         if (!parent.classList.contains('video-wrapper')) {
-        //             const div = document.createElement("div");
-        //             ifram.after(div)
-        //             div.classList.add('video-wrapper');
-        //             ifram.style.width = null;
-        //             ifram.style.height = null;
-        //             ifram.setAttribute('width', '');
-        //             ifram.setAttribute('height', '');
-        //             div.appendChild(ifram)
-        //         }
-        //     }
-        // }
+        if (this.selectedCar) this.$tools.call('PAGE_VIEW', this.selectedCar);
+        window.addEventListener("APP_LOADER", () => {
+            window.dispatchEvent(new CustomEvent('CURRENT_PRODUCT', {
+                detail: {
+                    product_id: this.selectedCar._id,
+                    product_currency: this.$store.state.currency.code,
+                }
+            }));
+        });
+        if (this.selectedCar) {
+            this.$storeino.fbpx('PageView')
+            this.$storeino.fbpx('ViewContent', {
+                content_name: this.selectedCar.name ? this.selectedCar.name : '',
+                content_ids: [this.selectedCar._id],
+                content_type: "product",
+                value: this.selectedCar.price.salePrice,
+                currency: this.$store.state.currency.code
+            })
+        }
+        if (this.selectedCar) {
+            const iframes = document.querySelectorAll('iframe')
+            for (const ifram of iframes) {
+                const parent = ifram.parentNode
+                if (!parent.classList.contains('video-wrapper')) {
+                    const div = document.createElement("div");
+                    ifram.after(div)
+                    div.classList.add('video-wrapper');
+                    ifram.style.width = null;
+                    ifram.style.height = null;
+                    ifram.setAttribute('width', '');
+                    ifram.setAttribute('height', '');
+                    div.appendChild(ifram)
+                }
+            }
+        }
     },
     watch: {
 

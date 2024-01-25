@@ -1,7 +1,7 @@
 <template>
-    <div class="container pb-24 pt-20">
+    <div v-if="benefits.show_section" class="container pb-24 pt-20">
 
-        <div v-if="benefits.show_section" class="flex flex-col justify-center items-center pb-28">
+        <div  class="flex flex-col justify-center items-center pb-28">
             <h1 v-if="benefits.show_title" class="text-black font-semibold text-3xl">
                 {{ benefits.title }}
             </h1>

@@ -27,18 +27,6 @@
                             </div>
                         </div>
 
-                        <!-- SEARCHING -->
-                        <div class="flex flex-row items-center w-2/4 ">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-7 h-7 mr-1">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m15.75 15.75-2.489-2.489m0 0a3.375 3.375 0 1 0-4.773-4.773 3.375 3.375 0 0 0 4.774 4.774ZM21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-
-                            <input type="text" placeholder="Search" v-model="searchTerm" @input="onSearchInput"
-                                class="text-xs placeholder-gray-400  w-full bg py-2 pl-4 border-2 border-gray-100 rounded focus:border-blue-500 focus:shadow-outline outline-none">
-                        </div>
-
                         <!-- LISTING -->
                         <div class="flex flex-row jusify-center items-center mr-5">
 
@@ -77,57 +65,7 @@
                     <!-- CARS GRID DISPLAYING -->
                     <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start">
                         <div v-for="item in items" :key="item.id" class="p-3 ">
-                            <div class="flex justify-center items-center py-8 ">
-                                <nuxt-link :to="`/auto-info/${item.slug}`">
-                                    <nuxt-img class=" h-36"
-                                        :src="item.images[0] ? item.images[0].src : $store.state.defaults.logo"
-                                        alt="car_image" />
-                                </nuxt-link>
-                            </div>
-                            <div class="bg px-2 py-6">
-                                <div class="text-center pb-8 font-semibold ">
-                                    {{ item.seo.title }}
-                                    <div class="border-b-2 pt-5"></div>
-                                </div>
-                                <div class="px-3 ">
-                                    <div class="flex flex-wrap justify-start items-center ">
-                                        <div v-if="item.bookingProps.extraInfo.length > 0"
-                                            v-for="info in item.bookingProps.extraInfo" :key="info"
-                                            class="flex flex-row font-light py-1 w-2/4 text-xs">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M5.268,10.732c-0.976-0.976-2.559-0.976-3.536,0s-0.976,2.559,0,3.536l4.645,4.645	c1.449,1.449,3.797,1.449,5.246,0L12.536,18L5.268,10.732z"
-                                                    opacity=".35"></path>
-                                                <path
-                                                    d="M22.268,4.732c-0.976-0.976-2.559-0.976-3.536,0L9,14.464L12.536,18l9.732-9.732C23.244,7.291,23.244,5.708,22.268,4.732z">
-                                                </path>
-                                            </svg>
-
-                                            <div class="pl-1">
-                                                {{ info.name }}
-                                            </div>
-
-                                        </div>
-                                        <!-- <div v-else-if="item.bookingProps.extraInfo.length > 0">
-
-                        </div> -->
-                                    </div>
-                                </div>
-                                <div class="flex flex-row justify-around items-center text-red-600">
-                                    {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
-                                    <div>
-                                        <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name"
-                                            :aria-label="item.name">
-                                            <button type="submit"
-                                                class="w-20 py-2 text-sm rounded text-black border-2 border-black focus:outline-none hover:bg-red-600 hover:border-opacity-0 hover:text-white">
-                                                RENT IT
-                                            </button>
-                                        </nuxt-link>
-                                    </div>
-                                </div>
-                            </div>
+                            <si-car :item="item"></si-car>
                         </div>
                     </div>
 
@@ -135,94 +73,9 @@
                     <!-- CARS LIST DISPLAYING -->
                     <div v-else-if="currentView === 'list'" class="flex flex-col justify-around items-center ">
                         <div v-for="item in items" :key="item._id"
-                            class="flex lg:flex-row flex-col justify-center items-center lg:p-4 p-8 w-full ">
+                            class=" w-full ">
 
-                            <div class="flex justify-center items-center lg:py-10 py-6 lg:w-2/6 w-full">
-                                <nuxt-link :to="`/auto-info/${item.slug}`">
-                                    <nuxt-img class=" h-32 w-full"
-                                        :src="item.images[0] ? item.images[0].src : $store.state.defaults.logo"
-                                        alt="car_image" />
-                                </nuxt-link>
-                            </div>
-
-                            <div class="flex flex-col px-4 py-6 lg:w-4/6 w-full">
-
-                                <nuxt-link :to="`/auto-info/${item.slug}`">
-                                    <div class="text-black pb-3 font-semibold hover:text-red-600 hover:underline">
-                                        {{ item.seo.title }}
-                                    </div>
-                                </nuxt-link>
-                                <div class="text-sm text-black font-light pb-4">
-                                    {{ item.description }}
-                                </div>
-
-                                <div class="flex lg:flex-row flex-col  items-start w-full">
-
-                                    <div
-                                        class="flex lg:flex-row flex-col lg:justify-between items-start bg font-light p-5 text-sm text-black lg:w-3/4 w-full">
-                                        <div class="flex flex-col justify-start  text-black font-medium">
-                                            <div
-                                                class="flex lg:flex-col flex-row justify-start lg:items-start items-center  text-black font-normal text-xs pb-1">
-                                                <div>
-                                                    AUTO MAKER :
-                                                </div>
-                                                <span class="text-black font-light lg:pt-1 lg:pl-0 pl-4 ">
-                                                    {{ item.brand.name.toUpperCase() }}
-                                                </span>
-                                            </div>
-
-                                            <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                                <div>
-                                                    ENGINE :
-                                                </div>
-                                                <span class="text-black font-light lg:pl-0 pl-4 ">
-
-                                                    {{ getEngine(item) }}
-                                                </span>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="flex flex-col justify-start  text-black font-medium">
-
-                                            <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                                <div>
-                                                    YEAR :
-                                                </div>
-                                                <span class="text-black font-light lg:pl-0 pl-4 ">
-                                                    {{ getYearP(item) }}
-                                                </span>
-                                            </div>
-
-                                            <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                                <div>
-                                                    FUEL :
-                                                </div>
-                                                <span class="text-black font-light lg:pl-0 pl-4 ">
-                                                    {{ getFuel(item) }}
-                                                </span>
-                                            </div>
-
-                                            <div class="flex flex-row justify-start  text-black font-normal text-xs pb-1">
-                                                <div>
-                                                    TRANSMISSION :
-                                                </div>
-                                                <span class="text-black font-light lg:pl-0 pl-4 ">
-                                                    {{ getTransmission(item) }}
-                                                </span>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class=" text-center text-base text-red-600 lg:w-1/4 w-full pt-5">
-                                        {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ per day
-                                    </div>
-
-                                </div>
-                                <div class="border-b border-gray-200 py-3"></div>
-                            </div>
+                            <si-car-details :item="item"></si-car-details>
 
                         </div>
                     </div>
@@ -247,14 +100,14 @@
                 <p class="text-black text-base font-medium pb-6">
                     BOOKING TIME
                 </p>
-                <div class="flex flex-col justify-start items-start pb-12">
+                <div class="flex flex-col justify-start items-start pb-12 w-full">
                     <div class="pb-8 w-full">
                         <p class="text-black text-sm font-normal pb-3">
                             Pick-up Date
                         </p>
                         <datepicker id="pickupDate" v-model="pickupDate" @input="handlePickupDateSelection"
-                            class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
-                            placeholder="Select date..." :disabled-dates="disablePastDates">
+                            class=" focus:border-blue-500 focus:shadow-outline outline-none w-full"
+                            :style="{ width: '100%' }" placeholder="Select date..." :disabled-dates="disablePastDates">
                         </datepicker>
                     </div>
 
@@ -263,8 +116,8 @@
                     </p>
                     <transition name="slid" v-if="isPickupDateSelected" class="w-full ">
                         <datepicker id="dropOffDate" v-model="dropOffDate"
-                            class=" focus:border-blue-500 focus:shadow-outline outline-none" :style="{ width: '100%' }"
-                            placeholder="Select date..." :disabled-dates="disablePastDates">
+                            class=" focus:border-blue-500 focus:shadow-outline outline-none w-full"
+                            :style="{ width: '100%' }" placeholder="Select date..." :disabled-dates="disablePastDates">
                         </datepicker>
                     </transition>
 
@@ -402,10 +255,10 @@
                     </div>
                 </div>
 
-                <div class="item-center mx-10">
+                <div class="flex justify-center items-center w-full">
                     <button @click="resetFilters" type="reset"
                         class=" w-32 py-3 text-sm font-semibold text-white bg-red-600 focus:outline-none hover:bg-red-700">
-                        {{ this.$settings.sections.cars.reset_filter_text}}
+                        {{ this.$settings.sections.cars.reset_filter_text }}
                     </button>
                 </div>
 
@@ -442,7 +295,6 @@ export default {
             paginate: { page: 1, limit: 9, total: 12 },
             params: { page: 1, search: this.$route.query.search, limit: 9, 'collections.slug-in': [], sort: { createdAt: -1 } },
             lastParams: { page: 1, search: this.$route.query.search, limit: 9, 'collections.slug-in': [], sort: { createdAt: -1 } },
-            searchTerm: this.$route.query.search || '',
             sorts: [
                 { field: { 'price.salePrice': 1 }, name: this.$settings.sections.cars.sorts.price_desc },
                 { field: { 'price.salePrice': -1 }, name: this.$settings.sections.cars.sorts.price_asc },
@@ -472,10 +324,6 @@ export default {
 
     async mounted() {
 
-        console.log(this.params, '<- param', this.items, '<- items')
-
-        // console.log(this.$route.params.slug)
-
         if (this.$route.params.slug) {
             this.param = this.$route.params.slug.split(',');
             this.$route.params.slug.split(',').forEach(item => {
@@ -483,8 +331,6 @@ export default {
             });
 
         }
-
-        // console.log('params-collections', this.params['collections.slug-in'])
 
         for (const key in this.$route.query) {
             if (!this.$route.query[key]) continue;
@@ -497,14 +343,11 @@ export default {
             }
         }
 
-        console.log(this.pricems, 'before lastparams')
-
         this.lastParams = this.params;
         await this.getFilters();
         await this.getItems();
         await this.getBrands();
         await this.getCollections();
-        // await this.getYearP(someItem);
 
         this.subCollections();
 
@@ -537,8 +380,6 @@ export default {
             if (key.indexOf('price') >= 0 || key.indexOf('page') >= 0) {
                 this.$set(this.params, key, e.target.value);
                 return false;
-            } else if (key === 'search') {
-                this.searchTerm = value;
             } else {
                 if (e.target.checked) {
                     if (!this.params[key]) this.params[key] = this.$set(this.params, key, []);
@@ -635,7 +476,6 @@ export default {
             this.items = [];
             this.loading.products = true;
             try {
-                this.params.search = this.searchTerm;
                 this.params.page = page || this.paginate.current_page;
                 this.params.limit = 9;
                 this.params.productType = 'BOOKING';
@@ -733,69 +573,36 @@ export default {
             this.getItems();
         },
 
-        async getYearP(item) {
+        getYearP(item) {
 
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d351631895c06900c1697' });
-                const allYears = data.results;
-
-                for (let itm of item.collections) {
-                    const foundYear = allYears.find(year => year.slug === itm.slug);
-                    if (foundYear) {
-                        return foundYear.name;
-                    }
+            for (let itm of item.collections) {
+                if (itm.name && itm.name.includes('PRODUCTION YEAR')) {
+                    return itm.slug.replace(/-/g, '').toUpperCase();;
                 }
-            } catch (e) {
-                console.log({ e });
             }
         },
-        async getEngine(item) {
+        getEngine(item) {
 
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d331631895c06900c153e' });
-                const allEngines = data.results;
-
-                for (let itm of item.collections) {
-                    const foundEngine = allEngines.find(engine => engine.slug === itm.slug);
-                    if (foundEngine) {
-                        return foundEngine.name;
-                    }
+            for (let itm of item.collections) {
+                if (itm.name && itm.name.includes('ENGINE VOLUME')) {
+                    return itm.slug.replace(/-/g, '').toUpperCase();;
                 }
-            } catch (e) {
-                console.log({ e });
             }
         },
-        async getFuel(item) {
+        getFuel(item) {
 
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659d0e2231895c06900c077c' });
-                const allFuels = data.results;
-
-                for (let itm of item.collections) {
-                    const foundFuel = allFuels.find(fuel => fuel.slug === itm.slug);
-                    if (foundFuel) {
-                        return foundFuel.name;
-                    }
+            for (let itm of item.collections) {
+                if (itm.name && itm.name.includes('FUEL TYPE')) {
+                    return itm.slug.replace(/-/g, '').toUpperCase();;
                 }
-            } catch (e) {
-                console.log({ e });
             }
         },
-        async getTransmission(item) {
+        getTransmission(item) {
 
-
-            try {
-                const { data } = await this.$storeino.collections.search({ parent: '659e8ac031895c06900c2efa' });
-                const allTranss = data.results;
-
-                for (let itm of item.collections) {
-                    const foundTranss = allTranss.find(transs => transs.slug === itm.slug);
-                    if (foundTranss) {
-                        return foundTranss.name;
-                    }
+            for (let itm of item.collections) {
+                if (itm.name && itm.name.includes('TRANSMISSION')) {
+                    return itm.slug.replace(/-/g, ' ').toUpperCase();
                 }
-            } catch (e) {
-                console.log({ e });
             }
         },
 

@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div class="flex justify-center items-center fixed z-10 inset-0 md:p-10 p-5" v-if="$store.state.fullImage">
         <div @click="$store.state.fullImage=null" class="bg-black absolute inset-0 bg-opacity-25"></div>
         <si-image class="relative md:h-full w-full md:w-auto z-10 object-contain bg-white rounded-md shadow cursor-pointer" :src="$store.state.fullImage" :alt="`Full screen image`"/>
@@ -13,16 +13,4 @@ export default {
         })
     }
 }
-</script> -->
-<template>
-    <div class="">
-        
-    </div>
-  </template>
-  <script>
-  export default {
-    
-    
-  
-  }
-  </script>
+</script>

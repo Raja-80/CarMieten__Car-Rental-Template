@@ -22,7 +22,7 @@
 
         <!-- button -->
         <nuxt-link to="/shop" class="inline-flex px-4 py-2.5 text-sm font-medium tracking-wider rounded-full shadow-sm md:px-6 md:py-3 bg-primary text-gray-50 hover:shadow-lg"> 
-          {{ $settings.sections.thanks.buttons.back_to_shop_text }}
+          {{ $settings.sections.thanks.buttons.back_to_cars_text }}
         </nuxt-link>
         <!-- button -->
     </div>
