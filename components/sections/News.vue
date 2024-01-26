@@ -1,5 +1,5 @@
 <template>
-    <div class="container lg:pb-32 pt-32">
+    <div v-if="news_info.show_section" class="container lg:pb-32 pt-32">
         <div class="flex flex-col justify-center items-center pb-28 px-5 ">
 
             <h1 class="text-black font-semibold text-3xl text-center ">

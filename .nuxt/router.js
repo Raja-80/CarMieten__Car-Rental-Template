@@ -8,6 +8,7 @@ const _66d6be43 = () => interopDefault(import('../pages/contact/index.vue' /* we
 const _723fb8b0 = () => interopDefault(import('../pages/error.vue' /* webpackChunkName: "pages/error" */))
 const _2c870826 = () => interopDefault(import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */))
 const _96434ac8 = () => interopDefault(import('../pages/thanks/index.vue' /* webpackChunkName: "pages/thanks/index" */))
+const _3f2b6c53 = () => interopDefault(import('../pages/auto-info/upsel.js' /* webpackChunkName: "pages/auto-info/upsel" */))
 const _f9cbf51c = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _1ca531fc = () => interopDefault(import('../pages/account/_route.vue' /* webpackChunkName: "pages/account/_route" */))
 const _6e808432 = () => interopDefault(import('../pages/auto-info/_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
@@ -44,6 +45,10 @@ export const routerOptions = {
     path: "/thanks",
     component: _96434ac8,
     name: "thanks"
+  }, {
+    path: "/auto-info/upsel",
+    component: _3f2b6c53,
+    name: "auto-info-upsel"
   }, {
     path: "/",
     component: _f9cbf51c,

@@ -1,6 +1,6 @@
 <template>
     <div class="flex lg:flex-row flex-col justify-center items-center lg:p-4 p-8 w-full ">
-        <div class="flex justify-center items-center lg:py-10 py-6 lg:w-2/6 w-full">
+        <div class="flex justify-center items-center lg:py-10 py-6  lg:w-2/6">
             <nuxt-link :to="`/auto-info/${item.slug}`">
                 <nuxt-img class=" h-32 w-full" :src="item.images[0] ? item.images[0].src : $store.state.defaults.logo"
                     alt="car_image" />
@@ -121,8 +121,7 @@ export default {
 
             for (let itm of item.collections) {
                 if (itm.name && itm.name.includes('TRANSMISSION')) {
-                    const firstWord = itm.slug.replace(/-/g, ' ').toUpperCase().split(' ')[0];
-                    return firstWord;
+                    return itm.slug.replace(/-/g, '  ').toUpperCase();
                 }
             }
         },

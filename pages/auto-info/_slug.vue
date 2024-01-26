@@ -3,8 +3,9 @@
         v-if="selectedCar">
 
         <div v-if="loading.upsells && loading.selectedCar" class="flex items-center justify-center my-8 w-full">
-            <si-loader></si-loader>
+            <si-loader class="container"></si-loader>
         </div>
+        
         <div v-if="selectedCar && !loading.upsells" class="flex flex-col  w-full px-6 ">
             <div class="flex flex-col w-full ">
                 <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
@@ -20,17 +21,17 @@
                 <div
                     class="flex lg:flex-row flex-col justify-around bg lg:items-center items-start py-3 lg:py-0 pl-8 lg:pl-0  ">
                     <button @click="changeTitle('VEHICLE DESCRIPTION')"
-                        :class="{ 'text-red-600 border-b-2 border-red-600': selectedTitle === 'VEHICLE DESCRIPTION' }"
-                        class=" hover:text-red-600  py-5 ">VEHICLE DESCRIPTION</button>
+                        :class="{ 'text-red-600 border-b-2 font-semibold border-red-600': selectedTitle === 'VEHICLE DESCRIPTION' }"
+                        class=" hover:text-red-600 py-5 ">VEHICLE DESCRIPTION</button>
                     <button @click="changeTitle('EQUIPMENT')"
-                        :class="{ 'text-red-600 border-b-2 border-red-600': selectedTitle === 'EQUIPMENT' }"
-                        class=" hover:text-red-600  py-5 ">EQUIPMENT</button>
+                        :class="{ 'text-red-600 border-b-2 font-semibold border-red-600': selectedTitle === 'EQUIPMENT' }"
+                        class=" hover:text-red-600 py-5 ">EQUIPMENT</button>
                     <button @click="changeTitle('SPECIFICATIONS')"
-                        :class="{ 'text-red-600 border-b-2 border-red-600': selectedTitle === 'SPECIFICATIONS' }"
-                        class=" hover:text-red-600  py-5 ">SPECIFICATIONS</button>
+                        :class="{ 'text-red-600 border-b-2 font-semibold border-red-600': selectedTitle === 'SPECIFICATIONS' }"
+                        class=" hover:text-red-600 py-5 ">SPECIFICATIONS</button>
                     <button @click="changeTitle('REVIEWS')"
-                        :class="{ 'text-red-600 border-b-2 border-red-600': selectedTitle === 'REVIEWS' }"
-                        class=" hover:text-red-600  py-5">REVIEWS</button>
+                        :class="{ 'text-red-600 border-b-2 font-semibold border-red-600': selectedTitle === 'REVIEWS' }"
+                        class=" hover:text-red-600 py-5">REVIEWS</button>
                 </div>
                 <!-- Content Area -->
                 <div class="w-full">
@@ -54,7 +55,7 @@
                     <div v-else-if="selectedTitle === 'SPECIFICATIONS'" class=" border-2 border-gray-100 px-8 py-6 mt-14">
                         <div class="flex flex-col justify-start items-start font-light py-3 w-full  ">
                             <div v-if="selectedCar.brand"
-                                class="flex lg:flex-row flex-col lg:justify-center  items-center w-full py-5 ">
+                                class="flex lg:flex-row flex-col lg:justify-center  items-center w-full py-6  ">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     AUTO MAKER :
                                 </div>
@@ -62,7 +63,7 @@
                                     {{ selectedCar.brand.name.toUpperCase() }}</span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-6 ">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     ENGINE :
                                 </div>
@@ -71,7 +72,7 @@
                                 </span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-6 ">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     YEAR :
                                 </div>
@@ -80,7 +81,7 @@
                                 </span>
                             </div>
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-6 ">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     FUEL :
                                 </div>
@@ -90,7 +91,7 @@
                             </div>
 
 
-                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-5 ">
+                            <div class="flex lg:flex-row flex-col lg:justify-center  items-center w-full pb-6 ">
                                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                                     TRANSMISSION :
                                 </div>
@@ -152,8 +153,8 @@
 
             <div class="bg w-full py-12 px-10">
                 <div v-if="!datesAndLocationsSelected && showDatesLocationsMessage"
-                    class=" text-white text-sm font-light w-full p-2 my-2 bg-red-500 rounded-md shadow-md">
-                    Please select pickup and drop-off dates and locations to proceed.
+                    class=" text-white text-sm font-light w-full px-2 my-3 bg-red-500 rounded-md shadow-md">
+                    Please select locations and pickup and drop-off dates to proceed.
                 </div>
                 <div class="w-full">
                     <label class="block mb-1 text-black text-sm font-normal " for="locations.pickup">
@@ -211,11 +212,11 @@
                     <label class="block mb-1 text-black text-sm font-normal pb-4">
                         EXTRA RESOURCE
                     </label>
-                    <div>
+                    <div class="pt-3">
                         <ul>
                             <li v-for="(item, index) in upsells" :key="index">
                                 <label :for="'toggle' + index"
-                                    class="flex flex-row justify-between items-center cursor-pointer w-full  ">
+                                    class="flex flex-row justify-between items-center cursor-pointer w-full pb-4 ">
 
                                     <div class="relative pb-3 flex flex-row justify-between items-center w-4/6 ">
                                         <div class="  w-4/12">
@@ -234,8 +235,14 @@
 
                                     <div class="w-2/6">
                                         <div class="mb-3 text-gray-700 font-light text-xs  ml-3 ">
-                                            <span class=" text-red-600">
-                                                {{ $store.state.currency.symbol }} {{ item.price }}
+                                            <span class="w-full ">
+                                                <div v-if="item.discount"
+                                                    class="flex items-center justify-center h-10 p-1 text-red-600 bg-red-200 rounded-br-lg w-full">
+                                                    <b>
+                                                        - {{ item.discount.value }} {{ item.discount.type == 'percentage' ?
+                                                            '%' : $store.state.currency.symbol }}
+                                                    </b>
+                                                </div>
                                             </span>
                                         </div>
                                     </div>
@@ -260,8 +267,7 @@
                             <h2 class="text-2xl text-red-700">Total {{ $store.state.currency.symbol }}</h2>
                         </div>
                     </div>
-                    <button v-if="$settings.sections.product.booking_this_car.active"
-                        @click="buyNow" type="button"
+                    <button @click="buyNow" type="button"
                         class=" w-full py-3 text-sm text-white bg-red-600 focus:outline-none hover:bg-red-700 ">
                         {{ $settings.sections.product.booking_this_car.text }}
                     </button>
@@ -302,6 +308,7 @@ export default {
             items: [],
             total: 0,
             upsells: [],
+            discount: this.upsells ? this.upsells[0].discount : null,
             selectedUpsells: [],
             datesAndLocationsSelected: false,
             showDatesLocationsMessage: false,
@@ -309,6 +316,7 @@ export default {
     },
 
     async fetch() {
+
         try {
 
             const { slug } = this.$route.params;
@@ -331,6 +339,36 @@ export default {
             this.upsells = response.data.results;
 
             this.loading.upsells = false;
+
+            if (this.selectedCar) {
+
+                console.log('Befor discount');
+
+                if (this.discount) {
+
+                    console.log('Befor discount');
+
+                    if (this.discount.type == 'percentage') {
+                        this.selectedCar.price.salePrice = this.selectedCar.price.salePrice - (this.selectedCar.price.salePrice * this.discount.value / 100)
+                        this.selectedCar.price.comparePrice = this.selectedCar.price.comparePrice - (this.selectedCar.price.comparePrice * this.discount.value / 100)
+                    } else {
+                        this.selectedCar.price.salePrice = this.selectedCar.price.salePrice - this.discount.value
+                        this.selectedCar.price.comparePrice = this.selectedCar.price.comparePrice - this.discount.value
+                    }
+
+                    console.log('After discount', this.discount);
+
+                }
+
+                console.log('After discount', this.discount);
+
+                if (!this.selectedCar.outStock.disabled && this.selectedCar.quantity.instock <= 0) {
+                    this.outofstock = true;
+                }
+
+                console.log('After OutOfStock', this.outofstock);
+
+            }
 
             this.$store.state.seo.title = (this.selectedCar.seo.title || this.selectedCar.name) + ' - ' + this.$settings.store_name;
             this.$store.state.seo.description = this.selectedCar.seo.description || this.selectedCar.description || this.$settings.store_description;
@@ -359,6 +397,33 @@ export default {
     },
 
     methods: {
+
+        t(key) {
+            const langs = {
+                price_title_products: {
+                    EN: "Price:	",
+                    FR: "Prix:	",
+                    AR: "السعر: ",
+                    ES: "Prezo: ",
+                    PT: "Preço: "
+                },
+                check_choice: {
+                    EN: "Please check your choice :",
+                    FR: "Veuillez vérifier votre choix:	",
+                    AR: "يرجى تأكيد الإختيار: ",
+                    ES: "Por favor marque su elección: ",
+                    PT: "Por favor, verifique a sua escolha: "
+                },
+                can_change_choice: {
+                    EN: "You can change your choice :",
+                    FR: "Vous pouvez modifier votre choix :	",
+                    AR: "يمكنك تغيير اختيارك: ",
+                    ES: "Puede cambiar su elección: ",
+                    PT: "Você pode alterar sua escolha: "
+                }
+            }
+            return langs[key] && langs[key][this.$store.state.language.code] || '';
+        },
 
         getYearP() {
 
@@ -399,7 +464,8 @@ export default {
             if (this.selectedCar) {
                 for (let itm of this.selectedCar.collections) {
                     if (itm.name && itm.name.includes('TRANSMISSION')) {
-                        return itm.slug.replace(/-/g, '').toUpperCase();;
+                        const firstWord = itm.slug.replace(/-/g, ' ').toUpperCase().split(' ')[0];
+                        return firstWord;
                     }
                 }
             }
@@ -439,6 +505,7 @@ export default {
                 _id: this.selectedCar._id,
                 quantity: this.selectedCar.quantity,
                 price: this.selectedCar.price.salePrice,
+                upsell: this.upsells[0],
             });
             if (this.$settings.sections.alerts.proceed_to_checkout) {
                 setTimeout(() => {

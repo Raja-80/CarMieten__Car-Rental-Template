@@ -22,12 +22,12 @@
 
                         <div class="pb-7 pt-4 w-full">
                             <p class="block mb-1 text-black text-xs font-light">
-                                PICK-UP LOCATION
+                                {{ form.pickup_adresse }}
                             </p>
                             <div class="w-full">
                                 <select v-model="pickupAdresse"
                                     class="w-full cursor-pointer pl-1 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
-
+                                    <!-- t('All LOcations') -->
                                     <option>All Locations</option>
                                     <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}
                                     </option>

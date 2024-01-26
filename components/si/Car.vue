@@ -11,8 +11,8 @@
                 <div class="text-center font-semibold ">
                     {{ item.seo.title }}
                 </div>
-                <div class="flex flex-row justify-around items-center w-full pt-8">
-                    <div class="flex flex-col justify-center items-center ">
+                <div class="flex flex-row justify-around items-start w-full pt-8">
+                    <div class="flex flex-col justify-center items-center p-2 ">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
@@ -28,7 +28,7 @@
                         </span>
                     </div>
 
-                    <div class="flex flex-col justify-center items-center">
+                    <div class="flex flex-col justify-center items-center p-2">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +44,7 @@
                         </span>
                     </div>
 
-                    <div class="flex flex-col justify-center items-center">
+                    <div class="flex flex-col justify-center items-center p-2">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"
@@ -55,7 +55,7 @@
                             <path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5" />
                         </svg>
 
-                        <span class="text-sm font-light pt-2">
+                        <span class="text-sm text-center font-light pt-2">
                             {{ getTransmission() }}
                         </span>
                     </div>
@@ -113,8 +113,8 @@ export default {
 
             for (let itm of this.item.collections) {
                 if (itm.name && itm.name.includes('TRANSMISSION')) {
-                    const firstWord = itm.slug.replace(/-/g, ' ').toUpperCase().split(' ')[0];
-                    return firstWord;
+                    return itm.slug.replace(/-/g, '  ').toUpperCase();
+                    
                 }
             }
 
@@ -124,7 +124,7 @@ export default {
 
             for (let itm of this.item.collections) {
                 if (itm.name && itm.name.includes('ENGINE VOLUME')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
+                    return itm.slug.replace(/-/g, '').toUpperCase();
                 }
             }
 
@@ -134,7 +134,7 @@ export default {
 
             for (let itm of this.item.collections) {
                 if (itm.name && itm.name.includes('FUEL TYPE')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
+                    return itm.slug.replace(/-/g, '').toUpperCase();
                 }
             }
 

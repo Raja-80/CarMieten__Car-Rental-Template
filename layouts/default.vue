@@ -1,8 +1,13 @@
 <template>
   <div class="">
-
+    <!-- <component :is="'style'">
+      :root{ --primary-rgb: {{ rgb_first.r }}, {{ rgb_first.g }}, {{ rgb_first.b }}; --primary-color: rgb(var(--primary-rgb)); --second-color: {{ rgb_second.r }}, {{ rgb_second.g }}, {{ rgb_second.b }}}
+      .bg-primary{ background-color: var(--primary-color); }
+      .bg-second{ background-color: var(--second-color); }
+      .text-primary{ color: var(--primary-color); }
+    </component> -->
     <div dir="ltr" class="relative bg-cover"
-      :style="{ backgroundImage: 'url(' + require('~/assets/images/banner_dflt.jpg') + ')' }">
+      :style="{ backgroundImage: 'url(' + (require('~/assets/images/banner_dflt.jpg')) + ')' }">
       <!-- <nuxt-img v-if="service_1.show_icon" class="relative bg-cover"
         :src="background_img ? background_img.src : $store.state.defaults.logo" alt="company logo" /> -->
       <sections-header></sections-header>
@@ -19,7 +24,7 @@
     <div dir="ltr" class="footer">
       <sections-footer></sections-footer>
     </div>
-    <div dir="ltr" class="bg-black">
+    <div dir="ltr" class="">
       <sections-copyright></sections-copyright>
     </div>
     <!-- <nuxt-img v-if="service_1.show_icon" class=" h-11 mb-6 pr-2"
@@ -46,7 +51,7 @@ export default {
         { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
         { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
         { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
-        // { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary_color },
+        { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary_color },
         { hid: "currency", name: "currency", content: this.$store.state.currency.code },
         { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
         { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
@@ -70,7 +75,8 @@ export default {
   },
   data() {
     return {
-      rgb: { r: 0, g: 130, b: 70 },
+      rgb_first: { r: 0, g: 0, b: 0 },
+      rgb_second: { r: 0, g: 0, b: 0 },
       background_img: this.$settings.sections.banner.background_img,
       // benefits: this.$settings.sections.benefits,
       // otherLinks: [],
@@ -81,9 +87,10 @@ export default {
     this.$store.state.seo.title = this.$settings.store_name;
     this.$store.state.seo.description = this.$settings.store_description;
     this.$store.state.seo.keywords = this.$settings.store_keywords || [];
-    if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; }
+    this.rgb_first = this.$tools.hexToRgb(this.$settings.style.primary_color);
+    this.rgb_second = this.$tools.hexToRgb(this.$settings.style.second_color);
+    if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; };
     // if (this.$settings.favicon) { this.$store.state.seo.favicon = this.$settings.favicon.src; }
-    // this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
     // if (this.$store.state.language.code == 'AR') {
     //   this.otherLinks = [
     //     { rel: "preconnect", href: 'https://fonts.googleapis.com' },
@@ -154,7 +161,8 @@ export default {
 
 
 
-<!-- <div class=" " :class="$store.state.showHeaderMenu ? 'to-right' : ''">
+<!-- 
+  <div class=" " :class="$store.state.showHeaderMenu ? 'to-right' : ''">
       <component :is="'style'">
       :root{ --primary-rgb: {{ rgb.r }}, {{ rgb.g }}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
       .bg-primary{ background-color: var(--primary-color); }

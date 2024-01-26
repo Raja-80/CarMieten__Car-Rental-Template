@@ -24,6 +24,12 @@
     "chunkName": "pages/thanks/index"
   },
   {
+    "name": "auto-info-upsel",
+    "path": "/auto-info/upsel",
+    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/auto-info/upsel.js",
+    "chunkName": "pages/auto-info/upsel"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/index.vue",

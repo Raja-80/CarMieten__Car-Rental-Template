@@ -15,6 +15,7 @@ You can directly use them in pages and other components without the need to impo
 - `<SectionsGuides>` | `<sections-guides>` (components/sections/Guides.vue)
 - `<SectionsHeader>` | `<sections-header>` (components/sections/Header.vue)
 - `<SectionsNews>` | `<sections-news>` (components/sections/News.vue)
+- `<SectionsProducts>` | `<sections-products>` (components/sections/Products.vue)
 - `<SectionsReviews>` | `<sections-reviews>` (components/sections/Reviews.vue)
 - `<SectionsServices>` | `<sections-services>` (components/sections/Services.vue)
 - `<SectionsCopyright>` | `<sections-copyright>` (components/sections/copyright.vue)

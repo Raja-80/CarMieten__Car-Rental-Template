@@ -1,8 +1,11 @@
 <template>
+    
     <div class="container flex flex-col justify-center items-center pb-32 pt-16 w-full ">
+
         <div v-if="loading.products" class="flex items-center justify-center my-8 w-full">
-            <si-loader></si-loader>
+            <si-loader class="container"></si-loader>
         </div>
+
         <div class="flex lg:flex-row flex-col justify-center lg:items-start items-center w-full">
             <div class="flex flex-col justify-between items-center lg:w-3/4 w-4/4">
 
@@ -61,7 +64,6 @@
                         <h1 class="py-3">{{ $settings.sections.cars.no_products_text }}</h1>
                     </div>
 
-
                     <!-- CARS GRID DISPLAYING -->
                     <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start">
                         <div v-for="item in items" :key="item.id" class="p-3 ">
@@ -72,8 +74,7 @@
 
                     <!-- CARS LIST DISPLAYING -->
                     <div v-else-if="currentView === 'list'" class="flex flex-col justify-around items-center ">
-                        <div v-for="item in items" :key="item._id"
-                            class=" w-full ">
+                        <div v-for="item in items" :key="item._id" class="w-full">
 
                             <si-car-details :item="item"></si-car-details>
 
@@ -95,7 +96,7 @@
 
             <!-- Filtering side -->
             <div v-if="!loading.products && !loading.collections && !loading.brands"
-                class=" flex flex-col justify-center items-start py-10 px-8 bg  lg:w-1/4">
+                class=" flex flex-col justify-center items-start py-10 px-8 lg:mx-0 mx-5 bg lg:w-1/4 ">
 
                 <p class="text-black text-base font-medium pb-6">
                     BOOKING TIME
@@ -206,8 +207,8 @@
                             </g>
                         </svg>
                     </div>
-                    <div :id="i + 'fit'" class="fit-collapsible pb-2 max-h-40 overflow-y-auto" :class="[
-                        item.childrens.length > 0 ? 'sub-collections' : '']">
+                    <div :id="i + 'fit'" class="fit-collapsible pt-5 max-h-40 overflow-y-auto" 
+                    :class="[ item.childrens.length > 0 ? 'sub-collections' : '']">
                         <ul class="list-sub-collections fit-collapsible-content"
                             v-if="item.childrens && item.childrens.length > 0">
                             <li v-for="(child, i) in item.childrens" :key="i" class="pb-2">
@@ -573,39 +574,6 @@ export default {
             this.getItems();
         },
 
-        getYearP(item) {
-
-            for (let itm of item.collections) {
-                if (itm.name && itm.name.includes('PRODUCTION YEAR')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
-                }
-            }
-        },
-        getEngine(item) {
-
-            for (let itm of item.collections) {
-                if (itm.name && itm.name.includes('ENGINE VOLUME')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
-                }
-            }
-        },
-        getFuel(item) {
-
-            for (let itm of item.collections) {
-                if (itm.name && itm.name.includes('FUEL TYPE')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
-                }
-            }
-        },
-        getTransmission(item) {
-
-            for (let itm of item.collections) {
-                if (itm.name && itm.name.includes('TRANSMISSION')) {
-                    return itm.slug.replace(/-/g, ' ').toUpperCase();
-                }
-            }
-        },
-
         toggleShowAllBrands() {
             this.showAllBrands = !this.showAllBrands;
         },
@@ -773,7 +741,7 @@ export default {
 }
 
 .fit-collapsible.active .fit-collapsible-content {
-    max-height: 500px;
+    max-height: 600px;
 }
 
 .sub-collections.max-h-40.overflow-y-auto {

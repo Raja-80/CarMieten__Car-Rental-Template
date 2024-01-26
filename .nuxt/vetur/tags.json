@@ -26,6 +26,9 @@
   "SectionsNews": {
     "description": "Auto imported from components/sections/News.vue"
   },
+  "SectionsProducts": {
+    "description": "Auto imported from components/sections/Products.vue"
+  },
   "SectionsReviews": {
     "description": "Auto imported from components/sections/Reviews.vue"
   },
