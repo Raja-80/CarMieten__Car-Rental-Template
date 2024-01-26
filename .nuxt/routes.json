@@ -3,78 +3,70 @@
     "name": "contact",
     "path": "/contact",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/contact/index.vue",
-    "chunkName": "pages/contact/index"
+    "chunkName": "pages/contact/index",
+    "_name": "_66d6be43"
   },
   {
     "name": "error",
     "path": "/error",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/error.vue",
-    "chunkName": "pages/error"
+    "chunkName": "pages/error",
+    "_name": "_723fb8b0"
   },
   {
     "name": "news",
     "path": "/news",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/news/index.vue",
-    "chunkName": "pages/news/index"
+    "chunkName": "pages/news/index",
+    "_name": "_2c870826"
   },
   {
     "name": "thanks",
     "path": "/thanks",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/thanks/index.vue",
-    "chunkName": "pages/thanks/index"
-  },
-  {
-    "name": "auto-info-upsel",
-    "path": "/auto-info/upsel",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/auto-info/upsel.js",
-    "chunkName": "pages/auto-info/upsel"
+    "chunkName": "pages/thanks/index",
+    "_name": "_96434ac8"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_f9cbf51c"
   },
   {
     "name": "account-route",
     "path": "/account/:route?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/account/_route.vue",
-    "chunkName": "pages/account/_route"
+    "chunkName": "pages/account/_route",
+    "_name": "_1ca531fc"
   },
   {
     "name": "auto-info-slug",
     "path": "/auto-info/:slug?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/auto-info/_slug.vue",
-    "chunkName": "pages/auto-info/_slug"
+    "chunkName": "pages/auto-info/_slug",
+    "_name": "_6e808432"
   },
   {
     "name": "blog-slug",
     "path": "/blog/:slug?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/blog/_slug.vue",
-    "chunkName": "pages/blog/_slug"
+    "chunkName": "pages/blog/_slug",
+    "_name": "_3c8ad626"
   },
   {
     "name": "cars-slug",
     "path": "/cars/:slug?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/cars/_slug.vue",
-    "chunkName": "pages/cars/_slug"
+    "chunkName": "pages/cars/_slug",
+    "_name": "_d4772fac"
   },
   {
     "name": "pages-slug",
     "path": "/pages/:slug?",
     "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/pages/_slug.vue",
-    "chunkName": "pages/pages/_slug"
-  },
-  {
-    "name": "products-slug",
-    "path": "/products/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/products/_slug.vue",
-    "chunkName": "pages/products/_slug"
-  },
-  {
-    "name": "shop-slug",
-    "path": "/shop/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/shop/_slug.vue",
-    "chunkName": "pages/shop/_slug"
+    "chunkName": "pages/pages/_slug",
+    "_name": "_472ccd9f"
   }
 ]

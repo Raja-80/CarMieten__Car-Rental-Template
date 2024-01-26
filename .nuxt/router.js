@@ -8,15 +8,12 @@ const _66d6be43 = () => interopDefault(import('../pages/contact/index.vue' /* we
 const _723fb8b0 = () => interopDefault(import('../pages/error.vue' /* webpackChunkName: "pages/error" */))
 const _2c870826 = () => interopDefault(import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */))
 const _96434ac8 = () => interopDefault(import('../pages/thanks/index.vue' /* webpackChunkName: "pages/thanks/index" */))
-const _3f2b6c53 = () => interopDefault(import('../pages/auto-info/upsel.js' /* webpackChunkName: "pages/auto-info/upsel" */))
 const _f9cbf51c = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _1ca531fc = () => interopDefault(import('../pages/account/_route.vue' /* webpackChunkName: "pages/account/_route" */))
 const _6e808432 = () => interopDefault(import('../pages/auto-info/_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
 const _3c8ad626 = () => interopDefault(import('../pages/blog/_slug.vue' /* webpackChunkName: "pages/blog/_slug" */))
 const _d4772fac = () => interopDefault(import('../pages/cars/_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
 const _472ccd9f = () => interopDefault(import('../pages/pages/_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
-const _5510b02f = () => interopDefault(import('../pages/products/_slug.vue' /* webpackChunkName: "pages/products/_slug" */))
-const _63732741 = () => interopDefault(import('../pages/shop/_slug.vue' /* webpackChunkName: "pages/shop/_slug" */))
 
 const emptyFn = () => {}
 
@@ -46,10 +43,6 @@ export const routerOptions = {
     component: _96434ac8,
     name: "thanks"
   }, {
-    path: "/auto-info/upsel",
-    component: _3f2b6c53,
-    name: "auto-info-upsel"
-  }, {
     path: "/",
     component: _f9cbf51c,
     name: "index"
@@ -73,14 +66,6 @@ export const routerOptions = {
     path: "/pages/:slug?",
     component: _472ccd9f,
     name: "pages-slug"
-  }, {
-    path: "/products/:slug?",
-    component: _5510b02f,
-    name: "products-slug"
-  }, {
-    path: "/shop/:slug?",
-    component: _63732741,
-    name: "shop-slug"
   }],
 
   fallback: false
