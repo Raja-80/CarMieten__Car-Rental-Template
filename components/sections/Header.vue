@@ -127,7 +127,7 @@
 
             <!-- Desktop Menu -->
             <div v-if="nav.active_menu" class="hidden lg:flex flex-row justify-center items-center  relative">
-                <div v-for="(link, index) in nav.menu.items" :key="index" class="text-xs mx-4 my-6">
+                <div v-for="(link, index) in nav.menu.items" :key="index" class="text-xs mx-3 my-6">
                     <nuxt-link :to="link.url"
                         class=" hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-out ">
                         {{ link.text }}

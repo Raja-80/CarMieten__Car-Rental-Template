@@ -26,7 +26,7 @@
                         <div
                             class="flex lg:flex-col flex-row justify-start lg:items-start items-center  text-black font-semibold text-xs pb-1">
                             <div>
-                                AUTO MAKER :
+                                {{ product.auto_maker }}
                             </div>
                             <span class="text-black font-light lg:pt-1 lg:pl-0 pl-4 ">
                                 {{ item.brand.name.toUpperCase() }}
@@ -35,7 +35,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                ENGINE :
+                                {{ product.engine_volume }}
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
 
@@ -49,7 +49,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                YEAR :
+                                {{ product.year }}
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getYearP(item) }}
@@ -58,7 +58,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                FUEL :
+                                {{ product.fuel }}
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getFuel(item) }}
@@ -67,7 +67,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                TRANSMISSION :
+                                {{ product.transmission }}
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getTransmission(item) }}
@@ -92,36 +92,48 @@
 export default {
     props: {
         item: Object
-    }, methods: {
+    },
+    
+    data() {
+        return {
+            product: this.$settings.sections.product,
+        }
+    },
+    
+    methods: {
+
         getYearP(item) {
 
             for (let itm of item.collections) {
                 if (itm.name && itm.name.includes('PRODUCTION YEAR')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
+                    return itm.slug.replace(/-/g, '');
                 }
             }
         },
+
         getEngine(item) {
 
             for (let itm of item.collections) {
                 if (itm.name && itm.name.includes('ENGINE VOLUME')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
+                    return itm.slug.replace(/-/g, '');
                 }
             }
         },
+
         getFuel(item) {
 
             for (let itm of item.collections) {
                 if (itm.name && itm.name.includes('FUEL TYPE')) {
-                    return itm.slug.replace(/-/g, '').toUpperCase();;
+                    return itm.slug.replace(/-/g, '');
                 }
             }
         },
+
         getTransmission(item) {
 
             for (let itm of item.collections) {
                 if (itm.name && itm.name.includes('TRANSMISSION')) {
-                    return itm.slug.replace(/-/g, '  ').toUpperCase();
+                    return itm.slug.replace(/-/g, '  ');
                 }
             }
         },

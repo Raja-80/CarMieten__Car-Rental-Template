@@ -1,6 +1,6 @@
 <template>
     <div class="container pb-20">
-        <div class="flex lg:flex-row flex-col justify-between lg:pt-24 pt-6">
+        <div class="flex lg:flex-row flex-col justify-between lg:pt-24 pt-20">
 
             <nuxt-img class="lg:h-96 lg:w-96 h-56 w-56 border border-gray-50 lg:absolute lg:top-44 lg:left-80"
                 :src="item.images[0] ? item.images[0] : $store.state.defaults.logo" alt="customer profile" />
