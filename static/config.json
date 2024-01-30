@@ -3431,7 +3431,6 @@
 	],
 	"isActive": false,
 	"autoRenew": false,
-	"_id": "654e4a1c6cdac169bf62a70a",
 	"expiryDate": "2050-12-12T00:00:00.000Z",
 	"name": "rental",
 	"url": "/themes/rental",
@@ -3441,9 +3440,5 @@
 	"payments": [],
 	"price": 22,
 	"description": "✔ Simple and easy theme to use ✔ Well presented and convertible store and product page ✔ SEO optimized ✔ Responsive to all devices",
-	"publicName": "CarMieten - Versatile Responsive Car Rental Template",
-	"storeId": "654e4a1cac0d94578705afc8",
-	"createdAt": "2023-11-10T15:19:56.766Z",
-	"updatedAt": "2023-11-27T13:50:14.050Z",
-	"__v": 0
+	"publicName": "CarMieten - Versatile Responsive Car Rental Template"
 }
