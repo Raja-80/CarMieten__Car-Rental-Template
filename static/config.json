@@ -1,9 +1,9 @@
 {
 	"team": {
-		"_id": "5f21374a175b5e8e309be827",
-		"name": "DEVELOPMENT",
+		"_id": "5f21374a175b5e8e309be721",
+		"name": "Storeino Team",
 		"url": "https://market.storeino.com/storeino/"
-	},
+	  },
 	"config": {
 		"schema": {
 			"fields": {
