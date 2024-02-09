@@ -1,0 +1,3449 @@
+{
+	"team": {
+		"_id": "5f21374a175b5e8e309be827",
+		"name": "DEVELOPMENT",
+		"url": "https://market.storeino.com/storeino/"
+	},
+	"config": {
+		"schema": {
+			"fields": {
+				"products": [
+					"name",
+					"slug",
+					"images",
+					"price",
+					"variants",
+					"outStock",
+					"type",
+					"quantity",
+					"tags",
+					"collections.name",
+					"collections.slug",
+					"collections.image",
+					"translates"
+				],
+				"collections": [
+					"name",
+					"slug",
+					"image",
+					"translates",
+					"childrens"
+				],
+				"images": [
+					"src",
+					"title"
+				],
+				"menus": [],
+				"pages": [],
+				"brands": []
+			},
+			"ids": {
+				"collections": [],
+				"products": [],
+				"images": [
+					"655f3dac6cdac169bf62f261"
+				],
+				"menus": [
+					"65612aa66cdac169bf62f641",
+					"",
+					""
+				],
+				"pages": [],
+				"brands": []
+			}
+		},
+		"settings": {
+			"tabs": [
+				{
+					"name": "global_options",
+					"sections": [
+						{
+							"name": "options",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "colors",
+									"values": [
+										{
+											"name": "primary_color",
+											"note": "your_website_primary_color",
+											"path": "style.primary_color",
+											"type": "tc_color",
+											"value": "#da1c36"
+										},
+										{
+											"name": "secondary_color",
+											"note": "",
+											"path": "style.secondary_color",
+											"type": "tc_color",
+											"translatable": false,
+											"value": "#f7f7f7"
+										}
+									]
+								},
+								{
+									"name": "add_to_cart_button",
+									"values": [
+										{
+											"name": "show_add_to_cart",
+											"path": "sections.products.add_to_cart.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_reviews",
+											"path": "sections.products.show_reviews",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "add_to_cart_to_checkout",
+											"path": "sections.products.add_to_cart_to_checkout",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_wishlist",
+											"path": "sections.products.add_to_wishlist.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "add_to_cart_text",
+											"path": "sections.products.add_to_cart.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Add to cart",
+											"translate": "Add to cart"
+										},
+										{
+											"name": "added_text",
+											"path": "sections.products.added_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Added",
+											"translate": "Added"
+										},
+										{
+											"name": "confirm_text",
+											"path": "sections.products.confirm_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Confirm",
+											"translate": "Confirm"
+										}
+									]
+								},
+								{
+									"name": "alerts",
+									"values": [
+										{
+											"name": "added_to_cart",
+											"path": "sections.alerts.added_to_cart",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Added to cart",
+											"translate": "Added to cart"
+										},
+										{
+											"name": "added_to_wishlist",
+											"path": "sections.alerts.added_to_wishlist",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Added to wishlist",
+											"translate": "Added to wishlist"
+										},
+										{
+											"name": "removed_from_cart",
+											"path": "sections.alerts.removed_from_cart",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Removed from cart",
+											"translate": "Removed from cart"
+										},
+										{
+											"name": "removed_from_wishlist",
+											"path": "sections.alerts.removed_from_wishlist",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Removed from wishlist",
+											"translate": "Removed from wishlist"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "header",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "links",
+									"values": [
+										{
+											"name": "links_menu",
+											"note": "",
+											"path": "sections.header.links.menus",
+											"type": "tc_menu",
+											"translatable": false,
+											"value": "65612aa66cdac169bf62f641"
+										},
+										{
+											"name": "show_links_menu",
+											"note": "",
+											"path": "sections.header.links.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "logo",
+									"values": [
+										{
+											"name": "company_name",
+											"note": "",
+											"path": "sections.header.company_name.name",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "AUTOSTAR"
+										},
+										{
+											"name": "company_logo",
+											"note": "",
+											"path": "sections.header.company_logo.logo",
+											"type": "tc_image",
+											"translatable": false,
+											"value": "655f3dac6cdac169bf62f261"
+										},
+										{
+											"name": "show_name",
+											"note": "",
+											"path": "sections.header.company_name.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "show_company_logo",
+											"note": "",
+											"path": "sections.header.company_logo.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								}
+							],
+							"pushable": false
+						},
+						{
+							"name": "footer",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "our_terms",
+									"values": [
+										{
+											"name": "show_terms",
+											"note": "your_website_footer_menu",
+											"path": "sections.footer.terms.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "terms",
+											"note": "",
+											"path": "sections.footer.terms.menu",
+											"type": "tc_menu",
+											"translatable": false,
+											"value": ""
+										}
+									]
+								},
+								{
+									"name": "copyright",
+									"values": [
+										{
+											"name": "copyright_text",
+											"note": "use__YEAR__variable",
+											"path": "sections.footer.copyright.copyright_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>",
+											"translate": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>"
+										}
+									]
+								},
+								{
+									"name": "company",
+									"values": [
+										{
+											"name": "company_logo",
+											"note": "",
+											"path": "sections.footer.company.company_logo",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "copy_right",
+											"note": "",
+											"path": "sections.footer.company.copy_right",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Copyright © __YEAR__  Storeino. All rights reserved. <a href='//storeino.com'>storeino.com</a>.",
+											"translate": "Copyright © __YEAR__  Storeino. All rights reserved. <a href='//storeino.com'>storeino.com</a>."
+										},
+										{
+											"name": "show_copy_right",
+											"note": "",
+											"path": "sections.footer.company.show_copy_right.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "company_name",
+											"note": "",
+											"path": "sections.footer.company.company_name",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "AUTOSTAR"
+										},
+										{
+											"name": "show_company_name",
+											"note": "",
+											"path": "sections.footer.company.company_name.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "show_company_logo",
+											"note": "",
+											"path": "sections.footer.company.company_logo.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "useful_links",
+									"values": [
+										{
+											"name": "show_links",
+											"note": "",
+											"path": "sections.footer.useful_links.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "useful_links",
+											"note": "",
+											"path": "sections.footer.useful_links.menu",
+											"type": "tc_menu",
+											"translatable": false,
+											"value": ""
+										},
+										{
+											"name": "link_title",
+											"note": "",
+											"path": "sections.footer.useful_links.title",
+											"type": "tc_html",
+											"translatable": true,
+											"value": {
+												"active": true
+											},
+											"translate": {
+												"active": true
+											}
+										},
+										{
+											"name": "show_links_title",
+											"note": "",
+											"path": "sections.footer.useful_links.title.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "showroom",
+									"values": [
+										{
+											"name": "adresse",
+											"note": "",
+											"path": "sections.footer.showroom.adresse",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "USA, Auto, King St. 665087"
+										},
+										{
+											"name": "phone",
+											"note": "",
+											"path": "sections.footer.showroom.phone",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "",
+											"inputType": "number"
+										},
+										{
+											"name": "email",
+											"note": "",
+											"path": "sections.footer.showroom.email",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "E-mail.: info@example.com"
+										},
+										{
+											"name": "copyright_notice",
+											"note": "",
+											"path": "sections.footer.showroom.notice",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "© 2018 Auto LTD"
+										},
+										{
+											"name": "show_adresse",
+											"note": "",
+											"path": "sections.footer.showroom.adresse.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "show_phone",
+											"note": "",
+											"path": "sections.footer.showroom.phone.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "show_email",
+											"note": "",
+											"path": "sections.footer.showroom.email.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "show_copy_notice",
+											"note": "",
+											"path": "sections.footer.showroom.notice.active",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "showroom_title",
+											"note": "",
+											"path": "sections.footer.showroom.title",
+											"type": "tc_html",
+											"translatable": true,
+											"value": "<p><strong class=\"animating\">CONTACT INFORMATION</strong></p>",
+											"translate": "<p><strong class=\"animating\">CONTACT INFORMATION</strong></p>"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "home_page",
+					"sections": [
+						{
+							"name": "banner",
+							"icon": "select_all",
+							"pushable": false,
+							"blocks": [
+								{
+									"name": "banner_left_info",
+									"values": [
+										{
+											"name": "banner_title",
+											"note": "",
+											"path": "sections.banner.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Book Your Auto Rental",
+											"translate": "Book Your Auto Rental"
+										},
+										{
+											"name": "banner description",
+											"note": "",
+											"path": "sections.banner.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Luxury Cars at low-cost, starts $75 / day  from over 100 premium locations",
+											"translate": "Luxury Cars at low-cost, starts $75 / day  from over 100 premium locations"
+										}
+									]
+								},
+								{
+									"name": "banner_formuler",
+									"values": [
+										{
+											"name": "pick_up_date",
+											"note": "",
+											"path": "sections.banner.formuler.pick_up_date",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "PICK UP DATE",
+											"translate": "PICK UP DATE"
+										},
+										{
+											"name": "drop_off_date",
+											"note": "",
+											"path": "sections.banner.formuler.drop_off_date",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "DROP-OFF DATE",
+											"translate": "DROP-OFF DATE"
+										},
+										{
+											"name": "vehicle_makers",
+											"note": "",
+											"path": "sections.banner.formuler.vehicle_makers",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "MAKERS OF VEHICLE",
+											"translate": "MAKERS OF VEHICLE"
+										},
+										{
+											"name": "find_now",
+											"note": "",
+											"path": "temp.newField",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "FIND IT NOW"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "collections",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "collectios",
+									"values": [
+										{
+											"name": "show_collections",
+											"path": "sections.collections.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "collections_title",
+											"path": "sections.collections.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Top collections",
+											"translate": "Top collections"
+										},
+										{
+											"name": "selected_collections",
+											"path": "sections.collections.items",
+											"type": "tc_collection",
+											"value": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "products_section_1",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_1",
+									"values": [
+										{
+											"name": "show_section_1",
+											"path": "sections.products_1.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "section_1_title",
+											"path": "sections.products_1.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Featured Products",
+											"translate": "Featured Products"
+										},
+										{
+											"name": "section_1_collections",
+											"path": "sections.products_1.collections",
+											"type": "tc_collection",
+											"value": []
+										},
+										{
+											"name": "section_1_tags",
+											"note": "Eg: clothes,beauty,tech",
+											"path": "sections.products_1.tags",
+											"type": "tc_input",
+											"value": ""
+										},
+										{
+											"name": "section_1_show_more_text",
+											"path": "sections.products_1.show_more_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Discover more",
+											"translate": "Discover more"
+										},
+										{
+											"name": "section_1_show_more_url",
+											"path": "sections.products_1.show_more_url",
+											"type": "tc_input",
+											"value": "/shop"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "news_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "news_section",
+									"values": [
+										{
+											"name": "show_section",
+											"path": "sections.home.news.activate",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "section_title",
+											"path": "sections.home.news.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Latest News",
+											"translate": "Latest News"
+										},
+										{
+											"name": "news_list",
+											"path": "sections.home.news.items",
+											"type": "tc_pages",
+											"value": null
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "services_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "services_section",
+									"values": [
+										{
+											"name": "show_section",
+											"path": "sections.services.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "section_title",
+											"path": "sections.services.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Our services",
+											"translate": "Our services"
+										}
+									]
+								},
+								{
+									"name": "services_delivery",
+									"values": [
+										{
+											"name": "delivery",
+											"path": "sections.services.items.delivery.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Fast delivery",
+											"translate": "Fast delivery"
+										},
+										{
+											"name": "delivery",
+											"path": "sections.services.items.delivery.url",
+											"type": "tc_input",
+											"value": "#"
+										}
+									]
+								},
+								{
+									"name": "services_satisfaction",
+									"values": [
+										{
+											"name": "satisfaction",
+											"path": "sections.services.items.satisfaction.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Satisfaction",
+											"translate": "Satisfaction"
+										},
+										{
+											"name": "satisfaction",
+											"path": "sections.services.items.satisfaction.url",
+											"type": "tc_input",
+											"value": "#"
+										}
+									]
+								},
+								{
+									"name": "services_quality",
+									"values": [
+										{
+											"name": "quality",
+											"path": "sections.services.items.quality.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Quality",
+											"translate": "Quality"
+										},
+										{
+											"name": "quality",
+											"path": "sections.services.items.quality.url",
+											"type": "tc_input",
+											"value": "#"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "benefits_sections",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_title",
+									"values": [
+										{
+											"name": "show_section_benefits",
+											"note": "",
+											"path": "sections.home.benefits.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "section_title",
+											"note": "",
+											"path": "sections.home.benefits.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "OUR BENEFITS",
+											"translate": "OUR BENEFITS"
+										},
+										{
+											"name": "under_title",
+											"note": "",
+											"path": "sections.home.benefits.under_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Luxury AutoStar Rental Services",
+											"translate": "Luxury AutoStar Rental Services"
+										}
+									]
+								},
+								{
+									"name": "benefits_customers_satisfaction",
+									"values": [
+										{
+											"name": "satisfaction_icon",
+											"note": "",
+											"path": "sections.home.satisfaction.icon",
+											"type": "tc_image",
+											"translatable": true,
+											"value": null,
+											"arValue": "عملائنا راضون دائمًا بنسبة 100٪",
+											"frValue": "Nos clients sont toujours satisfaits à 100 %",
+											"translate": null
+										},
+										{
+											"name": "satisfaction_title",
+											"note": "",
+											"path": "sections.home.satisfaction.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Our Customers Always 100% Satisfied",
+											"translate": "Our Customers Always 100% Satisfied"
+										},
+										{
+											"name": "satisfaction_description",
+											"note": "",
+											"path": "sections.home.satisfaction.description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation"
+										},
+										{
+											"name": "show_satisfaction",
+											"note": "",
+											"path": "sections.home.satisfaction.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "provide_bookings",
+									"values": [
+										{
+											"name": "show_providence",
+											"note": "",
+											"path": "sections.home.providence.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "providence_title",
+											"note": "",
+											"path": "sections.home.providence.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": " We Provide Easier & Faster Bookings",
+											"translate": " We Provide Easier & Faster Bookings"
+										},
+										{
+											"name": "providence_description",
+											"note": "",
+											"path": "sections.home.providence.description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation"
+										},
+										{
+											"name": "providence_icon",
+											"note": "",
+											"path": "sections.home.providence.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										}
+									]
+								},
+								{
+									"name": "choice_pickup_location",
+									"values": [
+										{
+											"name": "pickup_icon",
+											"note": "",
+											"path": "sections.home.pickup.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "pickup_title",
+											"note": "",
+											"path": "sections.home.pickup.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": " Your Choice of Any Pickup Location",
+											"translate": " Your Choice of Any Pickup Location"
+										},
+										{
+											"name": "show_pickup",
+											"note": "",
+											"path": "sections.home.pickup.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										},
+										{
+											"name": "pickup_description",
+											"note": "",
+											"path": "sections.home.pickup.description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "how_it_works_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_title",
+									"values": [
+										{
+											"name": "title",
+											"note": "",
+											"path": "sections.home.works.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": " HOW DOES THE AUTOSTAR RENTAL WORKS",
+											"translate": " HOW DOES THE AUTOSTAR RENTAL WORKS"
+										}
+									]
+								},
+								{
+									"name": "first_step",
+									"values": [
+										{
+											"name": "step_icon",
+											"note": "",
+											"path": "sections.home.works.step_1.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "step_description",
+											"note": "",
+											"path": "sections.home.works.step_1.descrition",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Once seected, Book our auto and set a pickup date / time",
+											"translate": "Once seected, Book our auto and set a pickup date / time"
+										}
+									]
+								},
+								{
+									"name": "secod_step",
+									"values": [
+										{
+											"name": "step_icon",
+											"note": "",
+											"path": "sections.home.works.step_2.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "step_description",
+											"note": "",
+											"path": "sections.home.works.step_2.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Once seected, Book our auto and set a pickup date / time",
+											"translate": "Once seected, Book our auto and set a pickup date / time"
+										}
+									]
+								},
+								{
+									"name": "third_step",
+									"values": [
+										{
+											"name": "step_icon",
+											"note": "",
+											"path": "sections.home.works.step_3.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "step_description",
+											"note": "",
+											"path": "sections.home.works.step_3.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Once seected, Book our auto and set a pickup date / time",
+											"translate": "Once seected, Book our auto and set a pickup date / time"
+										}
+									]
+								},
+								{
+									"name": "show_section",
+									"values": [
+										{
+											"name": "show_section",
+											"note": "",
+											"path": "sections.home.works.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "fleets_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_title",
+									"values": [
+										{
+											"name": "main_title",
+											"note": "",
+											"path": "sections.home.fleets.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": " OUR RENTAL FLEETS",
+											"translate": " OUR RENTAL FLEETS"
+										},
+										{
+											"name": "under_title",
+											"note": "",
+											"path": "sections.home.fleets.under_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": {
+												"activate": true
+											},
+											"translate": {
+												"activate": true
+											}
+										},
+										{
+											"name": "show_under_title",
+											"note": "",
+											"path": "sections.home.fleets.under_title.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "section_description",
+									"values": [
+										{
+											"name": "description",
+											"note": "",
+											"path": "sections.home.fleets.description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Amco laboris nisi ut aliquip xea comod consequt duis aute irure dolor reprehenderit voluptate velit cillum dolore fugiat lore ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt"
+										},
+										{
+											"name": "show_description",
+											"note": "",
+											"path": "sections.home.fleets.description.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "fleets_products",
+									"values": [
+										{
+											"name": "products",
+											"note": "",
+											"path": "sections.home.fleets.products",
+											"type": "tc_products",
+											"translatable": false,
+											"value": null,
+											"notes": "in slides"
+										},
+										{
+											"name": "rent_it",
+											"note": "",
+											"path": "sections.home.fleets.products.rent_it",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "RENT IT",
+											"translate": "RENT IT"
+										}
+									]
+								},
+								{
+									"name": "show_section",
+									"values": [
+										{
+											"name": "show_section",
+											"note": "",
+											"path": "sections.home.fleets.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "services_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_title",
+									"values": [
+										{
+											"name": "title",
+											"note": "",
+											"path": "sections.home.services.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": " Autostar Rental Service With a wide range of Vehicles",
+											"translate": " Autostar Rental Service With a wide range of Vehicles"
+										},
+										{
+											"name": "show_title",
+											"note": "",
+											"path": "sections.home.services.title.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "section_description",
+									"values": [
+										{
+											"name": "description",
+											"note": "",
+											"path": "sections.home.services.description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "  Integer tortor bibendum est faucibus gravida aliquam nulla lectus lacinia eget lorem acdua eros pharetral interdum quisque convallis nula dpsum val mualiq amet consectetur adipisicing sed eiusmod tem pory.  Ut enim ad minim ven quis nostrud exercitation ulamco laboris nisi ut aliquip exl dolor in reprehenderit voluptate velit non proident sunt in culpa."
+										},
+										{
+											"name": "show_description",
+											"note": "",
+											"path": "sections.home.services.description.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "service_1",
+									"values": [
+										{
+											"name": "service_main_title",
+											"note": "",
+											"path": "sections.home.services.service_1.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Easy & Competitive Prices",
+											"translate": "Easy & Competitive Prices"
+										},
+										{
+											"name": "service_description",
+											"note": "",
+											"path": "sections.home.services.service_1.service_description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Faucibus gravida aliquam nulla lectus lacinia eget"
+										},
+										{
+											"name": "service_icon",
+											"note": "",
+											"path": "sections.home.services.service_1.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "show_service",
+											"note": "",
+											"path": "sections.home.services.service_1.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "service_2",
+									"values": [
+										{
+											"name": "service_main_title",
+											"note": "",
+											"path": "sections.home.services.service_2.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Breakdown Assistance",
+											"translate": "Breakdown Assistance"
+										},
+										{
+											"name": "service_description",
+											"note": "",
+											"path": "sections.home.services.service_2.service_description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Faucibus gravida aliquam nulla lectus lacinia eget"
+										},
+										{
+											"name": "service_icon",
+											"note": "",
+											"path": "sections.home.services.service_2.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "show_service",
+											"note": "",
+											"path": "sections.home.services.service_2.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "service_3",
+									"values": [
+										{
+											"name": "service_main_title",
+											"note": "",
+											"path": "sections.home.services.service_3.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Trusted Rent Service",
+											"translate": "Trusted Rent Service"
+										},
+										{
+											"name": "service_description",
+											"note": "",
+											"path": "sections.home.services.service_3.service_description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Faucibus gravida aliquam nulla lectus lacinia eget"
+										},
+										{
+											"name": "service_icon",
+											"note": "",
+											"path": "sections.home.services.service_3.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "show_service",
+											"note": "",
+											"path": "sections.home.services.service_3.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "service_4",
+									"values": [
+										{
+											"name": "service_main_title",
+											"note": "",
+											"path": "sections.home.services.service_4.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "24/7 Free Customer Support",
+											"translate": "24/7 Free Customer Support"
+										},
+										{
+											"name": "service_description",
+											"note": "",
+											"path": "sections.home.services.service_4.service_description",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "Faucibus gravida aliquam nulla lectus lacinia eget"
+										},
+										{
+											"name": "service_icon",
+											"note": "",
+											"path": "sections.home.services.service_4.icon",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "show_service",
+											"note": "",
+											"path": "sections.home.services.service_4.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "section_photos",
+									"values": [
+										{
+											"name": "photo_1",
+											"note": "",
+											"path": "sections.home.services.photo_1",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "photo_2",
+											"note": "",
+											"path": "sections.home.services.photo_2",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "photo_3",
+											"note": "",
+											"path": "sections.home.services.photo_3",
+											"type": "tc_image",
+											"translatable": false,
+											"value": null
+										},
+										{
+											"name": "show_photos",
+											"note": "",
+											"path": "sections.home.services.photos.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "show_section",
+									"values": [
+										{
+											"name": "show_section",
+											"note": "",
+											"path": "sections.home.services.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "booking_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "section_description",
+									"values": [
+										{
+											"name": "description",
+											"note": "",
+											"path": "sections.home.booking.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": {
+												"activate": true
+											},
+											"translate": {
+												"activate": true
+											}
+										},
+										{
+											"name": "show_description",
+											"note": "",
+											"path": "sections.home.booking.description.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "show_section",
+									"values": [
+										{
+											"name": "show_booking_section",
+											"note": "",
+											"path": "sections.home.booking.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "reviews_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "reviews_title",
+									"values": [
+										{
+											"name": "main_title",
+											"note": "",
+											"path": "sections.home.reviews.main_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "CUSTOMER REVIEWS",
+											"translate": "CUSTOMER REVIEWS"
+										},
+										{
+											"name": "under_title",
+											"note": "",
+											"path": "sections.home.reviews.under_title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Luxury AutoStar Rental Services",
+											"translate": "Luxury AutoStar Rental Services"
+										}
+									]
+								},
+								{
+									"name": "show_section",
+									"values": [
+										{
+											"name": "show_reviews",
+											"note": "",
+											"path": "sections.home.reviews.activate",
+											"type": "tc_checkbox",
+											"translatable": false,
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "reviews",
+									"values": [
+										{
+											"name": "new value",
+											"note": "",
+											"path": "temp.newField",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "your value"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "app_section",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "",
+									"values": [
+										{
+											"name": "new value",
+											"note": "",
+											"path": "temp.newField",
+											"type": "tc_input",
+											"translatable": false,
+											"value": "your value"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "product_page",
+					"sections": [
+						{
+							"name": "product_details",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "add_to_cart",
+									"values": [
+										{
+											"name": "show_add_to_cart",
+											"path": "sections.product.add_to_cart.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "add_to_cart_text",
+											"path": "sections.product.add_to_cart.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Add to cart",
+											"translate": "Add to cart"
+										}
+									]
+								},
+								{
+									"name": "buy_now",
+									"values": [
+										{
+											"name": "show_buy_now",
+											"path": "sections.product.buy_now.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "buy_now_text",
+											"path": "sections.product.buy_now.text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Buy now",
+											"translate": "Buy now"
+										}
+									]
+								},
+								{
+									"name": "related",
+									"values": [
+										{
+											"name": "show_related_products",
+											"path": "sections.product.related.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "related_products_title",
+											"path": "sections.product.related.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Related products",
+											"translate": "Related products"
+										}
+									]
+								},
+								{
+									"name": "upsell",
+									"values": [
+										{
+											"name": "show_upsell_products",
+											"path": "sections.product.upsell.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "upsell_products_title",
+											"path": "sections.product.upsell.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Special offer for you",
+											"translate": "Special offer for you"
+										}
+									]
+								},
+								{
+									"name": "reviews",
+									"values": [
+										{
+											"name": "show_reviews",
+											"path": "sections.product.reviews.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "reviews_title",
+											"path": "sections.product.reviews.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Our customers reviews",
+											"translate": "Our customers reviews"
+										}
+									]
+								},
+								{
+									"name": "share_buttons",
+									"values": [
+										{
+											"name": "show_share_buttons",
+											"path": "sections.product.share_buttons.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "share_buttons_title",
+											"path": "sections.product.share_buttons.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Share this product",
+											"translate": "Share this product"
+										},
+										{
+											"name": "show_whatsapp",
+											"path": "sections.product.share_buttons.whatsapp",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_facebook",
+											"path": "sections.product.share_buttons.facebook",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_twitter",
+											"path": "sections.product.share_buttons.twitter",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_linkedin",
+											"path": "sections.product.share_buttons.linkedin",
+											"type": "tc_checkbox",
+											"value": true
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "post_page",
+					"sections": [
+						{
+							"name": "post_details",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "share_buttons",
+									"values": [
+										{
+											"name": "show_share_buttons",
+											"path": "sections.post.share_buttons.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "share_buttons_title",
+											"path": "sections.post.share_buttons.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Share",
+											"translate": "Share"
+										},
+										{
+											"name": "show_whatsapp",
+											"path": "sections.post.share_buttons.whatsapp",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_facebook",
+											"path": "sections.post.share_buttons.facebook",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_twitter",
+											"path": "sections.post.share_buttons.twitter",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "show_linkedin",
+											"path": "sections.post.share_buttons.linkedin",
+											"type": "tc_checkbox",
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "related_posts",
+									"values": [
+										{
+											"name": "show_related_posts",
+											"path": "sections.post.related.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "related_posts_title",
+											"path": "sections.post.related.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Related posts",
+											"translate": "Related posts"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "shop_page",
+					"sections": [
+						{
+							"name": "sidebar",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "display",
+									"values": [
+										{
+											"name": "show_sidebar",
+											"path": "sections.shop.sidebar.active",
+											"type": "tc_checkbox",
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "collections",
+									"values": [
+										{
+											"name": "show_collections",
+											"path": "sections.shop.sidebar.collections.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "collections_title",
+											"path": "sections.shop.sidebar.collections.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Collections",
+											"translate": "Collections"
+										}
+									]
+								},
+								{
+									"name": "prices",
+									"values": [
+										{
+											"name": "show_prices",
+											"path": "sections.shop.sidebar.prices.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "prices_title",
+											"path": "sections.shop.sidebar.prices.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Prices",
+											"translate": "Prices"
+										}
+									]
+								},
+								{
+									"name": "sizes",
+									"values": [
+										{
+											"name": "show_sizes",
+											"path": "sections.shop.sidebar.sizes.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "sizes_title",
+											"path": "sections.shop.sidebar.sizes.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Sizes",
+											"translate": "Sizes"
+										}
+									]
+								},
+								{
+									"name": "colors",
+									"values": [
+										{
+											"name": "show_colors",
+											"path": "sections.shop.sidebar.colors.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "colors_title",
+											"path": "sections.shop.sidebar.colors.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Colors",
+											"translate": "Colors"
+										}
+									]
+								},
+								{
+									"name": "tags",
+									"values": [
+										{
+											"name": "show_tags",
+											"path": "sections.shop.sidebar.tags.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "tags_title",
+											"path": "sections.shop.sidebar.tags.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Tags",
+											"translate": "Tags"
+										}
+									]
+								},
+								{
+									"name": "brands",
+									"values": [
+										{
+											"name": "show_brands",
+											"path": "sections.shop.sidebar.brands.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "brands_title",
+											"path": "sections.shop.sidebar.brands.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Brands",
+											"translate": "Brands"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "shop_content",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "seo",
+									"values": [
+										{
+											"name": "page_title",
+											"path": "sections.shop.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Shop",
+											"translate": "Shop"
+										},
+										{
+											"name": "page_description",
+											"path": "sections.shop.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Find best selling products",
+											"translate": "Find best selling products"
+										}
+									]
+								},
+								{
+									"name": "sorts",
+									"values": [
+										{
+											"name": "newest",
+											"path": "sections.shop.sorts.newest",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Newest",
+											"translate": "Newest"
+										},
+										{
+											"name": "oldest",
+											"path": "sections.shop.sorts.oldest",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Oldest",
+											"translate": "Oldest"
+										},
+										{
+											"name": "name_asc",
+											"path": "sections.shop.sorts.name_asc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Name (A-Z)",
+											"translate": "Name (A-Z)"
+										},
+										{
+											"name": "name_desc",
+											"path": "sections.shop.sorts.name_desc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Name (Z-A)",
+											"translate": "Name (Z-A)"
+										},
+										{
+											"name": "price_asc",
+											"path": "sections.shop.sorts.price_asc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Price (low to high)",
+											"translate": "Price (low to high)"
+										},
+										{
+											"name": "price_desc",
+											"path": "sections.shop.sorts.price_desc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Price (high to low)",
+											"translate": "Price (high to low)"
+										},
+										{
+											"name": "rating_asc",
+											"path": "sections.shop.sorts.rating_asc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Rating (low to high)",
+											"translate": "Rating (low to high)"
+										},
+										{
+											"name": "rating_desc",
+											"path": "sections.shop.sorts.rating_desc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Rating (high to low)",
+											"translate": "Rating (high to low)"
+										}
+									]
+								},
+								{
+									"name": "pagination",
+									"values": [
+										{
+											"name": "limit",
+											"path": "sections.shop.pagination.limit",
+											"type": "tc_input",
+											"input_type": "number",
+											"value": 12
+										},
+										{
+											"name": "next_text",
+											"path": "sections.shop.pagination.next_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Next",
+											"translate": "Next"
+										},
+										{
+											"name": "prev_text",
+											"path": "sections.shop.pagination.prev_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Prev",
+											"translate": "Prev"
+										},
+										{
+											"name": "prev_text",
+											"path": "sections.shop.empty_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "No products found",
+											"translate": "No products found"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "blog_page",
+					"sections": [
+						{
+							"name": "sidebar",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "display",
+									"values": [
+										{
+											"name": "show_sidebar",
+											"path": "sections.blog.sidebar.active",
+											"type": "tc_checkbox",
+											"value": true
+										}
+									]
+								},
+								{
+									"name": "categories",
+									"values": [
+										{
+											"name": "show_categories",
+											"path": "sections.blog.sidebar.categories.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "categories_title",
+											"path": "sections.blog.sidebar.categories.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Categories",
+											"translate": "Categories"
+										}
+									]
+								},
+								{
+									"name": "products",
+									"values": [
+										{
+											"name": "show_products",
+											"path": "sections.blog.sidebar.products.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "products_title",
+											"path": "sections.blog.sidebar.products.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "From shop",
+											"translate": "From shop"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "blog_content",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "seo",
+									"values": [
+										{
+											"name": "page_title",
+											"path": "sections.blog.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Blog",
+											"translate": "Blog"
+										},
+										{
+											"name": "page_description",
+											"path": "sections.blog.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Our latest posts",
+											"translate": "Our latest posts"
+										}
+									]
+								},
+								{
+									"name": "sorts",
+									"values": [
+										{
+											"name": "newest",
+											"path": "sections.blog.sorts.newest",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Newest",
+											"translate": "Newest"
+										},
+										{
+											"name": "oldest",
+											"path": "sections.blog.sorts.oldest",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Oldest",
+											"translate": "Oldest"
+										},
+										{
+											"name": "name_asc",
+											"path": "sections.blog.sorts.name_asc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Name (A-Z)",
+											"translate": "Name (A-Z)"
+										},
+										{
+											"name": "name_desc",
+											"path": "sections.blog.sorts.name_desc",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Name (Z-A)",
+											"translate": "Name (Z-A)"
+										}
+									]
+								},
+								{
+									"name": "pagination",
+									"values": [
+										{
+											"name": "limit",
+											"path": "sections.blog.pagination.limit",
+											"type": "tc_input",
+											"input_type": "number",
+											"value": 12
+										},
+										{
+											"name": "next_text",
+											"path": "sections.blog.pagination.next_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Next",
+											"translate": "Next"
+										},
+										{
+											"name": "prev_text",
+											"path": "sections.blog.pagination.prev_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Prev",
+											"translate": "Prev"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "cart_page",
+					"sections": [
+						{
+							"name": "cart_texts",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "cart_texts",
+									"values": [
+										{
+											"name": "title",
+											"path": "sections.cart.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Shopping cart",
+											"translate": "Shopping cart"
+										},
+										{
+											"name": "empty_text",
+											"path": "sections.cart.empty_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Your cart is empty",
+											"translate": "Your cart is empty"
+										},
+										{
+											"name": "total_text",
+											"path": "sections.cart.total_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Total",
+											"translate": "Total"
+										}
+									]
+								},
+								{
+									"name": "upsell",
+									"values": [
+										{
+											"name": "show_upsell_products",
+											"path": "sections.cart.upsell.active",
+											"type": "tc_checkbox",
+											"value": true
+										},
+										{
+											"name": "upsell_products_title",
+											"path": "sections.cart.upsell.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Special offer for you",
+											"translate": "Special offer for you"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "buttons",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "buttons",
+									"values": [
+										{
+											"name": "place_order_text",
+											"path": "sections.cart.buttons.checkout_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Place Order",
+											"translate": "Place Order"
+										},
+										{
+											"name": "back_to_shop_text",
+											"path": "sections.cart.buttons.back_to_shop_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Back to shop",
+											"translate": "Back to shop"
+										},
+										{
+											"name": "show_back_to_shop",
+											"path": "sections.cart.buttons.show_back_to_shop",
+											"type": "tc_checkbox",
+											"value": true
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "wishlist_page",
+					"sections": [
+						{
+							"name": "wishlist_texts",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "wishlist_texts",
+									"values": [
+										{
+											"name": "title",
+											"path": "sections.wishlist.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Your wishlist",
+											"translate": "Your wishlist"
+										},
+										{
+											"name": "empty_text",
+											"path": "sections.wishlist.empty_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Your wishlist is empty",
+											"translate": "Your wishlist is empty"
+										},
+										{
+											"name": "back_to_shop_text",
+											"path": "sections.wishlist.buttons.back_to_shop_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Back to shop",
+											"translate": "Back to shop"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "thanks_page",
+					"sections": [
+						{
+							"name": "thanks_texts",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "thanks_texts",
+									"values": [
+										{
+											"name": "title",
+											"path": "sections.thanks.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Thanks",
+											"translate": "Thanks"
+										},
+										{
+											"name": "description",
+											"path": "sections.thanks.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Thank you for your order",
+											"translate": "Thank you for your order"
+										},
+										{
+											"name": "back_to_shop_text",
+											"path": "sections.thanks.buttons.back_to_shop_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Back to shop",
+											"translate": "Back to shop"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "error_page",
+					"sections": [
+						{
+							"name": "404_texts",
+							"icon": "select_all",
+							"blocks": [
+								{
+									"name": "_404_texts",
+									"values": [
+										{
+											"name": "title",
+											"path": "sections._404.title",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Page not found",
+											"translate": "Page not found"
+										},
+										{
+											"name": "description",
+											"path": "sections._404.description",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "We are sorry, but the page you requested was not found",
+											"translate": "We are sorry, but the page you requested was not found"
+										},
+										{
+											"name": "back_to_shop_text",
+											"path": "sections._404.buttons.back_to_shop_text",
+											"type": "tc_input",
+											"translatable": true,
+											"value": "Back to shop",
+											"translate": "Back to shop"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			],
+			"currentLang": null
+		},
+		"current": {
+			"translates": [
+				{
+					"language": "AR",
+					"properties": [
+						{
+							"name": "sections.products.add_to_cart.text",
+							"value": "أضف الى السلة"
+						},
+						{
+							"name": "sections.products.added_text",
+							"value": "تمت الإضافة"
+						},
+						{
+							"name": "sections.products.confirm_text",
+							"value": "تأكيد"
+						},
+						{
+							"name": "sections.alerts.added_to_cart",
+							"value": "تمت الإضافة الى السلة"
+						},
+						{
+							"name": "sections.alerts.added_to_wishlist",
+							"value": "تمت الإضافة الى قائمة المفضلة"
+						},
+						{
+							"name": "sections.alerts.removed_from_cart",
+							"value": "تم الحذف من السلة"
+						},
+						{
+							"name": "sections.alerts.removed_from_wishlist",
+							"value": "تم الحذف من قائمة المفضلة"
+						},
+						{
+							"name": "sections.footer.copyright.copyright_text",
+							"value": "Copyright © __YEAR__ Storeino.جميع الحقوق محفوظة <a href='//storeino.com'>storeino.com</a>"
+						},
+						{
+							"name": "sections.footer.company.copy_right",
+							"value": "Copyright ©  __YEAR__  Storeino.جميع الحقوق محفوظة.<a href='//storeino.com'>storeino.com</a>."
+						},
+						{
+							"name": "sections.banner.title",
+							"value": "احجز سيارة الإيجار الخاصة بك"
+						},
+						{
+							"name": "sections.banner.description",
+							"value": "سيارات فاخرة بتكلفة منخفضة ، تبدأ من 75 دولارًا / يومًا من أكثر من 100 موقع متميز"
+						},
+						{
+							"name": "sections.banner.formuler.pick_up_date",
+							"value": "تاريخ الاستلام"
+						},
+						{
+							"name": "sections.banner.formuler.drop_off_date",
+							"value": "تاريخ التسليم"
+						},
+						{
+							"name": "sections.banner.formuler.vehicle_makers",
+							"value": "صانعي المركبات"
+						},
+						{
+							"name": "sections.collections.title",
+							"value": "الفئات"
+						},
+						{
+							"name": "sections.products_1.title",
+							"value": "منتجات مميزة"
+						},
+						{
+							"name": "sections.products_1.show_more_text",
+							"value": "اكتشف المزيد"
+						},
+						{
+							"name": "sections.home.news.title",
+							"value": "آخر الاخبار "
+						},
+						{
+							"name": "sections.services.title",
+							"value": "خدماتنا"
+						},
+						{
+							"name": "sections.services.items.delivery.text",
+							"value": "التوصيل السريع"
+						},
+						{
+							"name": "sections.services.items.satisfaction.text",
+							"value": "ارضاء الزبناء"
+						},
+						{
+							"name": "sections.services.items.quality.text",
+							"value": "جودة عالية"
+						},
+						{
+							"name": "sections.home.benefits.title",
+							"value": "مميزاتنا"
+						},
+						{
+							"name": "sections.home.benefits.under_title",
+							"value": "خدمات تأجير السيارات الفاخرة من AutoStar"
+						},
+						{
+							"name": "sections.home.satisfaction.title",
+							"value": "عملائنا راضون دائمًا بنسبة 100٪"
+						},
+						{
+							"name": "sections.home.providence.title",
+							"value": "نوفر حجوزات أسهل وأسرع"
+						},
+						{
+							"name": "sections.home.pickup.title",
+							"value": "اختيارك لأي موقع استلام"
+						},
+						{
+							"name": "sections.home.works.title",
+							"value": "كيف يعمل تأجير السيارات AutoStar"
+						},
+						{
+							"name": "sections.home.works.step_1.descrition",
+							"value": "بمجرد الاختيار، احجز سيارتنا وحدد تاريخ / وقت الاستلام"
+						},
+						{
+							"name": "sections.home.works.step_2.description",
+							"value": "بمجرد الاختيار، احجز سيارتنا وحدد تاريخ / وقت الاستلام"
+						},
+						{
+							"name": "sections.home.works.step_3.description",
+							"value": "بمجرد الاختيار، احجز سيارتنا وحدد تاريخ / وقت الاستلام"
+						},
+						{
+							"name": "sections.home.fleets.main_title",
+							"value": "أسطول تأجير سياراتنا"
+						},
+						{
+							"name": "sections.home.fleets.under_title",
+							"value": "خدمات تأجير السيارات الفاخرة من AutoStar"
+						},
+						{
+							"name": "sections.home.fleets.products.rent_it",
+							"value": "إستأجرها"
+						},
+						{
+							"name": "sections.home.services.main_title",
+							"value": " خدمة تأجير السيارات Autostar مع مجموعة واسعة من المركبات "
+						},
+						{
+							"name": "sections.home.services.service_1.main_title",
+							"value": "أسعار سهلة وتنافسية"
+						},
+						{
+							"name": "sections.home.services.service_2.main_title",
+							"value": "مساعدة أثناء الأعطال"
+						},
+						{
+							"name": "sections.home.services.service_3.main_title",
+							"value": "خدمة تأجير موثوقة"
+						},
+						{
+							"name": "sections.home.services.service_4.main_title",
+							"value": "دعم العملاء المجاني على مدار الساعة طوال أيام الأسبوع"
+						},
+						{
+							"name": "sections.home.booking.description",
+							"value": "اتصل اليوم لحجز رحلتك التالية (800) 650 743 يتوفر المشغلون على مدار الساعة طوال أيام الأسبوع"
+						},
+						{
+							"name": "sections.home.reviews.main_title",
+							"value": "آراء العملاء"
+						},
+						{
+							"name": "sections.home.reviews.under_title",
+							"value": "خدمات تأجير السيارات الفاخرة AutoStar"
+						},
+						{
+							"name": "sections.product.add_to_cart.text",
+							"value": "اضف الى السلة"
+						},
+						{
+							"name": "sections.product.buy_now.text",
+							"value": "اشتري الآن"
+						},
+						{
+							"name": "sections.product.related.title",
+							"value": "منتجات ذات صلة"
+						},
+						{
+							"name": "sections.product.upsell.title",
+							"value": "عروض خاصة"
+						},
+						{
+							"name": "sections.product.reviews.title",
+							"value": "آراء زبنائنا"
+						},
+						{
+							"name": "sections.product.share_buttons.title",
+							"value": "شارك"
+						},
+						{
+							"name": "sections.post.share_buttons.title",
+							"value": "شارك مع اصدقائك"
+						},
+						{
+							"name": "sections.post.related.title",
+							"value": "مقالات ذات صلة"
+						},
+						{
+							"name": "sections.shop.sidebar.collections.title",
+							"value": "الفئات"
+						},
+						{
+							"name": "sections.shop.sidebar.prices.title",
+							"value": "الأثمنة"
+						},
+						{
+							"name": "sections.shop.sidebar.sizes.title",
+							"value": "المقاسات"
+						},
+						{
+							"name": "sections.shop.sidebar.colors.title",
+							"value": "الألوان"
+						},
+						{
+							"name": "sections.shop.sidebar.tags.title",
+							"value": "العلامات"
+						},
+						{
+							"name": "sections.shop.sidebar.brands.title",
+							"value": "العلامات التجارية"
+						},
+						{
+							"name": "sections.shop.title",
+							"value": "المتجر"
+						},
+						{
+							"name": "sections.shop.description",
+							"value": "اكتشف آخر منتجاتنا"
+						},
+						{
+							"name": "sections.shop.sorts.newest",
+							"value": "الحديثة"
+						},
+						{
+							"name": "sections.shop.sorts.oldest",
+							"value": "الاقدم"
+						},
+						{
+							"name": "sections.shop.sorts.name_asc",
+							"value": "ترتيب الاسماء أ-ي"
+						},
+						{
+							"name": "sections.shop.sorts.name_desc",
+							"value": "ترتيب الاسماء ي-أ"
+						},
+						{
+							"name": "sections.shop.sorts.price_asc",
+							"value": "الأقل ثمنا"
+						},
+						{
+							"name": "sections.shop.sorts.price_desc",
+							"value": "الأعلى ثمنا"
+						},
+						{
+							"name": "sections.shop.sorts.rating_asc",
+							"value": "آراء اقل"
+						},
+						{
+							"name": "sections.shop.sorts.rating_desc",
+							"value": "آراء أكثر"
+						},
+						{
+							"name": "sections.shop.pagination.next_text",
+							"value": "التالي"
+						},
+						{
+							"name": "sections.shop.pagination.prev_text",
+							"value": "السابق"
+						},
+						{
+							"name": "sections.blog.sidebar.categories.title",
+							"value": "الفئات"
+						},
+						{
+							"name": "sections.blog.sidebar.products.title",
+							"value": "المتجر"
+						},
+						{
+							"name": "sections.blog.sorts.newest",
+							"value": "الاحدث"
+						},
+						{
+							"name": "sections.blog.sorts.oldest",
+							"value": "الأقدم"
+						},
+						{
+							"name": "sections.blog.sorts.name_asc",
+							"value": "ترتيب الاسماء أ-ي"
+						},
+						{
+							"name": "sections.blog.sorts.name_desc",
+							"value": "ترتيب الاسماء ي-أ"
+						},
+						{
+							"name": "sections.blog.pagination.next_text",
+							"value": "التالي"
+						},
+						{
+							"name": "sections.blog.pagination.prev_text",
+							"value": "السابق"
+						},
+						{
+							"name": "sections.cart.title",
+							"value": "سلة "
+						},
+						{
+							"name": "sections.cart.empty_text",
+							"value": "سلتكم فارغة"
+						},
+						{
+							"name": "sections.cart.total_text",
+							"value": "المجموع"
+						},
+						{
+							"name": "sections.cart.upsell.title",
+							"value": "عروض خاصة"
+						},
+						{
+							"name": "sections.cart.buttons.checkout_text",
+							"value": "اكمل الطلبية"
+						},
+						{
+							"name": "sections.cart.buttons.back_to_shop_text",
+							"value": "الرجوع الى المتجر"
+						},
+						{
+							"name": "sections.wishlist.title",
+							"value": "قائمة المفصلة"
+						},
+						{
+							"name": "sections.wishlist.empty_text",
+							"value": "قائمة المفصلة فارغة"
+						},
+						{
+							"name": "sections.wishlist.buttons.back_to_shop_text",
+							"value": "الرجوع الى المتجر"
+						},
+						{
+							"name": "sections.thanks.title",
+							"value": "شكرا"
+						},
+						{
+							"name": "sections.thanks.description",
+							"value": "شكرا على طلبيتكم"
+						},
+						{
+							"name": "sections.thanks.buttons.back_to_shop_text",
+							"value": "الرجوع الى المتجر"
+						},
+						{
+							"name": "sections._404.title",
+							"value": "الرجوع الى المتجر"
+						},
+						{
+							"name": "sections._404.description",
+							"value": "نحن آسفون ، لكن الصفحة التي طلبتها لم يتم العثور عليها"
+						},
+						{
+							"name": "sections._404.buttons.back_to_shop_text",
+							"value": "الرجوع الى المتجر"
+						}
+					]
+				},
+				{
+					"language": "FR",
+					"properties": [
+						{
+							"name": "sections.products.add_to_cart.text",
+							"value": "Ajouter au panier"
+						},
+						{
+							"name": "sections.products.added_text",
+							"value": "Ajouté au panier"
+						},
+						{
+							"name": "sections.products.confirm_text",
+							"value": "Confirmer"
+						},
+						{
+							"name": "sections.alerts.added_to_cart",
+							"value": "Ajouté au panier"
+						},
+						{
+							"name": "sections.alerts.added_to_wishlist",
+							"value": "Ajouté au favoris"
+						},
+						{
+							"name": "sections.alerts.removed_from_cart",
+							"value": "Supprimé du panier"
+						},
+						{
+							"name": "sections.alerts.removed_from_wishlist",
+							"value": "Supprimé du panier"
+						},
+						{
+							"name": "sections.footer.copyright.copyright_text",
+							"value": "Copyright © __YEAR__ Storeino. Tous les droits réservés. <a href='//storeino.com'>storeino.com</a>"
+						},
+						{
+							"name": "sections.footer.company.copy_right",
+							"value": "Copyright ©  __YEAR__  Storeino.Tous les droits réservés. <a href='//storeino.com'>storeino.com</a>."
+						},
+						{
+							"name": "sections.banner.title",
+							"value": "Réservez votre location de voiture"
+						},
+						{
+							"name": "sections.banner.description",
+							"value": "Voitures de luxe à faible coût, à partir de 75 $ / jour dans plus de 100 emplacements haut de gamme"
+						},
+						{
+							"name": "sections.banner.formuler.pick_up_date",
+							"value": "DATE DE PRISE EN CHARGE"
+						},
+						{
+							"name": "sections.banner.formuler.drop_off_date",
+							"value": "DATE DE RESTITUTION"
+						},
+						{
+							"name": "sections.banner.formuler.vehicle_makers",
+							"value": "CONSTRUCTEURS DE VÉHICULES"
+						},
+						{
+							"name": "sections.collections.title",
+							"value": "Collections"
+						},
+						{
+							"name": "sections.products_1.title",
+							"value": "Produits vedettes"
+						},
+						{
+							"name": "sections.products_1.show_more_text",
+							"value": "Discover more"
+						},
+						{
+							"name": "sections.home.news.title",
+							"value": "Derniers articles"
+						},
+						{
+							"name": "sections.services.title",
+							"value": "Nos services"
+						},
+						{
+							"name": "sections.services.items.delivery.text",
+							"value": "Livraison rapide"
+						},
+						{
+							"name": "sections.services.items.satisfaction.text",
+							"value": "Satisfaction"
+						},
+						{
+							"name": "sections.services.items.quality.text",
+							"value": "Qualité"
+						},
+						{
+							"name": "sections.home.benefits.title",
+							"value": "Nos avantages"
+						},
+						{
+							"name": "sections.home.benefits.under_title",
+							"value": "Services de location de voitures de luxe AutoStar"
+						},
+						{
+							"name": "sections.home.satisfaction.title",
+							"value": "Nos clients sont toujours satisfaits à 100 %"
+						},
+						{
+							"name": "sections.home.providence.title",
+							"value": "Nous proposons des réservations plus faciles et plus rapides"
+						},
+						{
+							"name": "sections.home.pickup.title",
+							"value": "Votre choix parmi n'importe quel lieu de prise en charge"
+						},
+						{
+							"name": "sections.home.works.title",
+							"value": "COMMENT FONCTIONNE LA LOCATION DE VOITURES AUTOSTAR"
+						},
+						{
+							"name": "sections.home.works.step_1.descrition",
+							"value": "Une fois sélectionné, réservez notre voiture et définissez une date / heure de prise en charge"
+						},
+						{
+							"name": "sections.home.works.step_2.description",
+							"value": "Une fois sélectionné, réservez notre voiture et définissez une date / heure de prise en charge"
+						},
+						{
+							"name": "sections.home.works.step_3.description",
+							"value": "Une fois sélectionné, réservez notre voiture et définissez une date / heure de prise en charge"
+						},
+						{
+							"name": "sections.home.fleets.main_title",
+							"value": "NOTRE FLOTTE DE VÉHICULES DE LOCATION"
+						},
+						{
+							"name": "sections.home.fleets.under_title",
+							"value": "Services de location de voitures de luxe AutoStar"
+						},
+						{
+							"name": "sections.home.fleets.products.rent_it",
+							"value": "Louez-le"
+						},
+						{
+							"name": "sections.home.services.main_title",
+							"value": "Service de location de voitures Autostar avec une large gamme de véhicules"
+						},
+						{
+							"name": "sections.home.services.service_1.main_title",
+							"value": "Prix ​​faciles et compétitifs"
+						},
+						{
+							"name": "sections.home.services.service_2.main_title",
+							"value": "Assistance en cas de panne"
+						},
+						{
+							"name": "sections.home.services.service_3.main_title",
+							"value": "Service de location fiable"
+						},
+						{
+							"name": "sections.home.services.service_4.main_title",
+							"value": "Support client gratuit 24/7"
+						},
+						{
+							"name": "sections.home.booking.description",
+							"value": "Appelez aujourd'hui pour réserver votre prochain trajet (800) 650 743 Les opérateurs sont disponibles 24h/24 et 7j/7"
+						},
+						{
+							"name": "sections.home.reviews.main_title",
+							"value": "Avis des clients"
+						},
+						{
+							"name": "sections.home.reviews.under_title",
+							"value": "Services de location de voitures de luxe AutoStar"
+						},
+						{
+							"name": "sections.product.add_to_cart.text",
+							"value": "Ajouter au panier"
+						},
+						{
+							"name": "sections.product.buy_now.text",
+							"value": "Acheter maintenant"
+						},
+						{
+							"name": "sections.product.related.title",
+							"value": "Produits relatifs"
+						},
+						{
+							"name": "sections.product.upsell.title",
+							"value": "Offre spéciale"
+						},
+						{
+							"name": "sections.product.reviews.title",
+							"value": "Les avis de nos clients"
+						},
+						{
+							"name": "sections.product.share_buttons.title",
+							"value": "Partager"
+						},
+						{
+							"name": "sections.post.share_buttons.title",
+							"value": "Partager"
+						},
+						{
+							"name": "sections.post.related.title",
+							"value": "Articles relatifs"
+						},
+						{
+							"name": "sections.shop.sidebar.collections.title",
+							"value": "Collections"
+						},
+						{
+							"name": "sections.shop.sidebar.prices.title",
+							"value": "Prix"
+						},
+						{
+							"name": "sections.shop.sidebar.sizes.title",
+							"value": "Tailles"
+						},
+						{
+							"name": "sections.shop.sidebar.colors.title",
+							"value": "Couleurs"
+						},
+						{
+							"name": "sections.shop.sidebar.tags.title",
+							"value": "Tags"
+						},
+						{
+							"name": "sections.shop.sidebar.brands.title",
+							"value": "Marques"
+						},
+						{
+							"name": "sections.shop.sorts.newest",
+							"value": "Le plus récents"
+						},
+						{
+							"name": "sections.shop.sorts.oldest",
+							"value": "Le plus anciens"
+						},
+						{
+							"name": "sections.shop.sorts.name_asc",
+							"value": "Nom (A-Z)"
+						},
+						{
+							"name": "sections.shop.sorts.name_desc",
+							"value": "Nom (Z-A)"
+						},
+						{
+							"name": "sections.shop.sorts.price_asc",
+							"value": "Prix (Moins cher)"
+						},
+						{
+							"name": "sections.shop.sorts.price_desc",
+							"value": "Prix (Plus cher)"
+						},
+						{
+							"name": "sections.shop.sorts.rating_asc",
+							"value": "Moins d'avis"
+						},
+						{
+							"name": "sections.shop.sorts.rating_desc",
+							"value": "Plus d'avis"
+						},
+						{
+							"name": "sections.shop.pagination.next_text",
+							"value": "Suivant"
+						},
+						{
+							"name": "sections.shop.pagination.prev_text",
+							"value": "Précedent"
+						},
+						{
+							"name": "sections.blog.sidebar.categories.title",
+							"value": "Catégories"
+						},
+						{
+							"name": "sections.blog.sidebar.products.title",
+							"value": "De la boutique"
+						},
+						{
+							"name": "sections.blog.sorts.newest",
+							"value": "Le plus récent"
+						},
+						{
+							"name": "sections.blog.sorts.oldest",
+							"value": "Le plus ancien"
+						},
+						{
+							"name": "sections.blog.sorts.name_asc",
+							"value": "Nom (A-Z)"
+						},
+						{
+							"name": "sections.blog.sorts.name_desc",
+							"value": "Nom (Z-A)"
+						},
+						{
+							"name": "sections.blog.pagination.next_text",
+							"value": "Suivant"
+						},
+						{
+							"name": "sections.blog.pagination.prev_text",
+							"value": "Précedent"
+						},
+						{
+							"name": "sections.cart.title",
+							"value": "Panier d'achat"
+						},
+						{
+							"name": "sections.cart.empty_text",
+							"value": "Votre panier est vide"
+						},
+						{
+							"name": "sections.cart.total_text",
+							"value": "Total"
+						},
+						{
+							"name": "sections.cart.upsell.title",
+							"value": "Offre spéciale"
+						},
+						{
+							"name": "sections.cart.buttons.checkout_text",
+							"value": "Passer une commande"
+						},
+						{
+							"name": "sections.cart.buttons.back_to_shop_text",
+							"value": "Retour à la boutique"
+						},
+						{
+							"name": "sections.wishlist.title",
+							"value": "Listes des favoris"
+						},
+						{
+							"name": "sections.wishlist.empty_text",
+							"value": "Votre liste de favoris"
+						},
+						{
+							"name": "sections.wishlist.buttons.back_to_shop_text",
+							"value": "Retour à la boutique"
+						},
+						{
+							"name": "sections.thanks.title",
+							"value": "Merci"
+						},
+						{
+							"name": "sections.thanks.description",
+							"value": "Merci pour votre commande"
+						},
+						{
+							"name": "sections.thanks.buttons.back_to_shop_text",
+							"value": "Retour à la boutique"
+						},
+						{
+							"name": "sections._404.title",
+							"value": "Retour à la boutique"
+						},
+						{
+							"name": "sections._404.description",
+							"value": "Nous sommes désolés, mais la page que vous avez demandée n'a pas été trouvée"
+						},
+						{
+							"name": "sections._404.buttons.back_to_shop_text",
+							"value": "retour à la boutique"
+						}
+					]
+				}
+			],
+			"style": {
+				"primary_color": "#da1c36",
+				"secondary_color": "#f7f7f7"
+			},
+			"sections": {
+				"products": {
+					"add_to_cart": {
+						"active": true,
+						"text": "Add to cart"
+					},
+					"show_reviews": true,
+					"add_to_cart_to_checkout": true,
+					"add_to_wishlist": {
+						"active": true
+					},
+					"added_text": "Added",
+					"confirm_text": "Confirm"
+				},
+				"alerts": {
+					"added_to_cart": "Added to cart",
+					"added_to_wishlist": "Added to wishlist",
+					"removed_from_cart": "Removed from cart",
+					"removed_from_wishlist": "Removed from wishlist"
+				},
+				"header": {
+					"links": {
+						"menus": "65612aa66cdac169bf62f641",
+						"active": true
+					},
+					"company_name": {
+						"name": "AUTOSTAR",
+						"active": true
+					},
+					"company_logo": {
+						"logo": "655f3dac6cdac169bf62f261",
+						"active": true
+					}
+				},
+				"footer": {
+					"terms": {
+						"active": true,
+						"menu": ""
+					},
+					"copyright": {
+						"copyright_text": "Copyright © __YEAR__. All rights reserved. <a href='//storeino.com'>storeino.com</a>"
+					},
+					"company": {
+						"company_logo": {
+							"active": true
+						},
+						"copy_right": "Copyright © __YEAR__  Storeino. All rights reserved. <a href='//storeino.com'>storeino.com</a>.",
+						"show_copy_right": {
+							"active": true
+						},
+						"company_name": {
+							"active": true
+						}
+					},
+					"useful_links": {
+						"active": true,
+						"menu": "",
+						"title": {
+							"active": true
+						}
+					},
+					"showroom": {
+						"adresse": {
+							"active": true
+						},
+						"phone": {
+							"active": true
+						},
+						"email": {
+							"active": true
+						},
+						"notice": {
+							"active": true
+						},
+						"title": "<p><strong class=\"animating\">CONTACT INFORMATION</strong></p>"
+					}
+				},
+				"banner": {
+					"title": "Book Your Auto Rental",
+					"description": "Luxury Cars at low-cost, starts $75 / day  from over 100 premium locations",
+					"formuler": {
+						"pick_up_date": "PICK UP DATE",
+						"drop_off_date": "DROP-OFF DATE",
+						"vehicle_makers": "MAKERS OF VEHICLE"
+					}
+				},
+				"collections": {
+					"active": true,
+					"title": "Top collections",
+					"items": []
+				},
+				"products_1": {
+					"active": true,
+					"title": "Featured Products",
+					"collections": [],
+					"tags": "",
+					"show_more_text": "Discover more",
+					"show_more_url": "/shop"
+				},
+				"home": {
+					"news": {
+						"activate": true,
+						"title": "Latest News",
+						"items": null
+					},
+					"benefits": {
+						"activate": true,
+						"title": "OUR BENEFITS",
+						"under_title": "Luxury AutoStar Rental Services"
+					},
+					"satisfaction": {
+						"icon": null,
+						"title": "Our Customers Always 100% Satisfied",
+						"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation",
+						"activate": true
+					},
+					"providence": {
+						"activate": true,
+						"title": " We Provide Easier & Faster Bookings",
+						"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation",
+						"icon": null
+					},
+					"pickup": {
+						"icon": null,
+						"title": " Your Choice of Any Pickup Location",
+						"activate": true,
+						"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation"
+					},
+					"works": {
+						"title": " HOW DOES THE AUTOSTAR RENTAL WORKS",
+						"step_1": {
+							"icon": null,
+							"descrition": "Once seected, Book our auto and set a pickup date / time"
+						},
+						"step_2": {
+							"icon": null,
+							"description": "Once seected, Book our auto and set a pickup date / time"
+						},
+						"step_3": {
+							"icon": null,
+							"description": "Once seected, Book our auto and set a pickup date / time"
+						},
+						"activate": true
+					},
+					"fleets": {
+						"main_title": " OUR RENTAL FLEETS",
+						"under_title": {
+							"activate": true
+						},
+						"description": {
+							"activate": true
+						},
+						"products": {
+							"rent_it": "RENT IT"
+						},
+						"activate": true
+					},
+					"services": {
+						"main_title": " Autostar Rental Service With a wide range of Vehicles",
+						"title": {
+							"activate": true
+						},
+						"description": {
+							"activate": true
+						},
+						"service_1": {
+							"main_title": "Easy & Competitive Prices",
+							"service_description": "Faucibus gravida aliquam nulla lectus lacinia eget",
+							"icon": null,
+							"activate": true
+						},
+						"service_2": {
+							"main_title": "Breakdown Assistance",
+							"service_description": "Faucibus gravida aliquam nulla lectus lacinia eget",
+							"icon": null,
+							"activate": true
+						},
+						"service_3": {
+							"main_title": "Trusted Rent Service",
+							"service_description": "Faucibus gravida aliquam nulla lectus lacinia eget",
+							"icon": null,
+							"activate": true
+						},
+						"service_4": {
+							"main_title": "24/7 Free Customer Support",
+							"service_description": "Faucibus gravida aliquam nulla lectus lacinia eget",
+							"icon": null,
+							"activate": true
+						},
+						"photo_1": null,
+						"photo_2": null,
+						"photo_3": null,
+						"photos": {
+							"activate": true
+						},
+						"activate": true
+					},
+					"booking": {
+						"description": {
+							"activate": true
+						},
+						"activate": true
+					},
+					"reviews": {
+						"main_title": "CUSTOMER REVIEWS",
+						"under_title": "Luxury AutoStar Rental Services",
+						"activate": true
+					}
+				},
+				"services": {
+					"active": true,
+					"title": "Our services",
+					"items": {
+						"delivery": {
+							"text": "Fast delivery",
+							"url": "#"
+						},
+						"satisfaction": {
+							"text": "Satisfaction",
+							"url": "#"
+						},
+						"quality": {
+							"text": "Quality",
+							"url": "#"
+						}
+					}
+				},
+				"product": {
+					"add_to_cart": {
+						"active": true,
+						"text": "Add to cart"
+					},
+					"buy_now": {
+						"active": true,
+						"text": "Buy now"
+					},
+					"related": {
+						"active": true,
+						"title": "Related products"
+					},
+					"upsell": {
+						"active": true,
+						"title": "Special offer for you"
+					},
+					"reviews": {
+						"active": true,
+						"title": "Our customers reviews"
+					},
+					"share_buttons": {
+						"active": true,
+						"title": "Share this product",
+						"whatsapp": true,
+						"facebook": true,
+						"twitter": true,
+						"linkedin": true
+					}
+				},
+				"post": {
+					"share_buttons": {
+						"active": true,
+						"title": "Share",
+						"whatsapp": true,
+						"facebook": true,
+						"twitter": true,
+						"linkedin": true
+					},
+					"related": {
+						"active": true,
+						"title": "Related posts"
+					}
+				},
+				"shop": {
+					"sidebar": {
+						"active": true,
+						"collections": {
+							"active": true,
+							"title": "Collections"
+						},
+						"prices": {
+							"active": true,
+							"title": "Prices"
+						},
+						"sizes": {
+							"active": true,
+							"title": "Sizes"
+						},
+						"colors": {
+							"active": true,
+							"title": "Colors"
+						},
+						"tags": {
+							"active": true,
+							"title": "Tags"
+						},
+						"brands": {
+							"active": true,
+							"title": "Brands"
+						}
+					},
+					"title": "Shop",
+					"description": "Find best selling products",
+					"sorts": {
+						"newest": "Newest",
+						"oldest": "Oldest",
+						"name_asc": "Name (A-Z)",
+						"name_desc": "Name (Z-A)",
+						"price_asc": "Price (low to high)",
+						"price_desc": "Price (high to low)",
+						"rating_asc": "Rating (low to high)",
+						"rating_desc": "Rating (high to low)"
+					},
+					"pagination": {
+						"limit": 12,
+						"next_text": "Next",
+						"prev_text": "Prev"
+					},
+					"empty_text": "No products found"
+				},
+				"blog": {
+					"sidebar": {
+						"active": true,
+						"categories": {
+							"active": true,
+							"title": "Categories"
+						},
+						"products": {
+							"active": true,
+							"title": "From shop"
+						}
+					},
+					"title": "Blog",
+					"description": "Our latest posts",
+					"sorts": {
+						"newest": "Newest",
+						"oldest": "Oldest",
+						"name_asc": "Name (A-Z)",
+						"name_desc": "Name (Z-A)"
+					},
+					"pagination": {
+						"limit": 12,
+						"next_text": "Next",
+						"prev_text": "Prev"
+					}
+				},
+				"cart": {
+					"title": "Shopping cart",
+					"empty_text": "Your cart is empty",
+					"total_text": "Total",
+					"upsell": {
+						"active": true,
+						"title": "Special offer for you"
+					},
+					"buttons": {
+						"checkout_text": "Place Order",
+						"back_to_shop_text": "Back to shop",
+						"show_back_to_shop": true
+					}
+				},
+				"wishlist": {
+					"title": "Your wishlist",
+					"empty_text": "Your wishlist is empty",
+					"buttons": {
+						"back_to_shop_text": "Back to shop"
+					}
+				},
+				"thanks": {
+					"title": "Thanks",
+					"description": "Thank you for your order",
+					"buttons": {
+						"back_to_shop_text": "Back to shop"
+					}
+				},
+				"_404": {
+					"title": "Page not found",
+					"description": "We are sorry, but the page you requested was not found",
+					"buttons": {
+						"back_to_shop_text": "Back to shop"
+					}
+				}
+			},
+			"temp": {
+				"newField": "your value"
+			}
+		}
+	},
+	"images": [
+		"https://storeno.b-cdn.net/themes/palest.jpg"
+	],
+	"isActive": false,
+	"autoRenew": false,
+	"_id": "654e4a1c6cdac169bf62a70a",
+	"expiryDate": "2050-12-12T00:00:00.000Z",
+	"name": "rental",
+	"url": "/themes/rental",
+	"route": "rental",
+	"defaults": [],
+	"paymentType": "yearly",
+	"payments": [],
+	"price": 22,
+	"description": "✔ Simple and easy theme to use ✔ Well presented and convertible store and product page ✔ SEO optimized ✔ Responsive to all devices",
+	"publicName": "CarMieten - Versatile Responsive Car Rental Template",
+	"storeId": "654e4a1cac0d94578705afc8",
+	"createdAt": "2023-11-10T15:19:56.766Z",
+	"updatedAt": "2023-11-27T13:50:14.050Z",
+	"__v": 0
+}

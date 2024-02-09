@@ -19,38 +19,6 @@
 
             </div>
 
-            <!-- <div class="flex flex-col w-full border-2 pb-10 border-gray-100">
-                <div class="w-full py-5 bg">
-                    <div class=" text-black text-base font-medium pl-4">
-                        NEWSLETTER
-                    </div>
-                </div>
-                <div class=" mb-6 border-b-2 border-red-700">
-                </div>
-                <div class=" px-8">
-                    <div class="text-black text-xl font-medium pb-6 w-full">
-                        Get Even More
-                    </div>
-                    <div class="text-black text-xs pb-4 w-full">
-                        "Get all latest content delivered straight to your inbox."
-                    </div>
-                    <div class="flex flex-row justify-between items-center w-full border-2 border-gray-100">
-                        <div class="text-xs pl-3">
-                            <input type="email" placeholder="Enter email">
-                        </div>
-                        <div class=" text-white bg-red-600 py-3 px-6  text-xs">
-                            <button type="submit" class="font-semibold">Go</button>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-gray-400 text-xs pt-6 font-light w-full">
-                            Don't worry we don't spam
-                        </p>
-                    </div>
-                </div>
-
-            </div> -->
-
         </div>
         <div v-if="!loading.posts" class="flex flex-col mx-7 w-full">
 
@@ -74,6 +42,7 @@
                 <nuxt-link :to="`/`"
                     class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">
                     Back To Home Page
+                    <!-- t('') -->
                 </nuxt-link>
             </div>
         </div>
@@ -141,15 +110,16 @@ export default {
                     EN: "No News Founded",
                     FR: "Aucune Nouvelle Trouvée",
                     AR: "لا أخبار تم العثور عليها",
-                    // ES: " ",
-                    // PT: " "
                 },
                 Search: {
                     EN: "Search",
                     FR: "Recherche",
                     AR: "بحث",
-                    // ES: "",
-                    // PT: ""
+                },
+                Back_To_Home_Page: {
+                    EN: "Back To Home Page",
+                    FR: "RETOUR À LA PAGE D'ACCUEIL",
+                    AR: "العودة إلى الصفحة الرئيسية",
                 },
             }
             return langs[key] && langs[key][this.$store.state.language.code] || '';

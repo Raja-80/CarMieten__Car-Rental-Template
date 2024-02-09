@@ -7,37 +7,15 @@
             </h1>
         </div>
 
-        <div class="flex flex-col lg:flex-row justify-around items-center">
+        <div v-if="guide.items" class="flex flex-wrap justify-center ">
 
-            <div class="flex flex-row justify-center items-center lg:mx-4 my-4">
+            <div v-for="(key,i) in Object.keys(guide.items)" :key="i" class="flex items-center gap-3 lg:gap-5 w-full md:w-1/2 lg:w-1/4 lg:mx-4 my-4">
 
-                <nuxt-img v-if="step_1.show_icon" class="h-30 mb-6 pl-4"
-                    :src="step_1.icon ? step_1.icon.src : $store.state.defaults.logo" alt="company logo" />
+                <nuxt-img v-if="guide.items[key].show_icon" class="h-20 mb-6 pl-4"
+                    :src="guide.items[key].icon ? guide.items[key].icon.src : $store.state.defaults.logo" alt="company logo" />
 
-                <p v-if="step_1.show_info" class=" text-xl text-gray-400 pr-14 pl-8">
-                    {{ step_1.info }}
-                </p>
-
-            </div>
-
-            <div class="flex flex-row justify-center items-center lg:mx-4 my-4">
-
-                <nuxt-img v-if="step_2.show_icon" class="h-30 mb-6 pl-4"
-                    :src="step_2.icon ? step_2.icon.src : $store.state.defaults.logo" alt="company logo" />
-
-                <p v-if="step_2.show_info" class=" text-xl text-gray-400 pr-14 pl-8">
-                    {{ step_2.info }}
-                </p>
-
-            </div>
-
-            <div class="flex flex-row justify-center items-center lg:mx-4 my-4">
-
-                <nuxt-img v-if="step_3.show_icon" class="h-30 mb-6 pl-4"
-                    :src="step_3.icon ? step_3.icon.src : $store.state.defaults.logo" alt="company logo" />
-
-                <p v-if="step_3.show_info" class=" text-xl text-gray-400 pr-14 pl-8">
-                    {{ step_3.info }}
+                <p v-if="guide.items[key].show_info" class=" text-xl text-gray-400 pr-14">
+                    {{ guide.items[key].info }}
                 </p>
 
             </div>
@@ -51,9 +29,7 @@ export default {
     data() {
         return {
             guide: this.$settings.sections.guide,
-            step_1: this.$settings.sections.step_1,
-            step_2: this.$settings.sections.step_2,
-            step_3: this.$settings.sections.step_3,
+            
         };
     },
 }

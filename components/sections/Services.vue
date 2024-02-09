@@ -19,73 +19,25 @@
 
             <!-- Services -->
 
-            <div class=" pr-0">
-                <div class="flex flex-row ">
+            <div v-if="services.items" class="flex flex-wrap flex-col justify-center w-full pr-0">
 
-                    <nuxt-img v-if="service_1.show_icon" class=" h-11 mb-6 pr-2"
-                        :src="service_1.icon ? service_1.icon.src : $store.state.defaults.logo" alt="company logo" />
+                <div v-for="(key,i) in Object.keys(services.items)" :key="i" class="flex flex-row items-center gap-3 lg:gap-5 w-full md:w-1/2 lg:w-4/5 py-6">
 
-                    <div>
-                        <h2 v-if="service_1.show_title" class="text-black font-normal text-lg ">
-                            {{ service_1.title }}
+                    <nuxt-img v-if="services.items[key].show_icon" class=" h-11 mb-6 pr-2 "
+                        :src="services.items[key].icon ? services.items[key].icon.src : $store.state.defaults.logo" alt="company logo" />
+
+                    <div class="w-full">
+                        <h2 v-if="services.items[key].show_title" class="text-black font-normal text-lg ">
+                            {{ services.items[key].title }}
                         </h2>
-                        <p v-if="service_1.show_description" class=" text-base font-light text-gray-400">
-                            {{ service_1.description }}
+                        <p v-if="services.items[key].show_description" class=" text-base font-light text-gray-400">
+                            {{ services.items[key].description }}
                         </p>
                     </div>
 
 
                 </div>
 
-                <div class="flex flex-row ">
-
-                    <nuxt-img v-if="service_2.show_icon" class=" h-11  mb-6 pr-2"
-                        :src="service_2.icon ? service_2.icon.src : $store.state.defaults.logo" alt="company logo" />
-
-                    <div>
-                        <h2 v-if="service_2.show_title" class="text-black font-normal text-lg ">
-                            {{ service_2.title }}
-                        </h2>
-                        <p v-if="service_2.show_description" class="text-gray-400 font-light text-base  ">
-                            {{ service_2.description }}
-                        </p>
-                    </div>
-
-
-                </div>
-
-                <div class="flex flex-row ">
-
-                    <nuxt-img v-if="service_3.show_title" class=" h-11  mb-6 pr-2"
-                        :src="service_3.icon ? service_3.icon.src : $store.state.defaults.logo" alt="company logo" />
-
-                    <div>
-                        <h2 v-if="service_3.show_title" class="text-black font-normal text-lg ">
-                            {{ service_3.title }}
-                        </h2>
-                        <p v-if="service_3.show_description" class=" text-base font-light text-gray-400 ">
-                            {{ service_3.description }}
-                        </p>
-                    </div>
-
-
-                </div>
-
-                <div class="flex flex-row ">
-
-                    <nuxt-img v-if="service_4.show_icon" class=" h-11  mb-6 pr-2"
-                        :src="service_4.icon ? service_4.icon.src : $store.state.defaults.logo" alt="company logo" />
-
-                    <div>
-                        <h2 v-if="service_4.show_title" class="text-black font-normal text-lg ">
-                            {{ service_4.title }}
-                        </h2>
-                        <p v-if="service_4.show_description" class=" text-base font-light text-gray-400 ">
-                            {{ service_4.description }}
-                        </p>
-                    </div>
-
-                </div>
             </div>
 
         </div>
@@ -120,10 +72,6 @@ export default {
     data() {
         return {
             services: this.$settings.sections.services,
-            service_1: this.$settings.sections.service_1,
-            service_2: this.$settings.sections.service_2,
-            service_3: this.$settings.sections.service_3,
-            service_4: this.$settings.sections.service_4,
 
         }
     },

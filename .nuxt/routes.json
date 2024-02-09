@@ -2,71 +2,71 @@
   {
     "name": "contact",
     "path": "/contact",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/contact/index.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\contact\\\\index.vue",
     "chunkName": "pages/contact/index",
-    "_name": "_66d6be43"
+    "_name": "_4d3ad6c0"
   },
   {
     "name": "error",
     "path": "/error",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/error.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\error.vue",
     "chunkName": "pages/error",
-    "_name": "_723fb8b0"
+    "_name": "_1d09b20a"
   },
   {
     "name": "news",
     "path": "/news",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/news/index.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\news\\\\index.vue",
     "chunkName": "pages/news/index",
-    "_name": "_2c870826"
+    "_name": "_4951c421"
   },
   {
     "name": "thanks",
     "path": "/thanks",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/thanks/index.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\thanks\\\\index.vue",
     "chunkName": "pages/thanks/index",
-    "_name": "_96434ac8"
+    "_name": "_58690feb"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/index.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\index.vue",
     "chunkName": "pages/index",
-    "_name": "_f9cbf51c"
+    "_name": "_4d78d858"
   },
   {
     "name": "account-route",
     "path": "/account/:route?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/account/_route.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\account\\\\_route.vue",
     "chunkName": "pages/account/_route",
-    "_name": "_1ca531fc"
+    "_name": "_3abcbc0e"
   },
   {
     "name": "auto-info-slug",
     "path": "/auto-info/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/auto-info/_slug.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\auto-info\\\\_slug.vue",
     "chunkName": "pages/auto-info/_slug",
-    "_name": "_6e808432"
+    "_name": "_011ff06c"
   },
   {
     "name": "blog-slug",
     "path": "/blog/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/blog/_slug.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\blog\\\\_slug.vue",
     "chunkName": "pages/blog/_slug",
-    "_name": "_3c8ad626"
+    "_name": "_6df6b6aa"
   },
   {
     "name": "cars-slug",
     "path": "/cars/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/cars/_slug.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\cars\\\\_slug.vue",
     "chunkName": "pages/cars/_slug",
-    "_name": "_d4772fac"
+    "_name": "_3b274b0d"
   },
   {
     "name": "pages-slug",
     "path": "/pages/:slug?",
-    "component": "/home/raja/Documents/Full-Stack_Projects_/STOREINO_theme/carMieten/pages/pages/_slug.vue",
+    "component": "C:\\\\Users\\\\HP\\\\Documents\\\\raja\\\\Documents\\\\Full-Stack_Projects_\\\\STOREINO_theme\\\\car_rent_theme\\\\pages\\\\pages\\\\_slug.vue",
     "chunkName": "pages/pages/_slug",
-    "_name": "_472ccd9f"
+    "_name": "_332fb6b4"
   }
 ]

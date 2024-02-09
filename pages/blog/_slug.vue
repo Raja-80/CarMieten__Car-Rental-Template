@@ -42,7 +42,7 @@
             </div>
 
         </div>
-        <div v-if="this.share_buttons.show_share_buttons" class="flex flex-col justify-center w-full pt-32">
+        <div v-if="share_buttons.show_share_buttons" class="flex flex-col justify-center w-full pt-32">
             <div v-if="share_buttons.show_title && this.item" class="text-black text-base font-normal text-center pb-7">
                 {{ share_buttons.title }}
             </div>

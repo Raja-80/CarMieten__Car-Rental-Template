@@ -12,10 +12,13 @@
                     </nuxt-link>
                 </div>
 
-                <div>
-                    <p v-if="footer.show_copyright" class=" text-sm font-light w-56">
+                <div >
+                    <!-- <p v-if="footer.show_copyright" class=" text-sm font-light w-56">
                         {{ footer.copyright }}
-                    </p>
+                    </p> -->
+                    <div v-if="footer.show_copyright" class="txt text-sm font-light w-56" v-html="footer.copyright.replace(/__YEAR__/gi, year)">
+                    </div>
+
                 </div>
 
             </div>
@@ -35,8 +38,9 @@
                         <div v-for="(link, index) in useful_links.links.items" :key="index">
 
                             <nuxt-link :to="link.url"
-                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">{{
-                                    link.text }}</nuxt-link>
+                                class="text-sm font-light hover:text-primary focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
+                                {{ link.text }}
+                            </nuxt-link>
 
                         </div>
                     </div>
@@ -58,7 +62,7 @@
                         <div v-for="(link, index) in terms.links.items" :key="index">
 
                             <nuxt-link :to="link.url"
-                                class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">
+                                class="text-sm font-light hover:text-primary focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
                                 {{ link.text }}
                             </nuxt-link>
 
@@ -101,6 +105,7 @@
 export default {
     data() {
         return {
+            year: new Date().getFullYear(),
             footer: this.$settings.sections.footer,
             logo: this.$settings.sections.footer.logo,
             useful_links: this.$settings.sections.footer.useful_links,
@@ -112,8 +117,8 @@ export default {
 </script>
 
 <style>
-a,
-p {
+a,p,
+.txt {
     color: #edebe5;
 }
 </style>

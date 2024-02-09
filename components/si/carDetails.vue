@@ -10,7 +10,7 @@
         <div class="flex flex-col px-4 py-6 lg:w-4/6 w-full">
 
             <nuxt-link :to="`/auto-info/${item.slug}`">
-                <div class="text-black pb-3 font-semibold hover:text-red-600 hover:underline">
+                <div class="text-black pb-3 font-semibold hover:text-primary hover:underline">
                     {{ item.seo.title }}
                 </div>
             </nuxt-link>
@@ -35,7 +35,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                {{ product.engine_volume }}
+                                Engine Volume  :
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
 
@@ -49,7 +49,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                {{ product.year }}
+                                Year  :
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getYearP(item) }}
@@ -58,7 +58,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                {{ product.fuel }}
+                                Fuel  :
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getFuel(item) }}
@@ -67,7 +67,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                {{ product.transmission }}
+                                Transmission  :
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getTransmission(item) }}
@@ -78,7 +78,7 @@
 
                 </div>
 
-                <div class=" text-center text-base text-red-600 lg:w-1/4 w-full pt-5">
+                <div class=" text-center text-base text-primary lg:w-1/4 w-full pt-5">
                     {{ $store.state.currency.symbol }} {{ item.price.salePrice }}/ {{ item.bookingProps.priceBy }}
                 </div>
 

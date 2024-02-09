@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
 
         <div class="flex justify-center ">
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style></style> -->

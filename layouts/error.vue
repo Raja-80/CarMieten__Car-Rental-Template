@@ -27,7 +27,3 @@ export default {
 		text-shadow: -8px 0 0 rgba(rgb(117, 113, 113),.8);
 	}
 </style>
-
-<!-- {{ $settings.sections._404.title }}
-{{ $settings.sections._404.description }}
-{{ $settings.sections._404.buttons.back_to_shop_text }} -->

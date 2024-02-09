@@ -2,22 +2,20 @@ import Vue from 'vue'
 import { decode, parsePath, withoutBase, withoutTrailingSlash, normalizeURL } from 'ufo'
 
 import { getMatchedComponentsInstances, getChildrenComponentInstancesUsingFetch, promisify, globalHandleError, urlJoin, sanitizeComponent } from './utils'
-import NuxtError from '../layouts/error.vue'
+import NuxtError from '..\\layouts\\error.vue'
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '../node_modules/@nuxtjs/tailwindcss/dist/runtime/tailwind.css'
+import '..\\node_modules\\@nuxtjs\\tailwindcss\\dist\\runtime\\tailwind.css'
 
-import '../assets/css/icons.css'
+import '..\\assets\\css\\icons.css'
 
-import '../assets/css/main.css'
+import '..\\assets\\css\\main.css'
 
-import '../assets/css/fontCss.css'
+import '..\\assets\\css\\fontCss.css'
 
-import '../node_modules/.cache/nuxt-google-fonts/css/nuxt-google-fonts.css'
-
-import _65a88512 from '../layouts/account.vue'
-import _6f6c098b from '../layouts/default.vue'
+import _65a88512 from '..\\layouts\\account.vue'
+import _6f6c098b from '..\\layouts\\default.vue'
 
 const layouts = { "_account": sanitizeComponent(_65a88512),"_default": sanitizeComponent(_6f6c098b) }
 

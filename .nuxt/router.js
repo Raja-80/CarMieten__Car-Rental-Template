@@ -4,16 +4,16 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _66d6be43 = () => interopDefault(import('../pages/contact/index.vue' /* webpackChunkName: "pages/contact/index" */))
-const _723fb8b0 = () => interopDefault(import('../pages/error.vue' /* webpackChunkName: "pages/error" */))
-const _2c870826 = () => interopDefault(import('../pages/news/index.vue' /* webpackChunkName: "pages/news/index" */))
-const _96434ac8 = () => interopDefault(import('../pages/thanks/index.vue' /* webpackChunkName: "pages/thanks/index" */))
-const _f9cbf51c = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
-const _1ca531fc = () => interopDefault(import('../pages/account/_route.vue' /* webpackChunkName: "pages/account/_route" */))
-const _6e808432 = () => interopDefault(import('../pages/auto-info/_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
-const _3c8ad626 = () => interopDefault(import('../pages/blog/_slug.vue' /* webpackChunkName: "pages/blog/_slug" */))
-const _d4772fac = () => interopDefault(import('../pages/cars/_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
-const _472ccd9f = () => interopDefault(import('../pages/pages/_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
+const _4d3ad6c0 = () => interopDefault(import('..\\pages\\contact\\index.vue' /* webpackChunkName: "pages/contact/index" */))
+const _1d09b20a = () => interopDefault(import('..\\pages\\error.vue' /* webpackChunkName: "pages/error" */))
+const _4951c421 = () => interopDefault(import('..\\pages\\news\\index.vue' /* webpackChunkName: "pages/news/index" */))
+const _58690feb = () => interopDefault(import('..\\pages\\thanks\\index.vue' /* webpackChunkName: "pages/thanks/index" */))
+const _4d78d858 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
+const _3abcbc0e = () => interopDefault(import('..\\pages\\account\\_route.vue' /* webpackChunkName: "pages/account/_route" */))
+const _011ff06c = () => interopDefault(import('..\\pages\\auto-info\\_slug.vue' /* webpackChunkName: "pages/auto-info/_slug" */))
+const _6df6b6aa = () => interopDefault(import('..\\pages\\blog\\_slug.vue' /* webpackChunkName: "pages/blog/_slug" */))
+const _3b274b0d = () => interopDefault(import('..\\pages\\cars\\_slug.vue' /* webpackChunkName: "pages/cars/_slug" */))
+const _332fb6b4 = () => interopDefault(import('..\\pages\\pages\\_slug.vue' /* webpackChunkName: "pages/pages/_slug" */))
 
 const emptyFn = () => {}
 
@@ -28,43 +28,43 @@ export const routerOptions = {
 
   routes: [{
     path: "/contact",
-    component: _66d6be43,
+    component: _4d3ad6c0,
     name: "contact"
   }, {
     path: "/error",
-    component: _723fb8b0,
+    component: _1d09b20a,
     name: "error"
   }, {
     path: "/news",
-    component: _2c870826,
+    component: _4951c421,
     name: "news"
   }, {
     path: "/thanks",
-    component: _96434ac8,
+    component: _58690feb,
     name: "thanks"
   }, {
     path: "/",
-    component: _f9cbf51c,
+    component: _4d78d858,
     name: "index"
   }, {
     path: "/account/:route?",
-    component: _1ca531fc,
+    component: _3abcbc0e,
     name: "account-route"
   }, {
     path: "/auto-info/:slug?",
-    component: _6e808432,
+    component: _011ff06c,
     name: "auto-info-slug"
   }, {
     path: "/blog/:slug?",
-    component: _3c8ad626,
+    component: _6df6b6aa,
     name: "blog-slug"
   }, {
     path: "/cars/:slug?",
-    component: _d4772fac,
+    component: _3b274b0d,
     name: "cars-slug"
   }, {
     path: "/pages/:slug?",
-    component: _472ccd9f,
+    component: _332fb6b4,
     name: "pages-slug"
   }],
 

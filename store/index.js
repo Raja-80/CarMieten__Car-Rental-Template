@@ -32,8 +32,7 @@ const createStore = () => {
         search: '',
         defaults: {
           image: "https://storeno.b-cdn.net/themes/palest/default-shop.jpg",
-          sliderImage: "https://storeno.b-cdn.net/themes/palest/slider.jpeg",
-          sideBanner: "https://storeno.b-cdn.net/themes/palest/side-banner.jpeg",
+          banner_image:"https://storeno.b-cdn.net/stores/1-2024/1705581973215.jpeg",
           logo: "https://storeno.b-cdn.net/themes/palest/logo.png",
           icon: "https://storeno.b-cdn.net/themes/palest/icon.png"
         },

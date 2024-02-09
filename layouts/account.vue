@@ -1,22 +1,39 @@
 <template>
     <div class="bg-gray-50 transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
         <component :is="'style'">
-            :root{ --primary-rgb: {{ rgb.r }}, {{rgb.g}}, {{ rgb.b }}; --primary-color: rgb(var(--primary-rgb)); }
+            :root{ --primary-rgb: {{ this.rgb_first.r }}, {{this.rgb_first.g}}, {{ this.rgb_first.b }}; --primary-color: rgb(var(--primary-rgb));
+                   --secondary-rgb: {{ this.rgb_second.r }}, {{this.rgb_second.g}}, {{ this.rgb_second.b }}; --secondary-color: rgb(var(--secondary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
+            .bg-secondary{ background-color: var(--secondary-color); }
             .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
+            .bg-secondary:hover{ background-color: rgb(var(--secondary-rgb),0.8); }
             .text-primary{ color: var(--primary-color); }
+            .text-secondary{ color: var(--secondary-color); }
+            
         </component>
-        <sections-header-top></sections-header-top>
-        <sections-header></sections-header>
-        <sections-header-menu></sections-header-menu>
+
+        <div  class="relative bg-cover"
+      :style="{ backgroundImage: 'url(' + (require('~/assets/images/banner_dflt.jpg')) + ')' }">
+      <!-- <nuxt-img v-if="service_1.show_icon" class="relative bg-cover"
+        :src="background_img ? background_img.src : $store.state.defaults.logo" alt="company logo" /> -->
+      <sections-header></sections-header>
+      <sections-banner></sections-banner>
+
+      <svg v-if="isHomePage" class="absolute bottom-0 w-full lg:h-20 h-8 " xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 100" preserveAspectRatio="none">
+        <polygon fill="white" points="0,100 100,0 100,100" />
+      </svg>
+    </div>
+
         <Nuxt />
-        <sections-footer></sections-footer>
-        <div class="bg-white flex">
-            <hr class="my-2 w-full">
-        </div>
-        <sections-footer-menu></sections-footer-menu>
-        <sections-copyright></sections-copyright>
-        <si-full-image></si-full-image>
+
+        <div class="footer">
+      <sections-footer></sections-footer>
+    </div>
+    <div dir="ltr" class="footer">
+      <sections-copyright></sections-copyright>
+    </div>
+
     </div>
 </template>
 <script>
@@ -28,7 +45,7 @@ export default {
                 { hid: 'description', name: 'description', content: this.$store.state.seo.description },
                 { hid: 'keywords', name: 'keywords', content: this.$store.state.seo.keywords.join(',') },
                 { hid: 'og:title', property: 'og:title', content: this.$store.state.seo.title },
-                { hid: 'og:site_name', property: 'og:site_name', content: this.$settings.store_name },
+                // { hid: 'og:site_name', property: 'og:site_name', content: this.$settings.store_name },
                 { hid: 'og:description', property: 'og:description', content: this.$store.state.seo.description },
                 { hid: 'og:image', property: 'og:image', content: this.$store.state.seo.image },
                 { hid: 'og:url', property: 'og:url', content: this.$store.state.seo.url },
@@ -38,7 +55,7 @@ export default {
                 { hid: 'twitter:description', name: 'twitter:description', content: this.$store.state.seo.description },
                 { hid: 'twitter:image', name: 'twitter:image', content: this.$store.state.seo.logo },
                 { hid: 'twitter:url', name: 'twitter:url', content: this.$store.state.seo.url },
-                { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary_color },
+                // { hid: "theme-color", property: "theme-color", content: this.$settings.style.primary_color },
                 { hid: "currency", name: "currency", content: this.$store.state.currency.code },
                 { hid: "product:price:currency", property: "product:price:currency", content: this.$store.state.currency.code },
                 { hid: "priceCurrency", itemprop: "priceCurrency", content: this.$store.state.currency.code },
@@ -57,7 +74,9 @@ export default {
     },
     data() {
         return {
-            rgb: { r: 0, g: 130, b: 70 },
+            rgb_first: { r: 0, g: 0, b: 0 },
+            rgb_second: { r: 0, g: 0, b: 0 },
+            background_img: this.$settings.sections.banner.background_img,
             otherLinks: [
                 ]
         }
@@ -68,7 +87,8 @@ export default {
         this.$store.state.seo.keywords = this.$settings.store_keywords || [];
         if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
         if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
-        this.rgb = this.$tools.hexToRgb(this.$settings.style.primary_color);
+        this.rgb_first = this.$tools.hexToRgb(this.$settings.style.primary_color);
+        this.rgb_second = this.$tools.hexToRgb(this.$settings.style.second_color);
         if(this.$store.state.language.code == 'AR'){
             this.otherLinks = [
                 { rel: "preconnect", href: 'https://fonts.googleapis.com' },
@@ -82,6 +102,11 @@ export default {
 }
 </script>
 <style>
+
+
+.footer {
+  background-color: rgba(26, 26, 26, 255);
+}
     [dir='ltr'] .to-right{
         transform: translateX(20rem);
     }

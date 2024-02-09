@@ -11,6 +11,9 @@
   "SectionsBook": {
     "description": "Auto imported from components/sections/Book.vue"
   },
+  "SectionsCopyright": {
+    "description": "Auto imported from components/sections/copyright.vue"
+  },
   "SectionsFleets": {
     "description": "Auto imported from components/sections/Fleets.vue"
   },
@@ -26,17 +29,11 @@
   "SectionsNews": {
     "description": "Auto imported from components/sections/News.vue"
   },
-  "SectionsProducts": {
-    "description": "Auto imported from components/sections/Products.vue"
-  },
   "SectionsReviews": {
     "description": "Auto imported from components/sections/Reviews.vue"
   },
   "SectionsServices": {
     "description": "Auto imported from components/sections/Services.vue"
-  },
-  "SectionsCopyright": {
-    "description": "Auto imported from components/sections/copyright.vue"
   },
   "SiAppLoader": {
     "description": "Auto imported from components/si/AppLoader.vue"
@@ -46,6 +43,9 @@
   },
   "SiCar": {
     "description": "Auto imported from components/si/Car.vue"
+  },
+  "SiCarDetails": {
+    "description": "Auto imported from components/si/carDetails.vue"
   },
   "SiCarImage": {
     "description": "Auto imported from components/si/CarImage.vue"
@@ -67,11 +67,5 @@
   },
   "SiSlidingone": {
     "description": "Auto imported from components/si/Slidingone.vue"
-  },
-  "SiSvg": {
-    "description": "Auto imported from components/si/Svg.vue"
-  },
-  "SiCarDetails": {
-    "description": "Auto imported from components/si/carDetails.vue"
   }
 }

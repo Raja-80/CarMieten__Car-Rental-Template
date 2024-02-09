@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-20 pb-32">
+    <div class="container pt-40 pb-32" >
 
         <div v-if="isHomePage" class=" flex justify-around items-center">
 
@@ -17,7 +17,7 @@
             <!-- Banner right side form -->
 
             <div class="">
-                <form v-if="form.active" class="bg-white py-8 px-12 mx-5 flex flex-col justify-center items-center">
+                <form id="form" v-if="form.active" class="bg-white py-8 px-12 mx-5 flex flex-col justify-center items-center">
                     <div class="flex flex-col justify-start items-start">
 
                         <div class="pb-7 pt-4 w-full">
@@ -37,7 +37,7 @@
                         </div>
 
                         <div class="pb-7 pt-4 w-full">
-                            <label class="block mb-1 text-black text-xs font-light" for="pickupDate">
+                            <label class="block mb-1 text-black text-xs font-light">
                                 {{ form.pickup_date }}
                             </label>
 
@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="pb-7 pt-3">
-                            <label class="block mb-1 text-black text-xs font-light" for="dropOffDate">
+                            <label class="block mb-1 text-black text-xs font-light">
                                 {{ form.dropoff_date }}
                             </label>
 
@@ -60,7 +60,7 @@
                     </div>
 
                     <div v-if="form.show_brands" class="pb-7 w-full">
-                        <label class="block mb-1 text-black text-xs font-light" for="selectItem">
+                        <label class="block mb-1 text-black text-xs font-light">
                             {{ form.brands_title }}
                         </label>
 
@@ -79,7 +79,7 @@
                     <div class="pb-4 ">
                         <nuxt-link :to="`/cars`">
                             <button type="submit" @click="searchItems"
-                                class="w-32 py-3 text-sm rounded text-white bg-red-600 focus:outline-none hover:bg-red-700">
+                                class="w-32 py-3 text-sm rounded text-white bg-primary">
                                 {{ form.find }}
                             </button>
                         </nuxt-link>
@@ -96,7 +96,7 @@
                 <div class="border-b-2 border-white w-6 mr-4 mt-2">
                 </div>
                 <nuxt-link :to="`/`">
-                    <div class="text-white font-light text-xl hover:text-red-600 pr-2">
+                    <div class="text-white font-light text-xl hover:text-primary pr-2">
                         Home
                     </div>
                 </nuxt-link>
@@ -105,6 +105,7 @@
         </div>
 
     </div>
+    
 </template>
   
 <script>
@@ -125,6 +126,7 @@ export default {
             form: this.$settings.sections.form,
             products: [],
             brands: [],
+            
         };
     }, async fetch() {
 

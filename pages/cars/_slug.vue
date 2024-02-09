@@ -1,5 +1,4 @@
 <template>
-    
     <div class="container flex flex-col justify-center items-center pb-32 pt-16 w-full ">
 
         <div v-if="loading.products" class="flex items-center justify-center my-8 w-full">
@@ -20,7 +19,7 @@
 
                             <div class="flex flex-row jusify-center items-center  ml-5">
                                 <div class="text-black text-xs font-normal mr-4 ">
-                                    SORT BY
+                                    {{ cars.sorts.title }}
                                 </div>
                                 <select
                                     class="cursor-pointer pl-4 py-2 text-gray-400 text-xs bg-transparent border border-gray-300 focus:border-blue-500 focus:shadow-outline outline-none"
@@ -60,13 +59,14 @@
                         </div>
                     </div>
 
-                    <div v-if="!loading.products && items.length == 0" class="flex items-center justify-center my-5">
-                        <h1 class="py-3">{{ $settings.sections.cars.no_products_text }}</h1>
+                    <div v-if="!loading.products && carsProducts.length == 0"
+                        class="flex items-center justify-center my-44">
+                        <h1 class="py-3">{{ cars.no_products_text }}</h1>
                     </div>
 
                     <!-- CARS GRID DISPLAYING -->
-                    <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start">
-                        <div v-for="item in items" :key="item.id" class="p-3 ">
+                    <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start w-full">
+                        <div v-for="item in carsProducts" :key="item.id" class="flex items-center gap-2 md:w-1/2 lg:w-2/4 p-3">
                             <si-car :item="item"></si-car>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 
                     <!-- CARS LIST DISPLAYING -->
                     <div v-else-if="currentView === 'list'" class="flex flex-col justify-around items-center ">
-                        <div v-for="item in items" :key="item._id" class="w-full">
+                        <div v-for="item in carsProducts" :key="item._id" class="w-full">
 
                             <si-car-details :item="item"></si-car-details>
 
@@ -96,25 +96,29 @@
 
             <!-- Filtering side -->
             <div v-if="!loading.products && !loading.collections && !loading.brands"
-                class=" flex flex-col justify-center items-start py-10 px-8 lg:mx-0 mx-5 bg lg:w-1/4 ">
+                class=" flex flex-col justify-center items-start py-12 px-8 lg:mx-0 mx-5 bg lg:w-1/4 ">
 
                 <p class="text-black text-base font-medium pb-6">
-                    BOOKING TIME
+                    {{ cars.booking_time_text }}
                 </p>
                 <div class="flex flex-col justify-start items-start pb-12 w-full">
                     <div class="pb-8 w-full">
                         <p class="text-black text-sm font-normal pb-3">
-                            Pick-up Date
+                            {{ cars.pickup_date_text }}
                         </p>
+                        
+                        <!-- v-model in arabic  -->
                         <datepicker id="pickupDate" v-model="pickupDate" @input="handlePickupDateSelection"
                             class=" focus:border-blue-500 focus:shadow-outline outline-none w-full"
                             :style="{ width: '100%' }" placeholder="Select date..." :disabled-dates="disablePastDates">
                         </datepicker>
+
                     </div>
 
                     <p v-if="isPickupDateSelected" class="text-black text-sm font-normal pb-3">
-                        Drop-off Date
+                        {{ cars.pickup_date_text }}
                     </p>
+                    <!-- v-model in arabic  -->
                     <transition name="slid" v-if="isPickupDateSelected" class="w-full ">
                         <datepicker id="dropOffDate" v-model="dropOffDate"
                             class=" focus:border-blue-500 focus:shadow-outline outline-none w-full"
@@ -124,28 +128,33 @@
 
                     <transition name="slid" v-if="isPickupDateSelected && !dropOffDate">
                         <div class=" text-white text-sm font-light w-full p-2 mt-2 bg-red-500 rounded-md shadow-md">
-                            Please choose a Drop-Off Date to find available cars.
+
+                            {{ t('dropOff_date_required') }}
+
                         </div>
                     </transition>
                 </div>
                 <div class="w-full">
                     <p class="text-black text-base font-medium pb-6">
-                        PICK-UP LOCATION
+                        {{ cars.pickup_location_text }}
                     </p>
                     <div class="w-full pb-12">
-                        <select v-model="locations.pickup"
+                        <!-- v-model in arabic  -->
+
+                        <select v-model="pickup"
                             class="w-full cursor-pointer pl-4 py-2 text-gray-400 text-xs font-normal bg-white border border-gray-300 hover:border-blue-500 focus:shadow-outline outline-none">
 
-                            <option>All Locations</option>
+                            <option>{{ t('all_locations') }}</option>
                             <option v-for="(city, index) in uniqueCities" :key="index" :value="city">{{ city }}</option>
 
                         </select>
+
                     </div>
                 </div>
 
                 <div class="pb-12 w-full">
                     <p class="text-black text-base font-medium pb-4 w-full">
-                        PRICE RANGE
+                        {{ cars.price_range_text }}
                     </p>
                     <div v-if="filters" class="flex flex-col my-2 " dir="ltr">
                         <si-price-range @change="setParams" :min="filters.prices.min" :max="filters.prices.max" />
@@ -174,41 +183,12 @@
                                         d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"
                                         fill="#7a7575" data-original="#000000" style="" class="" />
                                 </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
-                                <g xmlns="http://www.w3.org/2000/svg">
-                                </g>
+                                
                             </g>
                         </svg>
                     </div>
-                    <div :id="i + 'fit'" class="fit-collapsible pt-5 max-h-40 overflow-y-auto" 
-                    :class="[ item.childrens.length > 0 ? 'sub-collections' : '']">
+                    <div :id="i + 'fit'" class="fit-collapsible pt-5 max-h-40 overflow-y-auto"
+                        :class="[item.childrens.length > 0 ? 'sub-collections' : '']">
                         <ul class="list-sub-collections fit-collapsible-content"
                             v-if="item.childrens && item.childrens.length > 0">
                             <li v-for="(child, i) in item.childrens" :key="i" class="pb-2">
@@ -229,7 +209,7 @@
 
                         <label @click="setActive('brandFit', 'brandRet')"
                             class="capitalize cursor-pointer collec-name text-black text-base font-medium pb-4 w-full">
-                            CAR BRAND
+                            {{ cars.car_brand_text }}
                         </label>
                         <svg @click="setActive('brandFit', 'brandRet')" :id="'brandRet'" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="15" height="15" x="0" y="0"
@@ -242,8 +222,8 @@
                             </g>
                         </svg>
                     </div>
-                    <div :id="'brandFit'" class="fit-collapsible pb-2 max-h-40 overflow-y-auto" :class="[
-                        brands.length > 0 ? 'sub-collections' : '']">
+                    <div :id="'brandFit'" class="fit-collapsible pb-2 max-h-40 overflow-y-auto"
+                        :class="[brands.length > 0 ? 'sub-collections' : '']">
                         <ul class="list-sub-collections fit-collapsible-content">
                             <li v-for="(item, i) in brands" :key="i" class="pb-1">
                                 <input class="w-4 h-4 mx-1"
@@ -258,8 +238,8 @@
 
                 <div class="flex justify-center items-center w-full">
                     <button @click="resetFilters" type="reset"
-                        class=" w-32 py-3 text-sm font-semibold text-white bg-red-600 focus:outline-none hover:bg-red-700">
-                        {{ this.$settings.sections.cars.reset_filter_text }}
+                        class=" w-32 py-4 text-sm font-semibold text-white bg-red-600 focus:outline-none hover:bg-red-700">
+                        {{ cars.reset_filter_text }}
                     </button>
                 </div>
 
@@ -306,20 +286,17 @@ export default {
             ],
             pickupDate: null,
             dropOffDate: null,
-            form: this.$settings.sections.form,
+            pickup: 'All Location',
             currentView: 'grid',
             lastView: '',
-            locations: {
-                pickup: 'All Locations',
-                dropoff: 'All Locations',
-            },
-            cars: [],
+            carsProducts: [],
             originalItems: [],
             isPickupDateSelected: false,
             year: '',
             engine: '',
             fuel: '',
             transmission: '',
+            cars: this.$settings.sections.cars,
         };
     },
 
@@ -355,6 +332,7 @@ export default {
         console.log('after lastparams')
 
         try {
+            
             console.log('Fetching data...');
 
             if (this.$route.query.pickupDate) {
@@ -366,16 +344,40 @@ export default {
             }
 
             if (this.$route.query.pickupAdresse) {
-                this.locations.pickup = this.$route.query.pickupAdresse;
+                this.pickup = this.$route.query.pickupAdresse;
             }
 
             this.loading.products = false;
+
         } catch (error) {
             console.error('Error fetching data:', error);
             this.loading.products = false;
         }
     },
     methods: {
+
+        t(key) {
+            const langs = {
+                dropOff_date_required: {
+                    EN: "Please Choose a Drop-Off Date to Find Available Cars",
+                    FR: "Veuillez choisir une date de restitution pour trouver des voitures disponibles	",
+                    AR: "يرجى اختيار تاريخ التسليم للعثور على سيارات متاحة",
+                },
+                all_locations: {
+                    EN: "All Locations",
+                    FR: "Toutes les locations",
+                    AR: "جميع المواقع",
+                },
+                can_change_choice: {
+                    EN: "You can change your choice :",
+                    FR: "Vous pouvez modifier votre choix :	",
+                    AR: "يمكنك تغيير اختيارك: ",
+                    ES: "Puede cambiar su elección: ",
+                    PT: "Você pode alterar sua escolha: "
+                }
+            }
+            return langs[key] && langs[key][this.$store.state.language.code] || '';
+        },
 
         setParams(e, key, value) {
             if (key.indexOf('price') >= 0 || key.indexOf('page') >= 0) {
@@ -415,19 +417,19 @@ export default {
 
             console.log('Updating filtered items...');
 
-            if (this.dropOffDate === null && (this.locations.pickup === 'All Locations' || this.locations.pickup === '')) {
+            if (this.dropOffDate === null && (this.pickup === 'All Locations' || this.pickup === '')) {
 
                 this.items = [...this.originalItems];
 
-            } else if (this.dropOffDate === null && (this.locations.pickup !== 'All Locations' || this.locations.pickup !== '')) {
+            } else if (this.dropOffDate === null && (this.pickup !== 'All Locations' || this.pickup !== '')) {
 
                 this.items = this.items.filter(car => {
                     return car.bookingProps && car.bookingProps.firstAddresses &&
                         Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
-                            return address.city.name === this.locations.pickup;
+                            return address.city.name === this.pickup;
                         });
                 });
-            } else if (this.dropOffDate instanceof Date && (this.locations.pickup === 'All Locations' || this.locations.pickup === '')) {
+            } else if (this.dropOffDate instanceof Date && (this.pickup === 'All Locations' || this.pickup === '')) {
 
                 this.items = this.items.filter(car => {
 
@@ -442,13 +444,13 @@ export default {
 
                     return isAvailableInRange;
                 });
-            } else if (this.dropOffDate instanceof Date && (this.locations.pickup !== 'All Locations' || this.locations.pickup !== '')) {
+            } else if (this.dropOffDate instanceof Date && (this.pickup !== 'All Locations' || this.pickup !== '')) {
 
                 this.items = this.items.filter(car => {
 
-                    const isSameCity = !this.locations.pickup || (car.bookingProps && car.bookingProps.firstAddresses &&
+                    const isSameCity = !this.pickup || (car.bookingProps && car.bookingProps.firstAddresses &&
                         Array.isArray(car.bookingProps.firstAddresses) && car.bookingProps.firstAddresses.some(address => {
-                            return address.city.name === this.locations.pickup;
+                            return address.city.name === this.pickup;
                         }));
 
                     const isAvailableInRange = !car.bookingProps.reservedHistory.some(reservation => {
@@ -479,6 +481,7 @@ export default {
             try {
                 this.params.page = page || this.paginate.current_page;
                 this.params.limit = 9;
+                this.params.status = 'PUBLISH';
                 this.params.productType = 'BOOKING';
                 this.lastParams = this.$tools.copy(this.params);
                 const { data } = await this.$storeino.products.search(this.params);
@@ -507,15 +510,28 @@ export default {
                 dropOffDate: formattedDropOffDate,
             };
 
-            if (this.locations.pickup !== 'All Locations') {
-                queryParams.pickupAdresse = this.locations.pickup;
+            if (this.pickup !== 'All Locations') {
+                queryParams.pickupAdresse = this.pickup;
             }
 
-            if (this.locations.dropoff !== 'All Locations') {
-                queryParams.dropoffAdresse = this.locations.dropoff;
+            if (this.dropoff !== 'All Locations') {
+                queryParams.dropoffAdresse = this.dropoff;
             }
 
             const url = `/auto-info?${new URLSearchParams(queryParams)}`;
+
+            this.$router.push(url);
+        },
+
+        pickupAdresse() {
+
+            const queryParams = {}
+
+            if (this.pickup !== 'All Locations') {
+                queryParams.pickupAdresse = this.pickup;
+            }
+
+            const url = `/cars?${new URLSearchParams(queryParams)}`;
 
             this.$router.push(url);
         },
@@ -581,7 +597,7 @@ export default {
         resetFilters() {
             this.pickupDate = '';
             this.dropOffDate = '';
-            this.locations.pickup = 'All Locations';
+            this.pickup = 'All Locations';
         },
 
         convertToDate(dateString) {
@@ -631,7 +647,7 @@ export default {
         async fetchCars() {
             try {
                 const { data } = await this.$storeino.products.search({ productType: 'BOOKING' });
-                this.cars = data.results;
+                this.carsProducts = data.results;
 
             } catch (e) {
                 console.log({ e });
@@ -648,6 +664,11 @@ export default {
 
             return date < currentDate;
         },
+
+        callBothFunctions() {
+            this.updateFilteredItems();
+            this.pickupAdresse();
+        },
     },
     watch: {
         params: {
@@ -661,7 +682,7 @@ export default {
         "$route.query.search"(val) {
             this.$set(this.params, 'search', val);
         },
-        'locations.pickup': 'updateFilteredItems',
+        'pickup': 'callBothFunctions',
         dropOffDate: 'updateFilteredItems',
     },
     computed: {
@@ -670,7 +691,7 @@ export default {
 
             const citiesSet = new Set();
 
-            this.cars.forEach((item) => {
+            this.carsProducts.forEach((item) => {
                 if (item.bookingProps.firstAddresses && item.bookingProps.firstAddresses.length > 0) {
                     item.bookingProps.firstAddresses.forEach((address) => {
                         const city = address.city.name;
@@ -729,7 +750,6 @@ export default {
     margin: 0;
     border: 0;
     outline: 0;
-    vertical-align: baseline;
     background: 0 0;
 }
 

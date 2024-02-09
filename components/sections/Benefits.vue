@@ -10,49 +10,19 @@
             </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row justify-around items-center">
+        <div v-if="benefits.items" class="flex  flex-wrap justify-center items-center ">
 
-            <div v-if="benefit_1.show" class="flex flex-col justify-center items-center lg:mx-4 my-4">
+            <div v-for="(key,i) in Object.keys(benefits.items)" :key="i" class="flex flex-col items-center gap-3 lg:gap-5 w-full md:w-1/2 lg:w-1/4 lg:mx-4 my-4">
 
-                <nuxt-img class="h-30 mb-6" :src="benefit_1.icon ? benefit_1.icon.src : $store.state.defaults.logo"
-                    alt="company logo" />
-
-                <h2 class="text-black text-center mb-6 text-lg font-semibold px-16">
-                    {{ benefit_1.title }}
-                </h2>
-
-                <p class="text-black text-center text-sm font-light leading-loose">
-                    {{ benefit_1.description }}
-                </p>
-
-            </div>
-
-            <div v-if="benefit_2.show" class="flex flex-col justify-center items-center lg:mx-4 my-4">
-
-                <nuxt-img class="h-30 mb-6" :src="benefit_2.icon ? benefit_2.icon.src : $store.state.defaults.logo"
-                    alt="company logo" />
+                <nuxt-img v-if="benefits.items[key].show_icon" class="h-20 mb-6" :src="benefits.items[key].icon ? benefits.items[key].icon.src : $store.state.defaults.logo"
+                    :alt="benefits.items[key].title" />
 
                 <h2 class="text-black text-center mb-6 text-lg font-semibold px-16">
-                    {{ benefit_2.title }}
+                    {{ benefits.items[key].title }}
                 </h2>
 
-                <p class="text-black text-center text-sm font-light leading-loose">
-                    {{ benefit_2.description }}
-                </p>
-
-            </div>
-
-            <div v-if="benefit_3.show" class="flex flex-col justify-center items-center lg:mx-4 my-4">
-
-                <nuxt-img class="h-30 mb-6" :src="benefit_3.icon ? benefit_3.icon.src : $store.state.defaults.logo"
-                    alt="company logo" />
-
-                <h2 class="text-black text-center mb-6 text-lg font-semibold px-16">
-                    {{ benefit_3.title }}
-                </h2>
-
-                <p class="text-black text-center text-sm font-light leading-loose">
-                    {{ benefit_3.description }}
+                <p v-if="benefits.items[key].show_description" class="text-black text-center text-sm font-light leading-loose">
+                    {{ benefits.items[key].description }}
                 </p>
 
             </div>
@@ -65,11 +35,7 @@
 export default {
     data() {
         return {
-            logo: this.$settings.sections.navbar.logo,
             benefits: this.$settings.sections.benefits,
-            benefit_1: this.$settings.sections.benefit_1,
-            benefit_2: this.$settings.sections.benefit_2,
-            benefit_3: this.$settings.sections.benefit_3,
         };
     },
 };
