@@ -1292,6 +1292,19 @@
                                             "value": true
                                         }
                                     ]
+                                },
+                                {
+                                    "name": "background_img",
+                                    "values": [
+                                        {
+                                            "name": "background_img",
+                                            "note": "",
+                                            "path": "sections.booking.background_img",
+                                            "type": "tc_image",
+                                            "translatable": false,
+                                            "value": null
+                                        }
+                                    ]
                                 }
                             ]
                         },
