@@ -1,26 +1,27 @@
 <template>
-    <div class="container pt-40 pb-32" >
+    <div class="container pt-40 pb-32">
 
-        <div v-if="isHomePage" class=" flex justify-around items-center">
+        <div  v-if="isHomePage" class=" flex justify-around items-center">
 
             <!-- Banner title side -->
 
             <div class="hidden lg:block bg-fixed text-white pl-4">
-                <h1 class=" font-semibold text-6xl mb-2">
+                <h1  data-aos="fade-up" class=" font-semibold text-6xl mb-2">
                     {{ banner.title }}
                 </h1>
-                <p v-if="banner.show_description" class=" font-light w-10/12 ">
+                <p  data-aos="fade-up" v-if="banner.show_description" class=" font-light w-10/12 ">
                     {{ banner.description }}
                 </p>
             </div>
 
             <!-- Banner right side form -->
 
-            <div class="">
-                <form id="form" v-if="form.active" class="bg-white py-8 px-12 mx-5 flex flex-col justify-center items-center">
+            <div  class="">
+                <form data-aos="fade-up" id="form" v-if="form.active"
+                    class="bg-white py-8 px-12 mx-5 flex flex-col justify-center items-center">
                     <div class="flex flex-col justify-start items-start">
 
-                        <div class="pb-7 pt-4 w-full">
+                        <div data-aos="fade-up" class="pb-7 pt-4 w-full">
                             <p class="block mb-1 text-black text-xs font-light">
                                 {{ form.pickup_adresse }}
                             </p>
@@ -36,7 +37,7 @@
                             </div>
                         </div>
 
-                        <div class="pb-7 pt-4 w-full">
+                        <div data-aos="fade-up" class="pb-7 pt-4 w-full">
                             <label class="block mb-1 text-black text-xs font-light">
                                 {{ form.pickup_date }}
                             </label>
@@ -47,7 +48,7 @@
                             </datepicker>
                         </div>
 
-                        <div class="pb-7 pt-3">
+                        <div data-aos="fade-up" class="pb-7 pt-3">
                             <label class="block mb-1 text-black text-xs font-light">
                                 {{ form.dropoff_date }}
                             </label>
@@ -59,7 +60,7 @@
                         </div>
                     </div>
 
-                    <div v-if="form.show_brands" class="pb-7 w-full">
+                    <div data-aos="fade-up" v-if="form.show_brands" class="pb-7 w-full">
                         <label class="block mb-1 text-black text-xs font-light">
                             {{ form.brands_title }}
                         </label>
@@ -76,7 +77,7 @@
 
                     </div>
 
-                    <div class="pb-4 ">
+                    <div data-aos="fade-up" class="pb-4 ">
                         <nuxt-link :to="`/cars`">
                             <button type="submit" @click="searchItems"
                                 class="w-32 py-3 text-sm rounded text-white bg-primary">
@@ -90,22 +91,21 @@
         </div>
 
         <!-- For other pages -->
-        <div v-else class="flex flex-col text-white pl-4 ">
+        <div  v-else class="flex flex-col text-white pl-4 ">
             <h1 class="font-normal text-3xl pb-6 pt-4 mb-2">{{ $route.name }}</h1>
             <div class="flex flex-row justify-start items-center ">
                 <div class="border-b-2 border-white w-6 mr-4 mt-2">
                 </div>
                 <nuxt-link :to="`/`">
-                    <div class="text-white font-light text-xl hover:text-primary pr-2">
+                    <div data-aos="fade-up" class="text-white font-light text-xl hover:text-primary pr-2">
                         Home
                     </div>
                 </nuxt-link>
-                <div class="text-white font-light text-xl ">{{ $route.path }}</div>
+                <div data-aos="fade-up" class="text-white font-light text-xl ">{{ $route.path }}</div>
             </div>
         </div>
 
     </div>
-    
 </template>
   
 <script>
@@ -126,7 +126,7 @@ export default {
             form: this.$settings.sections.form,
             products: [],
             brands: [],
-            
+
         };
     }, async fetch() {
 

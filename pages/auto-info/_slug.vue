@@ -11,10 +11,11 @@
         <div class="mx-5 mb-16 lg:pb-14 pb-8 lg:mx-0 lg:px-0 border-2 border-gray-100">
           <div>
             <!-- <si-carousel component="si-carimage" :list="selectedCar.images"></si-carousel> -->
-            <nuxt-img class="h-full w-full" @click="$store.state.fullImage = image ? image.src : null" :src="selectedCar.images[0]
-              ? selectedCar.images[0].src
-              : $store.state.defaults.logo
-              " alt="car" />
+            <nuxt-img class="h-full w-full" @click="$store.state.fullImage = image ? image.src : null"
+              :src="selectedCar.images[0]
+                ? selectedCar.images[0].src
+                : $store.state.defaults.logo
+                " alt="car" />
           </div>
         </div>
       </div>
@@ -45,17 +46,18 @@
             {{ product.reviews.text }}
           </button>
         </div>
+
         <!-- Content Area -->
         <div class="w-full">
           <div v-if="selectedTitle === 'VEHICLE DESCRIPTION' &&
             product.car_description.active
             " class="font-light leading-loose pt-12">
-            <div v-html="selectedCar.html" class="text-black" style="color: black !important"></div>
+            <div data-aos="fade-up" v-html="selectedCar.html" class="text-black" style="color: black !important"></div>
           </div>
           <div v-if="selectedTitle === 'EQUIPMENT'" class="pt-12">
             <div class="flex flex-wrap justify-around items-center">
-              <div v-if="selectedCar.bookingProps.extraInfo.length > 0" v-for="item in selectedCar.bookingProps.extraInfo"
-                :key="item" class="font-light py-3 w-1/4 mr-2">
+              <div data-aos="fade-up" v-if="selectedCar.bookingProps.extraInfo.length > 0"
+                v-for="item in selectedCar.bookingProps.extraInfo" :key="item" class="font-light py-3 w-1/4 mr-2">
                 <span class="text-primary text-lg mr-2">+</span> {{ item.name }}
                 <div class="border-b-2 border-gray-100 pt-3"></div>
               </div>
@@ -66,7 +68,8 @@
             product.specifications.active
             " class="border-2 border-gray-100 px-8 py-6 mt-14">
             <div class="flex flex-col justify-start items-start font-light py-3 w-full">
-              <div v-if="selectedCar.brand" class="flex lg:flex-row flex-col lg:justify-center items-center w-full py-6">
+              <div data-aos="fade-up" v-if="selectedCar.brand"
+                class="flex lg:flex-row flex-col lg:justify-center items-center w-full py-6">
                 <div class="lg:w-2/4 lg:pl-3 text-sm font-semibold lg:pb-0 pb-3">
                   {{ product.auto_maker }}
                 </div>
@@ -115,13 +118,13 @@
           <div v-else-if="selectedTitle === 'REVIEWS'" class="pt-14">
             <div v-if="filteredReviews.length > 0" v-for="(review, index) in filteredReviews" :key="index"
               class="flex flex-row justify-start items-start w-full pb-10">
-              <div class="lg:w-1/6 w-3/6 lg:mx-8 mx-4 p-2">
+              <div data-aos="fade-up" class="lg:w-1/6 w-3/6 lg:mx-8 mx-4 p-2">
                 <nuxt-img class="rounded-full border-4 border-gray-200" :src="review.images[0]
                   ? review.images[0]
                   : $store.state.defaults.logo
                   " alt="profile" />
               </div>
-              <div class="w-5/6 flex flex-col justify-center items-start py-2">
+              <div data-aos="fade-up" class="w-5/6 flex flex-col justify-center items-start py-2">
                 <div class="text-black font-bold text-sm pb-1">
                   {{ review.customer.firstname }} {{ review.customer.lastname }}
                 </div>
@@ -230,7 +233,7 @@
           </div>
         </div>
 
-        <div v-if="upsells.length > 0 && product.extra_resources.active" class="w-full pb-12">
+        <div v-if="upsells.length > 0 && product.extra_resources.active" class="w-full pb-14">
           <label class="block mb-1 text-black text-sm font-normal pb-4">
             {{ product.extra_resources.text }}
           </label>
@@ -268,15 +271,22 @@
           </div>
         </div>
 
-        <div v-show="outofstock"
-          class="flex flex-col justify-center items-center w-full bg-primary inline-flex px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">
-          <b>{{ t("out_of_stock") }}</b>
-          <nuxt-link :to="`/cars`" class="text-sm font-light hover:text-primary focus:underline focus:text-primary py-3">
-            {{ t("back_to_explore_cars") }}
-          </nuxt-link>
+        <div  v-show="outofstock" class="flex flex-col justify-center items-center w-full text-sm font-medium text-gray-50">
+          <div class="flex justify-center w-full text-xl font-bold text-gray-600 pb-4 text-center">
+            {{ t("out_of_stock") }}
+          </div>
+          <div class=" w-full bg-primary px-5 py-3 text-sm shadow-sm tracking-wider rounded-md hover:shadow-lg">
 
-          <!-- <a href="/cars" class="bg-primary inline-flex  px-5 py-3 text-sm shadow-sm font-medium tracking-wider text-gray-50 rounded-full hover:shadow-lg">Back To Booking Cars</a> -->
+            <nuxt-link :to="`/cars`"
+              class="flex justify-center text-sm font-light text-white text-center hover:text-gray-50 focus:underline">
+              {{ t("back_to_explore_cars") }}
+            </nuxt-link>
+
+          </div>
         </div>
+
+
+
         <div v-if="!outofstock" class="w-full">
           <div class="flex flex-row justify-between items-center p-2 mb-8 w-full">
             <div class="text-sm font-normal text-black-700">{{ product.total_text }} :
@@ -364,6 +374,7 @@ export default {
           this.selectedCar.quantity.instock <= 0
         ) {
           this.outofstock = true;
+          // this.showOutOfStockToast();
         }
       }
 
@@ -382,6 +393,11 @@ export default {
 
       if (this.selectedCar.images.length > 0) {
         this.$store.state.seo.image = this.selectedCar.images[0].src;
+      }
+
+      if (this.selectedCar.quantity.instock <= 0) {
+        this.outofstock = true;
+        // this.showOutOfStockToast();
       }
 
       if (!process.server) {
@@ -433,6 +449,11 @@ export default {
       };
       return (langs[key] && langs[key][this.$store.state.language.code]) || "";
     },
+
+    // showOutOfStockToast(){
+
+    //   this.$tools.notify("Product Out Of Stock");
+    // },
 
     getYearP() {
       if (this.selectedCar) {
@@ -561,7 +582,7 @@ export default {
     },
 
     buyNow() {
-      if (this.pickupDate && this.dropOffDate && this.pickup !=="All Locations" && this.dropOff !=="All Locations") {
+      if (this.pickupDate && this.dropOffDate && this.pickup !== "All Locations" && this.dropOff !== "All Locations") {
         this.datesAndLocationsSelected = true;
 
         this.addToCart();
@@ -710,7 +731,7 @@ export default {
 
 <style>
 .bg {
-  background-color: #f7f7f7;
+  background-color: #f7f7f7ee;
 }
 
 .toggle-wrapper {

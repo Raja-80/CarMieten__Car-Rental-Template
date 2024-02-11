@@ -9,7 +9,7 @@
             <div class="flex flex-col justify-between items-center lg:w-3/4 w-4/4">
 
                 <!-- CARS SIDE -->
-                <div v-if="!loading.products" class="flex flex-col justify-center items-center lg:pr-5 w-full">
+                <div v-if="!loading.products" class="flex flex-col justify-center items-center w-full">
 
                     <!-- APPEARANCE -->
                     <div class="flex flex-row justify-between items-center border-b w-full pb-5">
@@ -65,8 +65,8 @@
                     </div>
 
                     <!-- CARS GRID DISPLAYING -->
-                    <div v-if="currentView === 'grid'" class="flex flex-wrap justify-center items-start w-full">
-                        <div v-for="item in carsProducts" :key="item.id" class="flex items-center gap-2 md:w-1/2 lg:w-2/4 p-3">
+                    <div v-if="currentView === 'grid'" class="flex flex-wrap gap-5 justify-center items-start w-full">
+                        <div data-aos="fade-up" v-for="item in carsProducts" :key="item.id" class=" items-center md:w-1/2 lg:w-3/12">
                             <si-car :item="item"></si-car>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
 
                     <!-- CARS LIST DISPLAYING -->
                     <div v-else-if="currentView === 'list'" class="flex flex-col justify-around items-center ">
-                        <div v-for="item in carsProducts" :key="item._id" class="w-full">
+                        <div data-aos="fade-up" v-for="item in carsProducts" :key="item._id" class="w-full">
 
                             <si-car-details :item="item"></si-car-details>
 
@@ -85,8 +85,8 @@
 
                 <!-- PAGINATION BUTTONS -->
                 <div v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
-                    <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer hover:text-red-600 hover:bg-gray-200 text-base font-semibold',
-                        paginate.current_page === pageNumber ? 'bg-red-600 text-white' : 'bg text-black',]">
+                    <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer text-prm hover:bg-gray-200 text-base font-semibold',
+                        paginate.current_page === pageNumber ? 'bg-primary text-white' : 'bg text-black',]">
 
                         {{ pageNumber }}
 
@@ -127,7 +127,7 @@
                     </transition>
 
                     <transition name="slid" v-if="isPickupDateSelected && !dropOffDate">
-                        <div class=" text-white text-sm font-light w-full p-2 mt-2 bg-red-500 rounded-md shadow-md">
+                        <div class=" text-white text-sm font-light w-full p-2 mt-2 bg-primary rounded-md shadow-md">
 
                             {{ t('dropOff_date_required') }}
 
@@ -205,7 +205,7 @@
                 <div class="pb-12 w-full">
 
 
-                    <div class="flex items-center w-full">
+                    <div data-aos="fade-up" class="flex items-center w-full">
 
                         <label @click="setActive('brandFit', 'brandRet')"
                             class="capitalize cursor-pointer collec-name text-black text-base font-medium pb-4 w-full">
@@ -238,7 +238,7 @@
 
                 <div class="flex justify-center items-center w-full">
                     <button @click="resetFilters" type="reset"
-                        class=" w-32 py-4 text-sm font-semibold text-white bg-red-600 focus:outline-none hover:bg-red-700">
+                        class=" w-32 py-4 text-sm font-semibold text-white bg-primary focus:outline-none hover">
                         {{ cars.reset_filter_text }}
                     </button>
                 </div>
@@ -396,7 +396,7 @@ export default {
                     case 'collections.slug-in': this.param = this.params[key]; break;
                     case 'price.salePrice-from': this.query['price-from'] = this.params[key]; break;
                     case 'price.salePrice-to': this.query['price-to'] = this.params[key]; break;
-                    case 'tags-in': this.query['tags'] = this.params[key]; break;
+                    // case 'tags-in': this.query['tags'] = this.params[key]; break;
                     case 'brand.slug-in': this.query['brands'] = this.params[key]; break;
                     case 'page': this.query['page'] = [this.params[key]]; break;
 
@@ -665,10 +665,10 @@ export default {
             return date < currentDate;
         },
 
-        callBothFunctions() {
-            this.updateFilteredItems();
-            this.pickupAdresse();
-        },
+        // callBothFunctions() {
+        //     this.updateFilteredItems();
+        //     this.pickupAdresse();
+        // },
     },
     watch: {
         params: {
@@ -682,7 +682,7 @@ export default {
         "$route.query.search"(val) {
             this.$set(this.params, 'search', val);
         },
-        'pickup': 'callBothFunctions',
+        'pickup': 'updateFilteredItems',
         dropOffDate: 'updateFilteredItems',
     },
     computed: {

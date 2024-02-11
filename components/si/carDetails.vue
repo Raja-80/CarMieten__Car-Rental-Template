@@ -67,7 +67,7 @@
 
                         <div class="flex flex-row justify-start  text-black font-semibold text-xs pb-1">
                             <div>
-                                Transmission  :
+                                Transmission  
                             </div>
                             <span class="text-black font-light lg:pl-0 pl-4 ">
                                 {{ getTransmission(item) }}

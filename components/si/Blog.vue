@@ -21,7 +21,7 @@
                 <nuxt-link :to="`/blog/${item.slug}`" class=" text-black hover:underline">
                     {{ item.title }}
                 </nuxt-link>
-                <div class="border-b-4 border-red-600 w-8 mt-3">
+                <div class="border-b-4 border-primary w-8 mt-3">
                 </div>
             </div>
             <div class="font-light pb-4 leading-loose">

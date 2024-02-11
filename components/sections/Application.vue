@@ -8,9 +8,9 @@
         <div>
           <nuxt-img
             v-if="app.show_image"
-            class=" "
+            data-aos="fade-up"
             :src="app.image ? app.image.src : $store.state.defaults.logo"
-            alt="company logo"
+            alt="app"
           />
         </div>
       </div>
@@ -19,22 +19,22 @@
     <div class="flex flex-col lg:w-2/4 px-4 lg:px-0 pt-6">
       <div class="flex justify-start lg:pb-20 pb-12">
         <div class="flex flex-col">
-          <p class="text-white text-base font-light pb-2">
+          <p data-aos="fade-up" class="text-white text-base font-light pb-2">
             {{ app.top_title }}
           </p>
 
-          <h1 class="text-white font-semibold text-4xl pb-6 w-3/4">
+          <h1 data-aos="fade-up" class="text-white font-semibold text-4xl pb-6 w-3/4">
             {{ app.title }}
           </h1>
 
-          <p class="text-white text-base font-light leading-loose w-4/4">
+          <p data-aos="fade-up" class="text-white text-base font-light leading-loose w-4/4">
             {{ app.description }}
           </p>
         </div>
       </div>
 
       <div class="flex lg:flex-row flex-col">
-        <div class="pr-16">
+        <div data-aos="fade-up" class="pr-16">
           <a
             v-if="app.show_play_store"
             :href="app.app_play_store_link"
@@ -49,7 +49,7 @@
           </a>
         </div>
 
-        <div>
+        <div data-aos="fade-up">
           <a
             v-if="app.show_apple_store"
             :href="app.app_apple_store_link"

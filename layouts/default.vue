@@ -5,29 +5,29 @@
       {{ this.rgb_first.b }}; --primary-color: rgb(var(--primary-rgb));
       --secondary-rgb: {{ this.rgb_second.r }}, {{ this.rgb_second.g }},
       {{ this.rgb_second.b }}; --secondary-color: rgb(var(--secondary-rgb)); }
-      .bg-primary{ background-color: var(--primary-color); } 
-      .bg-secondary{ background-color: var(--secondary-color); } 
-      .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); } 
-      .bg-secondary:hover{ background-color: rgb(var(--secondary-rgb),0.8); } 
-      .bg-primary-lighter{ background-color: rgb(var(--primary-rgb),0.3); } 
-      .text-primary{ color: var(--primary-color); } 
+      .bg-primary{ background-color: var(--primary-color); }
+      .bg-secondary{ background-color: var(--secondary-color); }
+      .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
+      .bg-secondary:hover{ background-color: rgb(var(--secondary-rgb),0.8); }
+      .bg-primary-lighter{ background-color: rgb(var(--primary-rgb),0.3); }
+      .text-primary{ color: var(--primary-color); }
       .text-secondary{ color: var(--secondary-color); }
+      .text-prm:hover{color: var(--primary-color);}
+      .text-prm{color: #ffffff;}
+      .text-navlink:hover{color: var(--primary-color);}
+      .text-navlink{color: #363636;}
       .border-primary { border-color: var(--primary-color); }
     </component>
-    
-    <div class="relative bg-cover " :style="'background: url('+ bannerBg +') no-repeat scroll center bottom; background-size: cover;'">
-  
+
+    <div class="relative bg-cover "
+      :style="'background: url(' + bannerBg + ') no-repeat scroll center bottom; background-size: cover;'">
+
       <sections-header></sections-header>
-      
+
       <sections-banner></sections-banner>
 
-      <svg
-        v-if="isHomePage"
-        class="absolute bottom-0 w-full lg:h-20 h-8"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
+      <svg v-if="isHomePage" class="absolute bottom-0 w-full lg:h-20 h-8" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 100 100" preserveAspectRatio="none">
         <polygon fill="white" points="0,100 100,0 100,100" />
       </svg>
     </div>
@@ -40,11 +40,15 @@
     <div dir="ltr" class="footer">
       <sections-copyright></sections-copyright>
     </div>
-    
+
   </div>
 </template>
 
 <script>
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 export default {
   head() {
     return {
@@ -175,10 +179,10 @@ export default {
   },
   async fetch() {
     // console.log(typeof this.otherLinks);
-    
+
     this.rgb_first = this.$tools.hexToRgb(this.$settings.style.primary_color);
     this.rgb_second = this.$tools.hexToRgb(this.$settings.style.second_color);
-    
+
     // if (this.$store.state.language.code == "AR") {
     //   this.otherLinks = [
     //     { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -198,6 +202,13 @@ export default {
     isHomePage() {
       return this.$route.path === "/";
     },
+  },
+  mounted() {
+    this.$nextTick(() => {
+      AOS.init({
+        // Global settings
+      });
+    });
   },
 };
 </script>

@@ -1,13 +1,13 @@
 <template>
     <div v-if="reviews_section.show_reviews_section" class="container lg:pb-32 pb-24 pt-20">
         <div class="flex flex-col justify-center items-center ">
-            <h1 class="text-black font-semibold text-3xl text-center ">
+            <h1 data-aos="fade-up" class="text-black font-semibold text-3xl text-center ">
 
                 {{ reviews_section.title }}
 
             </h1>
 
-            <p class="  text-gray-400 font-normal italic font-serif text-lg pb-8">
+            <p data-aos="fade-up" class="  text-gray-400 font-normal italic font-serif text-lg pb-8">
 
                 {{ reviews_section.under_title }}
 

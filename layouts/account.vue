@@ -1,44 +1,49 @@
 <template>
     <div class="bg-gray-50 transition-all delay-300" :class="$store.state.showHeaderMenu ? 'to-right' : ''">
         <component :is="'style'">
-            :root{ --primary-rgb: {{ this.rgb_first.r }}, {{this.rgb_first.g}}, {{ this.rgb_first.b }}; --primary-color: rgb(var(--primary-rgb));
-                   --secondary-rgb: {{ this.rgb_second.r }}, {{this.rgb_second.g}}, {{ this.rgb_second.b }}; --secondary-color: rgb(var(--secondary-rgb)); }
+            :root{ --primary-rgb: {{ this.rgb_first.r }}, {{ this.rgb_first.g }},
+            {{ this.rgb_first.b }}; --primary-color: rgb(var(--primary-rgb));
+            --secondary-rgb: {{ this.rgb_second.r }}, {{ this.rgb_second.g }},
+            {{ this.rgb_second.b }}; --secondary-color: rgb(var(--secondary-rgb)); }
             .bg-primary{ background-color: var(--primary-color); }
             .bg-secondary{ background-color: var(--secondary-color); }
             .bg-primary:hover{ background-color: rgb(var(--primary-rgb),0.8); }
             .bg-secondary:hover{ background-color: rgb(var(--secondary-rgb),0.8); }
+            .bg-primary-lighter{ background-color: rgb(var(--primary-rgb),0.3); }
             .text-primary{ color: var(--primary-color); }
             .text-secondary{ color: var(--secondary-color); }
-            
+            .text-prm:hover{color: var(--primary-color);}
+            .text-prm{color: #ffffff;}
+            .border-primary { border-color: var(--primary-color); }
         </component>
 
-        <div  class="relative bg-cover"
-      :style="{ backgroundImage: 'url(' + (require('~/assets/images/banner_dflt.jpg')) + ')' }">
-      <!-- <nuxt-img v-if="service_1.show_icon" class="relative bg-cover"
+        <div class="relative bg-cover "
+            :style="'background: url(' + bannerBg + ') no-repeat scroll center bottom; background-size: cover;'">
+            <!-- <nuxt-img v-if="service_1.show_icon" class="relative bg-cover"
         :src="background_img ? background_img.src : $store.state.defaults.logo" alt="company logo" /> -->
-      <sections-header></sections-header>
-      <sections-banner></sections-banner>
+            <sections-header></sections-header>
+            <sections-banner></sections-banner>
 
-      <svg v-if="isHomePage" class="absolute bottom-0 w-full lg:h-20 h-8 " xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100" preserveAspectRatio="none">
-        <polygon fill="white" points="0,100 100,0 100,100" />
-      </svg>
-    </div>
+            <svg v-if="isHomePage" class="absolute bottom-0 w-full lg:h-20 h-8 " xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 100 100" preserveAspectRatio="none">
+                <polygon fill="white" points="0,100 100,0 100,100" />
+            </svg>
+        </div>
 
         <Nuxt />
 
         <div class="footer">
-      <sections-footer></sections-footer>
-    </div>
-    <div dir="ltr" class="footer">
-      <sections-copyright></sections-copyright>
-    </div>
+            <sections-footer></sections-footer>
+        </div>
+        <div dir="ltr" class="footer">
+            <sections-copyright></sections-copyright>
+        </div>
 
     </div>
 </template>
 <script>
 export default {
-    head(){
+    head() {
         return {
             title: this.$store.state.seo.title,
             meta: [
@@ -76,20 +81,20 @@ export default {
         return {
             rgb_first: { r: 0, g: 0, b: 0 },
             rgb_second: { r: 0, g: 0, b: 0 },
-            background_img: this.$settings.sections.banner.background_img,
+            bannerBg: this.$settings.sections.banner.background_img ? this.$settings.sections.banner.background_img.src : 'https://storeno.b-cdn.net/stores/1-2024/1705581973215.jpeg',
             otherLinks: [
-                ]
+            ]
         }
     },
-    async fetch(){
+    async fetch() {
         this.$store.state.seo.title = this.$settings.store_name;
         this.$store.state.seo.description = this.$settings.store_description;
         this.$store.state.seo.keywords = this.$settings.store_keywords || [];
-        if(this.$settings.store_og_image){ this.$store.state.seo.image = this.$settings.store_og_image.src; }
-        if(this.$settings.favicon){ this.$store.state.seo.favicon = this.$settings.favicon.src; }
+        if (this.$settings.store_og_image) { this.$store.state.seo.image = this.$settings.store_og_image.src; }
+        if (this.$settings.favicon) { this.$store.state.seo.favicon = this.$settings.favicon.src; }
         this.rgb_first = this.$tools.hexToRgb(this.$settings.style.primary_color);
         this.rgb_second = this.$tools.hexToRgb(this.$settings.style.second_color);
-        if(this.$store.state.language.code == 'AR'){
+        if (this.$store.state.language.code == 'AR') {
             this.otherLinks = [
                 { rel: "preconnect", href: 'https://fonts.googleapis.com' },
                 { rel: "preconnect", href: 'https://fonts.gstatic.com', crossorigin: true },
@@ -102,15 +107,15 @@ export default {
 }
 </script>
 <style>
-
-
 .footer {
-  background-color: rgba(26, 26, 26, 255);
+    background-color: rgba(26, 26, 26, 255);
 }
-    [dir='ltr'] .to-right{
-        transform: translateX(20rem);
-    }
-    [dir='rtl'] .to-right{
-        transform: translateX(-20rem) !important;
-    } 
+
+[dir='ltr'] .to-right {
+    transform: translateX(20rem);
+}
+
+[dir='rtl'] .to-right {
+    transform: translateX(-20rem) !important;
+}
 </style>

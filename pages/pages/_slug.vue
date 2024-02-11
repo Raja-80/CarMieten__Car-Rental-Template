@@ -1,39 +1,42 @@
 <template>
     <div class=" ">
-        <div class="container my-2 ">
+        <div class="container my-2 w-full ">
             <div v-if="loading" class="flex items-center justify-center my-5">
                 <si-loader></si-loader>
             </div>
-            <div v-if="item" class="my-6 flex flex-col justify-start items-center">
+            <div v-if="item" class="my-6 flex flex-row justify-center items-center w-full">
 
-                <nuxt-img v-if="item.image" class="h-96" :src="item.image ? item.image.url : $store.state.defaults.logo"
+                <nuxt-img data-aos="fade-up" v-if="item.image" class="h-72 w-2/5" :src="item.image ? item.image.url : $store.state.defaults.logo"
                     alt="company logo" />
 
-                <h1 class="m-10 font-semibold">{{ item.title }}</h1>
-                <hr class="m-0">
-                <div class=" flex flex-col justify-center items-start">
-                    <div v-if="item.excerpt" class="m-3"><small>{{ item.excerpt }}</small></div>
-                    <hr>
-                    <div v-if="item" class="p-2 mx-2 my-3 description" id="description" v-html="item.content">
+                <div  class="w-3/5">
+                    <h1 data-aos="fade-up" class="m-10 font-semibold">{{ item.title }}</h1>
+                    <hr class="m-0">
+                    <div class=" flex flex-col justify-center items-start">
+                        <div data-aos="fade-up" v-if="item.excerpt" class="m-3"><small>{{ item.excerpt }}</small></div>
+                        <hr data-aos="fade-up">
+                        <div data-aos="fade-up" v-if="item" class="p-2 mx-2 my-3 description" id="description" v-html="item.content">
+                        </div>
                     </div>
-                </div>
 
-                <div class="mt-14 mb-12">
-                    <si-app-loader :placement="'AFTER_CONTACT_PAGE'" class=" text-black mx-10  pl-32" />
-                </div>
+                    <!-- <div class="mt-14 mb-12">
+                        <si-app-loader :placement="'AFTER_CONTACT_PAGE'" class=" text-black mx-10  pl-32" />
+                    </div> -->
 
-                <div class="flex items-center">
+                    <!-- <div class="flex items-center">
                     <div class="flex w-full border-b border-gray-200 "></div>
-                    <h3 class="p-2  whitespace-nowrap">{{ $settings.sections.post.share_buttons.title }}</h3>
-                    <!-- <div class="flex w-full border-b-2 border-gray-400 "></div> -->
+                    <h3 class="p-2  whitespace-nowrap">{{ $settings.sections.blog.share_buttons.title }}</h3>
+                    <div class="flex w-full border-b-2 border-gray-400 "></div>
 
-                </div>
-                <div class="flex justify-center ">
-                    <div v-for="item in socialMedia" :key="item.name" class="flex items-center justify-center h-12 m-2">
-                        <a class="flex h-full" :href="item.url" target="_blank" rel="noopener noreferrer">
-                            <si-image class="w-10 h-10" width="40" height="40" :src="item.image" :alt="item.name" />
-                        </a>
-                    </div>
+                </div> -->
+
+                    <!-- <div class="flex justify-center ">
+                        <div v-for="item in socialMedia" :key="item.name" class="flex items-center justify-center h-12 m-2">
+                            <a class="flex h-full" :href="item.url" target="_blank" rel="noopener noreferrer">
+                                <si-image class="w-10 h-10" width="40" height="40" :src="item.image" :alt="item.name" />
+                            </a>
+                        </div>
+                    </div> -->
                 </div>
             </div>
 

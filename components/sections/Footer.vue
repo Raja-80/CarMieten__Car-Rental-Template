@@ -1,8 +1,8 @@
 <template>
     <div v-if="footer.show_footer_section" class=" container pt-20 pb-32">
-        <div class="flex lg:flex-row flex-col justify-between  items-start pl-8 lg:pl-0">
+        <div data-aos="fade-up" class="flex lg:flex-row flex-col justify-between  items-start pl-8 lg:pl-0">
 
-            <div class="flex flex-col justify-between items-start pb-8 ">
+            <div data-aos="fade-up" class="flex flex-col justify-between items-start pb-8 ">
 
                 <div class="cursor-pointer flex items-center lg:pb-24 pb-6">
                     <nuxt-img v-if="footer.show_logo" class="h-10" :src="logo ? logo.src : $store.state.defaults.logo"
@@ -12,11 +12,10 @@
                     </nuxt-link>
                 </div>
 
-                <div >
-                    <!-- <p v-if="footer.show_copyright" class=" text-sm font-light w-56">
-                        {{ footer.copyright }}
-                    </p> -->
-                    <div v-if="footer.show_copyright" class="txt text-sm font-light w-56" v-html="footer.copyright.replace(/__YEAR__/gi, year)">
+                <div>
+                    
+                    <div v-if="footer.show_copyright" class="txt text-sm font-light w-56"
+                        v-html="footer.copyright.replace(/__YEAR__/gi, year)">
                     </div>
 
                 </div>
@@ -32,13 +31,14 @@
 
                 </div>
 
-                <div v-if="useful_links.show_links" class="flex items-center">
+                <div v-if="useful_links.show_links"
+                    class="flex items-center">
 
                     <div class="flex flex-col justify-between items-start">
                         <div v-for="(link, index) in useful_links.links.items" :key="index">
 
                             <nuxt-link :to="link.url"
-                                class="text-sm font-light hover:text-primary focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
+                                class="text-sm font-light text-prm focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
                                 {{ link.text }}
                             </nuxt-link>
 
@@ -62,7 +62,7 @@
                         <div v-for="(link, index) in terms.links.items" :key="index">
 
                             <nuxt-link :to="link.url"
-                                class="text-sm font-light hover:text-primary focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
+                                class="text-sm font-light text-prm focus:underline focus:text-primary transition duration-1000 ease-in-in  pb-2 ">
                                 {{ link.text }}
                             </nuxt-link>
 
@@ -75,7 +75,7 @@
 
             <div v-if="showroom.show_section" class="flex flex-col justify-between items-start pb-8">
 
-                <div v-if="showroom.show_title" class=" flex items-center lg:pb-24 pb-6">
+                <div  v-if="showroom.show_title" class=" flex items-center lg:pb-24 pb-6">
 
                     <div class="text-sm font-semibold text-white">{{ showroom.title }}</div>
 
@@ -85,13 +85,14 @@
                     {{ showroom.adresse }}
                 </p>
 
-                <p v-if="showroom.show_number" class=" text-sm font-light pb-2 ">
+                <p  v-if="showroom.show_number" class=" text-sm font-light pb-2 ">
                     Phone : {{ showroom.number }}
                 </p>
 
                 <p v-if="showroom.show_email" class=" text-sm font-light pb-2 ">
                     Email : {{ showroom.email }}
                 </p>
+
                 <p v-if="showroom.show_notice" class=" text-sm font-light pb-2 ">
                     {{ showroom.copyright_notice }}
                 </p>
@@ -117,7 +118,8 @@ export default {
 </script>
 
 <style>
-a,p,
+a,
+p,
 .txt {
     color: #edebe5;
 }

@@ -5,7 +5,7 @@
             <si-loader></si-loader>
         </div>
 
-        <div v-if="news_search" class="flex flex-col py-10 mx-5 w-full">
+        <div data-aos="fade-up" v-if="news_search" class="flex flex-col py-10 mx-5 w-full">
 
             <div class="flex flex-row items-center w-full text-xs pb-8 ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -22,13 +22,13 @@
         </div>
         <div v-if="!loading.posts" class="flex flex-col mx-7 w-full">
 
-            <div v-if="items.length > 0" v-for="item in items" :key="item._id">
+            <div data-aos="fade-up" v-if="items.length > 0" v-for="item in items" :key="item._id">
                 <si-blog :item="item"></si-blog>
             </div>
 
-            <div v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
-                <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer hover:text-red-600 hover:bg-gray-200 text-base font-semibold',
-                    paginate.current_page === pageNumber ? 'bg-red-600 text-white' : 'bg text-black',]">
+            <div data-aos="fade-up" v-if="items.length > 0" class="flex items-center justify-center w-full p-20">
+                <button v-for="pageNumber in paginate.last_page" :key="pageNumber" @click="getItems(pageNumber)" :class="['w-10 h-10 rounded-full m-1 flex items-center justify-center cursor-pointer text-prm hover:bg-gray-200 text-base font-semibold',
+                    paginate.current_page === pageNumber ? 'bg-primary text-white' : 'bg text-black',]">
 
                     {{ pageNumber }}
 
@@ -36,13 +36,14 @@
             </div>
 
             <!-- if there are no news -->
-            <div v-if="items.length <= 0"
+            <div data-aos="fade-down" v-if="items.length <= 0"
                 class="flex flex-col w-full py-10 text-base text-center font-medium text-white ">
                 <b class=" bg-red-400 rounded-xl">{{ t('No_News_Founded') }}</b>
                 <nuxt-link :to="`/`"
-                    class="text-sm font-light hover:text-red-600 focus:underline focus:text-red-600 transition duration-1000 ease-in-in  pb-2 ">
-                    Back To Home Page
-                    <!-- t('') -->
+                    class="text-sm font-light text-prm focus:underline transition duration-1000 ease-in-in  pb-2 ">
+                    
+                    {{t('Back_To_Home_Page')}}
+
                 </nuxt-link>
             </div>
         </div>

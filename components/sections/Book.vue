@@ -1,11 +1,11 @@
 <template>
     <div class="parallax-container lg:pb-0 pb-96">
-        <div class="content flex lg:flex-row flex-col justify-center items-center text-3xl font-light ">
+        <div data-aos="fade-up" class="content flex lg:flex-row flex-col justify-center items-center text-3xl font-light ">
             {{ booking.title }}
-            <nuxt-img v-if="booking.show_icon" class="h-10 mb-6 pl-8"
+            <nuxt-img data-aos="fade-up" v-if="booking.show_icon" class="h-10 mb-6 pl-8"
                 :src="booking.icon ? booking.icon.src : $store.state.defaults.logo" alt="company logo" />
 
-            <span class=" text-4xl font-semibold pl-2 pr-4">
+            <span data-aos="fade-up" class=" text-4xl font-semibold pl-2 pr-4">
                 {{ booking.number }}
             </span>
 

@@ -3231,18 +3231,18 @@
             ],
             "sections": {
                 "navbar": {
-                    "menu": "65612aa66cdac169bf62f641",
+                    "menu": null,
                     "active_menu": true,
-                    "language_icon": "6599071d4cb8838e37c17ca7",
-                    "currency_icon": "659907374cb8838e37c17caa",
-                    "logo": "659e736e31895c06900c2cc6",
+                    "language_icon": null,
+                    "currency_icon": null,
+                    "logo": null,
                     "active_logo": true,
                     "name": "CarMieten",
                     "active_name": true
                 },
                 "banner": {
                     "title": "Book Your Luxury Ride",
-                    "description": "Luxury Cars at low-cost, starts $75 / day  from over 100 premium locations",
+                    "description": " Indulge in luxury with our carefully selected premium car fleet, available at attractive rates",
                     "show_description": true,
                     "background_img": null
                 },
@@ -3265,19 +3265,19 @@
                 "benefit_1": {
                     "title": " Our Customers Always 100% Satisfied",
                     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation",
-                    "icon": "656d9a24a2f51ec77c7c267e",
+                    "icon": null,
                     "show": true
                 },
                 "benefit_2": {
                     "title": " We Provide Easier & Faster Bookings",
                     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation",
-                    "icon": "656d9a42a2f51ec77c7c2684",
+                    "icon": null,
                     "show": true
                 },
                 "benefit_3": {
                     "title": " Your Choice of Any Pickup Location",
                     "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit sed don eiusmod tempor enim minim veniam quis notrud exercitation",
-                    "icon": "656d9a50a2f51ec77c7c2687",
+                    "icon": null,
                     "show": true
                 },
                 "guide": {
@@ -3289,19 +3289,19 @@
                 "step_1": {
                     "info": "Once selected, Book our auto and set a pickup date / time",
                     "show_info": true,
-                    "icon": "656dac0ea2f51ec77c7c2714",
+                    "icon": null,
                     "show_icon": true
                 },
                 "step_2": {
                     "info": "Once selected, Book our auto and set a pickup date / time",
                     "show_info": true,
-                    "icon": "656dace6a2f51ec77c7c2720",
+                    "icon": null,
                     "show_icon": true
                 },
                 "step_3": {
                     "info": "Once selected, Book our auto and set a pickup date / time",
                     "show_info": true,
-                    "icon": "656dad00a2f51ec77c7c2723",
+                    "icon": null,
                     "show_icon": true
                 },
                 "fleets": {
@@ -3311,13 +3311,7 @@
                     "show_description": true,
                     "under_title": "Luxury CarMieten Rental Services",
                     "show_under_title": true,
-                    "cars": [
-                        "65a68751a84fcf0f74bce1fe",
-                        "65a6187fa84fcf0f74bcd6fe",
-                        "65a60d59a84fcf0f74bcd5db",
-                        "65a609b4a84fcf0f74bcd58e",
-                        "65a54dc0a84fcf0f74bcd197"
-                    ],
+                    "cars": null,
                     "active": true
                 },
                 "services": {
@@ -3325,9 +3319,9 @@
                     "description": "Integer tortor bibendum est faucibus gravida aliquam nulla lectus lacinia eget lorem acdua eros pharetral interdum quisque convallis nula dpsum val mualiq amet consectetur adipisicing sed eiusmod tem pory.  Ut enim ad minim ven quis nostrud exercitation ulamco laboris nisi ut aliquip exl dolor in reprehenderit voluptate velit non proident sunt in culpa.",
                     "show_title": true,
                     "show_description": true,
-                    "image_1": "656f3760049ebf8675bbd88b",
-                    "image_2": "656f3771049ebf8675bbd88e",
-                    "image_3": "656f377a049ebf8675bbd891",
+                    "image_1": null,
+                    "image_2": null,
+                    "image_3": null,
                     "show_image_1": true,
                     "show_image_2": true,
                     "show_image_3": true,
@@ -3344,7 +3338,7 @@
                 "service_2": {
                     "title": "Breakdown Assistance",
                     "description": "Faucibus gravida aliquam nulla lectus lacinia eget",
-                    "icon": "656f47cf049ebf8675bbd8ab",
+                    "icon": null,
                     "show_title": true,
                     "show_description": true,
                     "show_icon": true
@@ -3352,7 +3346,7 @@
                 "service_3": {
                     "title": "Trusted Rent Service",
                     "description": "Faucibus gravida aliquam nulla lectus lacinia eget",
-                    "icon": "656f429f049ebf8675bbd8a3",
+                    "icon": null,
                     "show_title": true,
                     "show_description": true,
                     "show_icon": true
@@ -3360,7 +3354,7 @@
                 "service_4": {
                     "title": "24/7 Free Customer Support",
                     "description": "Faucibus gravida aliquam nulla lectus lacinia eget",
-                    "icon": "656f481f049ebf8675bbd8b2",
+                    "icon": null,
                     "show_title": true,
                     "show_description": true,
                     "show_icon": true
@@ -3372,7 +3366,7 @@
                     "show_title": true,
                     "show_number": true,
                     "show_availability": true,
-                    "icon": "65718a31049ebf8675bbe1bc",
+                    "icon": null,
                     "show_icon": true,
                     "show_section": true
                 },
@@ -3383,13 +3377,7 @@
                     "show_under_title": true,
                     "description": "Amco laboris nisi ut aliquip xea comod consequt duis aute irure dolor reprehenderit voluptate velit cillum dolore fugiat lore ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod tempor incididunt",
                     "show_description": true,
-                    "info": [
-                        "6582aafef91c80ef79709579",
-                        "6582aad7f91c80ef7970956e",
-                        "6582aa58f91c80ef79709562",
-                        "6582aa28f91c80ef79709558",
-                        "6582a9bff91c80ef7970954e"
-                    ],
+                    "info": null,
                     "show_section": true
                 },
                 "reviews": {
@@ -3420,21 +3408,21 @@
                 "footer": {
                     "company_name": "CarMieten",
                     "show_name": true,
-                    "logo": "659e736e31895c06900c2cc6",
+                    "logo": null,
                     "show_logo": true,
                     "copyright": "Copyright © 2024 by STOREINO. All Rights Reserved.",
                     "show_copyright": true,
                     "useful_links": {
                         "title": "USEFUL LINKS",
                         "show_title": true,
-                        "links": "65708a00049ebf8675bbdf1f",
+                        "links": null,
                         "show_links": true,
                         "show_section": true
                     },
                     "terms": {
                         "title": "OUR TERMS",
                         "show_title": true,
-                        "links": "65708a86049ebf8675bbdf28",
+                        "links": null,
                         "show_links": true,
                         "show_terms": true
                     },
@@ -3475,7 +3463,7 @@
                 },
                 "blog": {
                     "share_buttons": {
-                        "title": "Share This Pagea",
+                        "title": "Share This Page",
                         "show_title": true,
                         "show_share_buttons": true
                     }
@@ -3553,23 +3541,18 @@
         }
     },
     "images": [
-        "https://storeno.b-cdn.net/themes/palest.jpg"
-    ],
-    "isActive": true,
-    "autoRenew": false,
-    "_id": "656742f86cdac169bf63069a",
-    "expiryDate": "2050-12-12T00:00:00.000Z",
-    "name": "palest",
-    "url": "/themes/palest",
-    "route": "palest",
-    "defaults": [],
-    "paymentType": "yearly",
-    "payments": [],
-    "price": 22,
-    "description": "✔ Simple and easy theme to use ✔ Well presented and convertible store and product page ✔ SEO optimized ✔ Responsive to all devices",
-    "publicName": "Palest - Multipurpose Responsive E-commerce Template",
-    "storeId": "654e4a1cac0d94578705afc8",
-    "createdAt": "2023-11-29T13:56:08.060Z",
-    "updatedAt": "2024-02-08T09:43:10.829Z",
-    "__v": 0
+        "https://storeno.b-cdn.net/themes/reserva/bazar-cover.jpg"
+      ],
+      "isActive": false,
+      "autoRenew": false,
+      "expiryDate": "2050-12-12T00:00:00.000Z",
+      "name": "CarMieten",
+      "url": "/themes/CarMieten",
+      "route": "CarMieten",
+      "defaults": [],
+      "paymentType": "yearly",
+      "payments": [],
+      "price": 22,
+      "description": "✔ Simple and easy theme to use ✔ Well presented and convertible store and product page ✔ SEO optimized ✔ Responsive to all devices",
+      "publicName": "CarMieten - Versatile Responsive Car Rental Template"
 }

@@ -6,26 +6,27 @@
                     alt="car_image" />
             </nuxt-link>
         </div>
-        <div class="bg px-2 py-8">
-            <div class=" flex flex-col justify-center items-center pb-12 px-3 ">
-                <div class="text-center font-semibold ">
-                    {{ item.seo.title }}
-                </div>
-                <div class="flex flex-row justify-around items-start w-full pt-8  pb-4">
-                    <div class="flex flex-col justify-center items-center p-2 w-2/6">
+        <div class="bg p-4">
+            <div class=" flex flex-col justify-center items-center pb-12 ">
+                <nuxt-link :to="`/auto-info/${item.slug}`" class="w-full">
+                    <div class="text-center font-semibold text-navlink drop-shadow-lg">
+                        {{ item.seo.title }}
+                    </div>
+                </nuxt-link>
+                <div class="flex flex-wrap gap-3 justify-center items-start w-full pt-8  pb-4">
+                    <div class="flex flex-col justify-center items-center w-1/4">
 
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 576 512" width="25" height="30">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="25" height="30">
                             <path fill="#000000"
                                 d="M256 32H181.2c-27.1 0-51.3 17.1-60.3 42.6L3.1 407.2C1.1 413 0 419.2 0 425.4C0 455.5 24.5 480 54.6 480H256V416c0-17.7 14.3-32 32-32s32 14.3 32 32v64H521.4c30.2 0 54.6-24.5 54.6-54.6c0-6.2-1.1-12.4-3.1-18.2L455.1 74.6C446 49.1 421.9 32 394.8 32H320V96c0 17.7-14.3 32-32 32s-32-14.3-32-32V32zm64 192v64c0 17.7-14.3 32-32 32s-32-14.3-32-32V224c0-17.7 14.3-32 32-32s32 14.3 32 32z" />
                         </svg>
 
-                        <span class="text-xs font-light pt-2">
+                        <span class="text-xs font-light pt-2 text-center">
                             {{ getEngine() }}
                         </span>
                     </div>
 
-                    <div class="flex flex-col justify-center items-center p-2 w-2/6">
+                    <div class="flex flex-col justify-center items-center w-1/4">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -36,12 +37,12 @@
                             <path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5" />
                         </svg>
 
-                        <span class="text-xs font-light pt-2">
+                        <span class="text-xs font-light pt-2 text-center">
                             {{ getFuel() }}
                         </span>
                     </div>
 
-                    <div class="flex flex-col justify-center items-center p-2 w-2/6">
+                    <div class="flex flex-col justify-center items-center w-1/4">
 
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -62,12 +63,13 @@
 
                 </div>
             </div>
-            <div class="px-6 pb-10">
-                <div class="flex flex-wrap justify-start items-center ">
+            <div class=" pb-12  ">
+                <div class="flex flex-wrap gap-5 justify-center items-center w-full">
                     <div v-if="item.bookingProps.extraInfo.length > 0" v-for="info in item.bookingProps.extraInfo"
-                        :key="info" class="flex flex-row font-light py-1 w-2/4 text-xs">
+                        :key="info" class="flex flex-row items-center  font-light py-1 w-2/5 text-xs">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 24 24"
+                            class="w-1/4">
                             <path
                                 d="M5.268,10.732c-0.976-0.976-2.559-0.976-3.536,0s-0.976,2.559,0,3.536l4.645,4.645	c1.449,1.449,3.797,1.449,5.246,0L12.536,18L5.268,10.732z"
                                 opacity=".35"></path>
@@ -76,7 +78,7 @@
                             </path>
                         </svg>
 
-                        <div class="pl-1 text-center">
+                        <div class="pl-1 text-center w-3/4">
                             {{ info.name }}
                         </div>
 
@@ -84,16 +86,16 @@
 
                 </div>
             </div>
-            <div class="flex flex-row justify-around items-center text-primary pb-2">
-                {{ this.$store.state.currency.symbol }} {{ item.price.salePrice }}/ {{ item.bookingProps.priceBy }}
-                <div>
-                    <nuxt-link :to="`/auto-info/${item.slug}`" :title="item.name" :aria-label="item.name">
-                        <button type="submit"
-                            class="w-20 py-2 text-sm rounded text-white border border-black focus:outline-none bg-primary hover:border-opacity-0 hover:text-white">
-                            {{ this.$settings.sections.product.rent_it }}
-                        </button>
-                    </nuxt-link>
+            <div class="flex flex-col justify-center items-center text-primary pb-2 w-full">
+                <div class="">{{ this.$store.state.currency.symbol }} {{ item.price.salePrice }}/ {{
+                    item.bookingProps.priceBy }}
                 </div>
+
+                <nuxt-link :to="`/auto-info/${item.slug}`"
+                    class="flex justify-center px-10  mx-4 mt-9 py-2 text-sm text-white bg-primary shadow-sm tracking-wider rounded-full hover:shadow-lg">
+                    {{ this.$settings.sections.product.rent_it }}
+                </nuxt-link>
+
             </div>
         </div>
 
@@ -118,34 +120,6 @@ export default {
 
         },
 
-        // getEngine() {
-
-        //     for (let itm of this.item.collections) {
-        //         if (itm.name && itm.name.includes('ENGINE VOLUME')) {
-        //             return itm.slug.replace(/-/g, '');
-        //         }
-        //     }
-
-        // },
-
-        // getFuel() {
-
-        //     for (let itm of this.item.collections) {
-        //         if (itm.name && itm.name.includes('FUEL TYPE')) {
-        //             return itm.slug.replace(/-/g, '');
-        //         }
-        //     }
-
-        // },
-
-        // getTransmission() {
-
-        //     for (let itm of this.item.collections) {
-        //         if (itm.name && itm.name.includes('TRANSMISSION')) {
-        //             return this.cleanName(itm.name, 'TRANSMISSION');
-        //         }
-        //     }
-        // },
 
         getEngine() {
 

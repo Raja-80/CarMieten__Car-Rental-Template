@@ -1,4 +1,34 @@
 {
+  "SiAppLoader": {
+    "description": "Auto imported from components/si/AppLoader.vue"
+  },
+  "SiBlog": {
+    "description": "Auto imported from components/si/Blog.vue"
+  },
+  "SiCar": {
+    "description": "Auto imported from components/si/Car.vue"
+  },
+  "SiCarDetails": {
+    "description": "Auto imported from components/si/carDetails.vue"
+  },
+  "SiCarousel": {
+    "description": "Auto imported from components/si/Carousel.vue"
+  },
+  "SiLoader": {
+    "description": "Auto imported from components/si/Loader.vue"
+  },
+  "SiLoaderGlobal": {
+    "description": "Auto imported from components/si/LoaderGlobal.vue"
+  },
+  "SiPriceRange": {
+    "description": "Auto imported from components/si/PriceRange.vue"
+  },
+  "SiReview": {
+    "description": "Auto imported from components/si/Review.vue"
+  },
+  "SiSlidingone": {
+    "description": "Auto imported from components/si/Slidingone.vue"
+  },
   "SectionsApplication": {
     "description": "Auto imported from components/sections/Application.vue"
   },
@@ -34,38 +64,5 @@
   },
   "SectionsServices": {
     "description": "Auto imported from components/sections/Services.vue"
-  },
-  "SiAppLoader": {
-    "description": "Auto imported from components/si/AppLoader.vue"
-  },
-  "SiBlog": {
-    "description": "Auto imported from components/si/Blog.vue"
-  },
-  "SiCar": {
-    "description": "Auto imported from components/si/Car.vue"
-  },
-  "SiCarDetails": {
-    "description": "Auto imported from components/si/carDetails.vue"
-  },
-  "SiCarImage": {
-    "description": "Auto imported from components/si/CarImage.vue"
-  },
-  "SiCarousel": {
-    "description": "Auto imported from components/si/Carousel.vue"
-  },
-  "SiLoader": {
-    "description": "Auto imported from components/si/Loader.vue"
-  },
-  "SiLoaderGlobal": {
-    "description": "Auto imported from components/si/LoaderGlobal.vue"
-  },
-  "SiPriceRange": {
-    "description": "Auto imported from components/si/PriceRange.vue"
-  },
-  "SiReview": {
-    "description": "Auto imported from components/si/Review.vue"
-  },
-  "SiSlidingone": {
-    "description": "Auto imported from components/si/Slidingone.vue"
   }
 }
